@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Module 3 — Install Apache and Configure a Virtual Host — Ubuntu Server + Production-Ready LAMPP Stack</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <div class="site-shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <h1>Ubuntu Server + Production-Ready LAMPP Stack</h1>
+        <p>A reusable learning object for graduate IS students and early-career developers</p>
+      </div>
+      <div class="nav-section">
+        <div class="nav-label">Navigation</div>
+        <ul class="nav-list"><li><a class="" href="../index.html">Overview</a></li>
+<li><a class="" href="00-introduction-planning.html">Module 0 — Introduction and Planning</a></li>
+<li><a class="" href="01-vm-ubuntu-install.html">Module 1 — VM Creation and Ubuntu Server Installation</a></li>
+<li><a class="" href="02-hardening.html">Module 2 — Baseline Configuration and Hardening</a></li>
+<li><a class="active" href="03-apache.html">Module 3 — Install Apache and Configure a Virtual Host</a></li>
+<li><a class="" href="04-mariadb.html">Module 4 — Install and Secure MariaDB</a></li>
+<li><a class="" href="05-php.html">Module 5 — Install PHP and Connect It to Apache</a></li>
+<li><a class="" href="06-demo-php-site.html">Module 6 — Deploy the Demo PHP Site</a></li>
+<li><a class="" href="07-python-automation.html">Module 7 — Install Python and Run a Small Automation Script</a></li>
+<li><a class="" href="08-final-validation.html">Module 8 — Final Validation and Evidence Package</a></li>
+<li><a class="" href="../references.html">References</a></li></ul>
+      </div>
+      <div class="nav-section panel">
+        <h3 style="margin-top:0;">Local progress</h3>
+        <p class="small">Your checklist progress is stored in your browser only on this device.</p>
+        <div class="progress">
+          <div class="progress-bar"><div class="progress-fill"></div></div>
+        </div>
+        <div class="small" data-progress-label>0 of 0 checkpoints completed</div>
+      </div>
+    </aside>
+    <main class="main">
+      <article class="module-page">
+  <header>
+    <div class="eyebrow">Hands-on module</div>
+    <h1>Module 3 — Install Apache and Configure a Virtual Host</h1>
+    <p class="summary">Install Apache2, create one dedicated site directory, configure a virtual host, and publish a placeholder page.</p>
+    <div class="meta-row">
+      <span class="meta-chip">Estimated time: 15–20 minutes</span>
+      <span class="meta-chip">Verification-driven</span>
+      <span class="meta-chip">Copy-friendly commands</span>
+    </div>
+  </header>
+  <section class="two-col">
+    <div class="panel">
+      <h2 style="margin-top:0;">What you will complete</h2>
+      <ul><li>Install Apache2 successfully.</li><li>Understand the <code>sites-available</code> and <code>sites-enabled</code> workflow.</li><li>Serve a page from a custom document root.</li></ul>
+    </div>
+    <aside class="checklist-box">
+      <h3>Verification checklist</h3>
+      <ul class="checklist" data-checklist-key="03-apache"><li><input type="checkbox" data-track-checklist aria-label="Apache is active according to systemd."><span>Apache is active according to systemd.</span></li><li><input type="checkbox" data-track-checklist aria-label="Config test returns Syntax OK."><span>Config test returns <code>Syntax OK</code>.</span></li><li><input type="checkbox" data-track-checklist aria-label="The placeholder page loads in a browser at http://VM-IP/."><span>The placeholder page loads in a browser at <code>http://VM-IP/</code>.</span></li></ul>
+    </aside>
+  </section>
+  <section class="panel" style="margin-top:1rem;">
+    <h2 style="margin-top:0;">Steps</h2>
+<div class="step-card"><h2>Install Apache2</h2>Install the Apache package, then verify that the service starts automatically. Ubuntu stores Apache configuration under <code>/etc/apache2/</code>, including the <code>sites-available</code> and <code>sites-enabled</code> directories used for virtual hosts.</div>
+<div class="step-card"><h2>Create the document root and placeholder page</h2>Create a dedicated site directory instead of putting everything directly in <code>/var/www/html</code>. In this RLO, the public site files will live in <code>/var/www/lampp-demo/public</code>.</div>
+<div class="step-card"><h2>Create and enable a virtual host</h2>Copy the default site file, rename it, change the <code>DocumentRoot</code>, and enable the new site. Disable <code>000-default</code> so your demo site becomes the active default on port 80.</div>
+<div class="step-card"><h2>Open HTTP access in the firewall</h2>After Apache is working, allow web traffic through UFW using the Apache application profile.</div>
+  </section>
+<section class="panel" style="margin-top:1rem;"><h2 style="margin-top:0;">Command guide</h2>
+
+        <div class="command-block">
+          <div class="command-head"><strong>Install Apache2</strong><button class="copy-btn" data-copy="sudo apt install apache2 -y">Copy</button></div>
+          <pre><code>sudo apt install apache2 -y</code></pre>
+        </div>
+        
+
+        <div class="command-block">
+          <div class="command-head"><strong>Create the site directory</strong><button class="copy-btn" data-copy="sudo mkdir -p /var/www/lampp-demo/public">Copy</button></div>
+          <pre><code>sudo mkdir -p /var/www/lampp-demo/public</code></pre>
+        </div>
+        
+
+        <div class="command-block">
+          <div class="command-head"><strong>Set directory ownership to your user and the web group</strong><button class="copy-btn" data-copy="sudo chown -R $USER:www-data /var/www/lampp-demo">Copy</button></div>
+          <pre><code>sudo chown -R $USER:www-data /var/www/lampp-demo</code></pre>
+        </div>
+        
+
+        <div class="command-block">
+          <div class="command-head"><strong>Apply safe directory permissions</strong><button class="copy-btn" data-copy="sudo chmod -R 755 /var/www/lampp-demo">Copy</button></div>
+          <pre><code>sudo chmod -R 755 /var/www/lampp-demo</code></pre>
+        </div>
+        
+
+        <div class="command-block">
+          <div class="command-head"><strong>Create a placeholder index page</strong><button class="copy-btn" data-copy="cat &lt;&lt;&#x27;HTML&#x27; &gt; /var/www/lampp-demo/public/index.html
+&lt;!doctype html&gt;
+&lt;html lang=&quot;en&quot;&gt;&lt;head&gt;&lt;meta charset=&quot;utf-8&quot;&gt;&lt;title&gt;Apache Ready&lt;/title&gt;&lt;/head&gt;&lt;body&gt;&lt;h1&gt;Apache is serving this site.&lt;/h1&gt;&lt;p&gt;The custom virtual host is active.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+HTML">Copy</button></div>
+          <pre><code>cat &lt;&lt;&#x27;HTML&#x27; &gt; /var/www/lampp-demo/public/index.html
+&lt;!doctype html&gt;
+&lt;html lang=&quot;en&quot;&gt;&lt;head&gt;&lt;meta charset=&quot;utf-8&quot;&gt;&lt;title&gt;Apache Ready&lt;/title&gt;&lt;/head&gt;&lt;body&gt;&lt;h1&gt;Apache is serving this site.&lt;/h1&gt;&lt;p&gt;The custom virtual host is active.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+HTML</code></pre>
+        </div>
+        
+
+        <div class="command-block">
+          <div class="command-head"><strong>Copy the default virtual host as a new site config</strong><button class="copy-btn" data-copy="sudo cp /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/lampp-demo.conf">Copy</button></div>
+          <pre><code>sudo cp /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/lampp-demo.conf</code></pre>
+        </div>
+        
+
+        <div class="command-block">
+          <div class="command-head"><strong>Edit the site config</strong><button class="copy-btn" data-copy="sudo nano /etc/apache2/sites-available/lampp-demo.conf">Copy</button></div>
+          <pre><code>sudo nano /etc/apache2/sites-available/lampp-demo.conf</code></pre>
+        </div>
+        
+
+        <div class="command-block">
+          <div class="command-head"><strong>Config snippet to put inside lampp-demo.conf</strong><button class="copy-btn" data-copy="&lt;VirtualHost *:80&gt;
+    ServerAdmin webmaster@localhost
+    ServerName localhost
+    DocumentRoot /var/www/lampp-demo/public
+    ErrorLog ${APACHE_LOG_DIR}/lampp-demo-error.log
+    CustomLog ${APACHE_LOG_DIR}/lampp-demo-access.log combined
+    &lt;Directory /var/www/lampp-demo/public&gt;
+        Options FollowSymLinks
+        AllowOverride All
+        Require all granted
+    &lt;/Directory&gt;
+&lt;/VirtualHost&gt;">Copy</button></div>
+          <pre><code>&lt;VirtualHost *:80&gt;
+    ServerAdmin webmaster@localhost
+    ServerName localhost
+    DocumentRoot /var/www/lampp-demo/public
+    ErrorLog ${APACHE_LOG_DIR}/lampp-demo-error.log
+    CustomLog ${APACHE_LOG_DIR}/lampp-demo-access.log combined
+    &lt;Directory /var/www/lampp-demo/public&gt;
+        Options FollowSymLinks
+        AllowOverride All
+        Require all granted
+    &lt;/Directory&gt;
+&lt;/VirtualHost&gt;</code></pre>
+        </div>
+        
+
+        <div class="command-block">
+          <div class="command-head"><strong>Enable the new site</strong><button class="copy-btn" data-copy="sudo a2ensite lampp-demo">Copy</button></div>
+          <pre><code>sudo a2ensite lampp-demo</code></pre>
+        </div>
+        
+
+        <div class="command-block">
+          <div class="command-head"><strong>Disable the default site</strong><button class="copy-btn" data-copy="sudo a2dissite 000-default">Copy</button></div>
+          <pre><code>sudo a2dissite 000-default</code></pre>
+        </div>
+        
+
+        <div class="command-block">
+          <div class="command-head"><strong>Validate Apache configuration</strong><button class="copy-btn" data-copy="sudo apache2ctl configtest">Copy</button></div>
+          <pre><code>sudo apache2ctl configtest</code></pre>
+        </div>
+        
+
+        <div class="command-block">
+          <div class="command-head"><strong>Restart Apache</strong><button class="copy-btn" data-copy="sudo systemctl restart apache2.service">Copy</button></div>
+          <pre><code>sudo systemctl restart apache2.service</code></pre>
+        </div>
+        
+
+        <div class="command-block">
+          <div class="command-head"><strong>Allow Apache through UFW</strong><button class="copy-btn" data-copy="sudo ufw allow &#x27;Apache Full&#x27;">Copy</button></div>
+          <pre><code>sudo ufw allow &#x27;Apache Full&#x27;</code></pre>
+        </div>
+        
+</section>
+<section class="panel" style="margin-top:1rem;"><h2 style="margin-top:0;">Troubleshooting</h2>
+<table class="trouble"><thead><tr><th>Issue</th><th>What to check</th></tr></thead><tbody>
+<tr><td>Apache fails to restart after enabling the site</td><td>Run <code>sudo apache2ctl configtest</code> and fix syntax or path errors first.</td></tr>
+<tr><td>403 Forbidden</td><td>Check the <code>DocumentRoot</code> path, ownership, and the <code>Require all granted</code> directive in the virtual host.</td></tr>
+<tr><td>Default page still appears</td><td>Confirm <code>000-default</code> was disabled and the Apache service was restarted.</td></tr>
+</tbody></table></section>
+<section class="panel" style="margin-top:1rem;"><h2 style="margin-top:0;">Evidence to capture</h2>
+<p>Capture the browser showing the placeholder page plus the result of <code>sudo apache2ctl configtest</code>.</p>
+</section>
+
+      <div class="footer-nav">
+        <a class="button secondary" href="02-hardening.html">← Module 2 — Baseline Configuration and Hardening</a>
+        <a class="button primary" href="04-mariadb.html">Module 4 — Install and Secure MariaDB →</a>
+      </div>
+    
+</article>
+      <div class="site-footer">Prepared as a reusable learning object aligned to the supplied design document. Commands are written for a modern Ubuntu Server LTS workflow and should still be verified against the current release when reused later.</div>
+    </main>
+  </div>
+  <script src="../script.js"></script>
+</body>
+</html>

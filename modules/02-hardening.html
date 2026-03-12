@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Module 2 — Baseline Configuration and Hardening — Ubuntu Server + Production-Ready LAMPP Stack</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <div class="site-shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <h1>Ubuntu Server + Production-Ready LAMPP Stack</h1>
+        <p>A reusable learning object for graduate IS students and early-career developers</p>
+      </div>
+      <div class="nav-section">
+        <div class="nav-label">Navigation</div>
+        <ul class="nav-list"><li><a class="" href="../index.html">Overview</a></li>
+<li><a class="" href="00-introduction-planning.html">Module 0 — Introduction and Planning</a></li>
+<li><a class="" href="01-vm-ubuntu-install.html">Module 1 — VM Creation and Ubuntu Server Installation</a></li>
+<li><a class="active" href="02-hardening.html">Module 2 — Baseline Configuration and Hardening</a></li>
+<li><a class="" href="03-apache.html">Module 3 — Install Apache and Configure a Virtual Host</a></li>
+<li><a class="" href="04-mariadb.html">Module 4 — Install and Secure MariaDB</a></li>
+<li><a class="" href="05-php.html">Module 5 — Install PHP and Connect It to Apache</a></li>
+<li><a class="" href="06-demo-php-site.html">Module 6 — Deploy the Demo PHP Site</a></li>
+<li><a class="" href="07-python-automation.html">Module 7 — Install Python and Run a Small Automation Script</a></li>
+<li><a class="" href="08-final-validation.html">Module 8 — Final Validation and Evidence Package</a></li>
+<li><a class="" href="../references.html">References</a></li></ul>
+      </div>
+      <div class="nav-section panel">
+        <h3 style="margin-top:0;">Local progress</h3>
+        <p class="small">Your checklist progress is stored in your browser only on this device.</p>
+        <div class="progress">
+          <div class="progress-bar"><div class="progress-fill"></div></div>
+        </div>
+        <div class="small" data-progress-label>0 of 0 checkpoints completed</div>
+      </div>
+    </aside>
+    <main class="main">
+      <article class="module-page">
+  <header>
+    <div class="eyebrow">Hands-on module</div>
+    <h1>Module 2 — Baseline Configuration and Hardening</h1>
+    <p class="summary">Update the server, make sure SSH is available, disable direct root SSH login, and enable the firewall.</p>
+    <div class="meta-row">
+      <span class="meta-chip">Estimated time: 15–20 minutes</span>
+      <span class="meta-chip">Verification-driven</span>
+      <span class="meta-chip">Copy-friendly commands</span>
+    </div>
+  </header>
+  <section class="two-col">
+    <div class="panel">
+      <h2 style="margin-top:0;">What you will complete</h2>
+      <ul><li>Apply current package updates.</li><li>Confirm SSH is installed and running.</li><li>Enable UFW with only required access.</li></ul>
+    </div>
+    <aside class="checklist-box">
+      <h3>Verification checklist</h3>
+      <ul class="checklist" data-checklist-key="02-hardening"><li><input type="checkbox" data-track-checklist aria-label="Package upgrade completed successfully."><span>Package upgrade completed successfully.</span></li><li><input type="checkbox" data-track-checklist aria-label="The SSH service is active."><span>The SSH service is active.</span></li><li><input type="checkbox" data-track-checklist aria-label="UFW is enabled and OpenSSH is allowed."><span>UFW is enabled and OpenSSH is allowed.</span></li></ul>
+    </aside>
+  </section>
+  <section class="panel" style="margin-top:1rem;">
+    <h2 style="margin-top:0;">Steps</h2>
+<div class="step-card"><h2>Update the system</h2>The first maintenance task on a new Ubuntu system is to refresh the package index and install available updates. This reduces the risk of building the rest of the stack on top of outdated packages.</div>
+<div class="step-card"><h2>Install and verify OpenSSH</h2>If you did not select OpenSSH during the installer, install it now. Then check that the <code>ssh</code> service is running before you make configuration changes.</div>
+<div class="step-card"><h2>Apply one safe SSH hardening step</h2>Create a drop-in file in <code>/etc/ssh/sshd_config.d/</code> and set <code>PermitRootLogin no</code>. This blocks direct root logins while keeping your normal administrative account available.
+<div class="callout warning"><strong>Do not disable password authentication in this lab</strong> unless you have already configured SSH keys and tested them. The main goal here is to avoid locking yourself out.</div></div>
+<div class="step-card"><h2>Enable the firewall for SSH only</h2>Turn on <code>ufw</code> and allow only SSH for now. You will add web traffic once Apache is installed.</div>
+  </section>
+<section class="panel" style="margin-top:1rem;"><h2 style="margin-top:0;">Command guide</h2>
+
+        <div class="command-block">
+          <div class="command-head"><strong>Refresh package lists and install updates</strong><button class="copy-btn" data-copy="sudo apt update &amp;&amp; sudo apt upgrade -y">Copy</button></div>
+          <pre><code>sudo apt update &amp;&amp; sudo apt upgrade -y</code></pre>
+        </div>
+        
+
+        <div class="command-block">
+          <div class="command-head"><strong>Install OpenSSH if needed</strong><button class="copy-btn" data-copy="sudo apt install openssh-server -y">Copy</button></div>
+          <pre><code>sudo apt install openssh-server -y</code></pre>
+        </div>
+        
+
+        <div class="command-block">
+          <div class="command-head"><strong>Check the SSH service</strong><button class="copy-btn" data-copy="sudo systemctl status ssh --no-pager">Copy</button></div>
+          <pre><code>sudo systemctl status ssh --no-pager</code></pre>
+        </div>
+        
+
+        <div class="command-block">
+          <div class="command-head"><strong>Create a drop-in hardening file</strong><button class="copy-btn" data-copy="printf &#x27;PermitRootLogin no
+&#x27; | sudo tee /etc/ssh/sshd_config.d/60-hardening.conf">Copy</button></div>
+          <pre><code>printf &#x27;PermitRootLogin no
+&#x27; | sudo tee /etc/ssh/sshd_config.d/60-hardening.conf</code></pre>
+        </div>
+        
+
+        <div class="command-block">
+          <div class="command-head"><strong>Validate SSH configuration</strong><button class="copy-btn" data-copy="sudo sshd -t">Copy</button></div>
+          <pre><code>sudo sshd -t</code></pre>
+        </div>
+        
+
+        <div class="command-block">
+          <div class="command-head"><strong>Restart SSH after validation</strong><button class="copy-btn" data-copy="sudo systemctl restart ssh.service">Copy</button></div>
+          <pre><code>sudo systemctl restart ssh.service</code></pre>
+        </div>
+        
+
+        <div class="command-block">
+          <div class="command-head"><strong>List application firewall profiles</strong><button class="copy-btn" data-copy="sudo ufw app list">Copy</button></div>
+          <pre><code>sudo ufw app list</code></pre>
+        </div>
+        
+
+        <div class="command-block">
+          <div class="command-head"><strong>Allow SSH by application profile</strong><button class="copy-btn" data-copy="sudo ufw allow OpenSSH">Copy</button></div>
+          <pre><code>sudo ufw allow OpenSSH</code></pre>
+        </div>
+        
+
+        <div class="command-block">
+          <div class="command-head"><strong>Enable the firewall</strong><button class="copy-btn" data-copy="sudo ufw enable">Copy</button></div>
+          <pre><code>sudo ufw enable</code></pre>
+        </div>
+        
+
+        <div class="command-block">
+          <div class="command-head"><strong>Review the firewall status</strong><button class="copy-btn" data-copy="sudo ufw status verbose">Copy</button></div>
+          <pre><code>sudo ufw status verbose</code></pre>
+        </div>
+        
+</section>
+<section class="panel" style="margin-top:1rem;"><h2 style="margin-top:0;">Troubleshooting</h2>
+<table class="trouble"><thead><tr><th>Issue</th><th>What to check</th></tr></thead><tbody>
+<tr><td>APT is locked by another process</td><td>Wait for unattended package activity to finish, then rerun the update commands.</td></tr>
+<tr><td>sshd validation fails</td><td>Undo the last config change, check for typos in the drop-in file, then run <code>sudo sshd -t</code> again.</td></tr>
+<tr><td>SSH stops working after restart</td><td>Use the VM console directly, remove the bad config file, validate again, and restart the service.</td></tr>
+</tbody></table></section>
+<section class="panel" style="margin-top:1rem;"><h2 style="margin-top:0;">Evidence to capture</h2>
+<p>Capture screenshots of <code>sudo systemctl status ssh --no-pager</code> and <code>sudo ufw status verbose</code>.</p>
+</section>
+
+      <div class="footer-nav">
+        <a class="button secondary" href="01-vm-ubuntu-install.html">← Module 1 — VM Creation and Ubuntu Server Installation</a>
+        <a class="button primary" href="03-apache.html">Module 3 — Install Apache and Configure a Virtual Host →</a>
+      </div>
+    
+</article>
+      <div class="site-footer">Prepared as a reusable learning object aligned to the supplied design document. Commands are written for a modern Ubuntu Server LTS workflow and should still be verified against the current release when reused later.</div>
+    </main>
+  </div>
+  <script src="../script.js"></script>
+</body>
+</html>

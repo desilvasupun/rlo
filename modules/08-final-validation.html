@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Module 8 — Final Validation and Evidence Package — Ubuntu Server + Production-Ready LAMPP Stack</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <div class="site-shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <h1>Ubuntu Server + Production-Ready LAMPP Stack</h1>
+        <p>A reusable learning object for graduate IS students and early-career developers</p>
+      </div>
+      <div class="nav-section">
+        <div class="nav-label">Navigation</div>
+        <ul class="nav-list"><li><a class="" href="../index.html">Overview</a></li>
+<li><a class="" href="00-introduction-planning.html">Module 0 — Introduction and Planning</a></li>
+<li><a class="" href="01-vm-ubuntu-install.html">Module 1 — VM Creation and Ubuntu Server Installation</a></li>
+<li><a class="" href="02-hardening.html">Module 2 — Baseline Configuration and Hardening</a></li>
+<li><a class="" href="03-apache.html">Module 3 — Install Apache and Configure a Virtual Host</a></li>
+<li><a class="" href="04-mariadb.html">Module 4 — Install and Secure MariaDB</a></li>
+<li><a class="" href="05-php.html">Module 5 — Install PHP and Connect It to Apache</a></li>
+<li><a class="" href="06-demo-php-site.html">Module 6 — Deploy the Demo PHP Site</a></li>
+<li><a class="" href="07-python-automation.html">Module 7 — Install Python and Run a Small Automation Script</a></li>
+<li><a class="active" href="08-final-validation.html">Module 8 — Final Validation and Evidence Package</a></li>
+<li><a class="" href="../references.html">References</a></li></ul>
+      </div>
+      <div class="nav-section panel">
+        <h3 style="margin-top:0;">Local progress</h3>
+        <p class="small">Your checklist progress is stored in your browser only on this device.</p>
+        <div class="progress">
+          <div class="progress-bar"><div class="progress-fill"></div></div>
+        </div>
+        <div class="small" data-progress-label>0 of 0 checkpoints completed</div>
+      </div>
+    </aside>
+    <main class="main">
+      <article class="module-page">
+  <header>
+    <div class="eyebrow">Hands-on module</div>
+    <h1>Module 8 — Final Validation and Evidence Package</h1>
+    <p class="summary">Confirm that every layer of the stack works and gather a clean evidence package.</p>
+    <div class="meta-row">
+      <span class="meta-chip">Estimated time: 10 minutes</span>
+      <span class="meta-chip">Verification-driven</span>
+      <span class="meta-chip">Copy-friendly commands</span>
+    </div>
+  </header>
+  <section class="two-col">
+    <div class="panel">
+      <h2 style="margin-top:0;">What you will complete</h2>
+      <ul><li>Validate the entire stack from OS to application.</li><li>Identify common issues systematically.</li><li>Finish with a reusable server build checklist.</li></ul>
+    </div>
+    <aside class="checklist-box">
+      <h3>Verification checklist</h3>
+      <ul class="checklist" data-checklist-key="08-final-validation"><li><input type="checkbox" data-track-checklist aria-label="All required services are running."><span>All required services are running.</span></li><li><input type="checkbox" data-track-checklist aria-label="The site loads and reports a successful database connection."><span>The site loads and reports a successful database connection.</span></li><li><input type="checkbox" data-track-checklist aria-label="Your evidence package contains at least one artifact for each major module."><span>Your evidence package contains at least one artifact for each major module.</span></li></ul>
+    </aside>
+  </section>
+  <section class="panel" style="margin-top:1rem;">
+    <h2 style="margin-top:0;">Steps</h2>
+<div class="step-card"><h2>Run the full-stack validation sequence</h2>Validate from the bottom up:
+<ol>
+  <li>Ubuntu boots and you can log in with a normal admin account.</li>
+  <li>SSH is active and root login is disabled.</li>
+  <li>UFW is enabled.</li>
+  <li>Apache is active and the site loads in the browser.</li>
+  <li>MariaDB is active and the application account can query the database.</li>
+  <li>PHP executes and the homepage reports a successful database connection.</li>
+  <li>The Python script returns an HTTP 200 response.</li>
+</ol></div>
+<div class="step-card"><h2>Export a clean evidence package</h2>Rename screenshots clearly so they match the module numbers. One clean pattern is:
+<ul>
+  <li><code>01-vm-ip.png</code></li>
+  <li><code>02-firewall-status.png</code></li>
+  <li><code>03-apache-page.png</code></li>
+  <li><code>04-mariadb-query.png</code></li>
+  <li><code>05-php-site.png</code></li>
+  <li><code>07-python-check.png</code></li>
+</ul></div>
+<div class="step-card"><h2>Reflect on what makes this reusable</h2>This RLO is reusable because it follows a modular sequence, provides verification checkpoints, keeps commands copy-friendly, and separates in-scope baseline deployment tasks from advanced production topics like TLS, HA, load balancing, and CI/CD.</div>
+  </section>
+<section class="panel" style="margin-top:1rem;"><h2 style="margin-top:0;">Command guide</h2>
+
+        <div class="command-block">
+          <div class="command-head"><strong>Check key service status in one pass</strong><button class="copy-btn" data-copy="systemctl --no-pager --type=service --state=running | egrep &quot;ssh|apache2|mariadb&quot;">Copy</button></div>
+          <pre><code>systemctl --no-pager --type=service --state=running | egrep &quot;ssh|apache2|mariadb&quot;</code></pre>
+        </div>
+        
+
+        <div class="command-block">
+          <div class="command-head"><strong>Check firewall status</strong><button class="copy-btn" data-copy="sudo ufw status verbose">Copy</button></div>
+          <pre><code>sudo ufw status verbose</code></pre>
+        </div>
+        
+
+        <div class="command-block">
+          <div class="command-head"><strong>Test database access as the app user</strong><button class="copy-btn" data-copy="mariadb -u lampp_user -p lampp_demo -e &quot;SELECT * FROM app_info;&quot;">Copy</button></div>
+          <pre><code>mariadb -u lampp_user -p lampp_demo -e &quot;SELECT * FROM app_info;&quot;</code></pre>
+        </div>
+        
+
+        <div class="command-block">
+          <div class="command-head"><strong>Run the Python health-check again</strong><button class="copy-btn" data-copy="cd /opt/lampp-demo-python &amp;&amp; source .venv/bin/activate &amp;&amp; python check_site.py">Copy</button></div>
+          <pre><code>cd /opt/lampp-demo-python &amp;&amp; source .venv/bin/activate &amp;&amp; python check_site.py</code></pre>
+        </div>
+        
+</section>
+<section class="panel" style="margin-top:1rem;"><h2 style="margin-top:0;">Troubleshooting</h2>
+<table class="trouble"><thead><tr><th>Issue</th><th>What to check</th></tr></thead><tbody>
+<tr><td>Only Apache works but PHP or DB fails</td><td>Retest each layer separately: shell package status, Apache logs, MariaDB login, then application code.</td></tr>
+<tr><td>The stack worked earlier but not after a reboot</td><td>Check that services were enabled to start automatically and that the VM networking mode still provides an IP address.</td></tr>
+<tr><td>You need to repeat the build later</td><td>Reuse the module order and command blocks, but update package versions and the Ubuntu LTS release if needed.</td></tr>
+</tbody></table></section>
+<section class="panel" style="margin-top:1rem;"><h2 style="margin-top:0;">Evidence to capture</h2>
+<p>Create a final screenshot bundle that demonstrates the full working stack end-to-end.</p>
+</section>
+
+      <div class="footer-nav">
+        <a class="button secondary" href="07-python-automation.html">← Module 7 — Install Python and Run a Small Automation Script</a>
+        <a class="button primary" href="../references.html">References →</a>
+      </div>
+    
+</article>
+      <div class="site-footer">Prepared as a reusable learning object aligned to the supplied design document. Commands are written for a modern Ubuntu Server LTS workflow and should still be verified against the current release when reused later.</div>
+    </main>
+  </div>
+  <script src="../script.js"></script>
+</body>
+</html>

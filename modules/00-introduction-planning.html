@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Module 0 — Introduction and Planning — Ubuntu Server + Production-Ready LAMPP Stack</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <div class="site-shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <h1>Ubuntu Server + Production-Ready LAMPP Stack</h1>
+        <p>A reusable learning object for graduate IS students and early-career developers</p>
+      </div>
+      <div class="nav-section">
+        <div class="nav-label">Navigation</div>
+        <ul class="nav-list"><li><a class="" href="../index.html">Overview</a></li>
+<li><a class="active" href="00-introduction-planning.html">Module 0 — Introduction and Planning</a></li>
+<li><a class="" href="01-vm-ubuntu-install.html">Module 1 — VM Creation and Ubuntu Server Installation</a></li>
+<li><a class="" href="02-hardening.html">Module 2 — Baseline Configuration and Hardening</a></li>
+<li><a class="" href="03-apache.html">Module 3 — Install Apache and Configure a Virtual Host</a></li>
+<li><a class="" href="04-mariadb.html">Module 4 — Install and Secure MariaDB</a></li>
+<li><a class="" href="05-php.html">Module 5 — Install PHP and Connect It to Apache</a></li>
+<li><a class="" href="06-demo-php-site.html">Module 6 — Deploy the Demo PHP Site</a></li>
+<li><a class="" href="07-python-automation.html">Module 7 — Install Python and Run a Small Automation Script</a></li>
+<li><a class="" href="08-final-validation.html">Module 8 — Final Validation and Evidence Package</a></li>
+<li><a class="" href="../references.html">References</a></li></ul>
+      </div>
+      <div class="nav-section panel">
+        <h3 style="margin-top:0;">Local progress</h3>
+        <p class="small">Your checklist progress is stored in your browser only on this device.</p>
+        <div class="progress">
+          <div class="progress-bar"><div class="progress-fill"></div></div>
+        </div>
+        <div class="small" data-progress-label>0 of 0 checkpoints completed</div>
+      </div>
+    </aside>
+    <main class="main">
+      <article class="module-page">
+  <header>
+    <div class="eyebrow">Hands-on module</div>
+    <h1>Module 0 — Introduction and Planning</h1>
+    <p class="summary">Define the target build, gather the required files, and decide what “done” looks like before you touch the VM.</p>
+    <div class="meta-row">
+      <span class="meta-chip">Estimated time: 10–15 minutes</span>
+      <span class="meta-chip">Verification-driven</span>
+      <span class="meta-chip">Copy-friendly commands</span>
+    </div>
+  </header>
+  <section class="two-col">
+    <div class="panel">
+      <h2 style="margin-top:0;">What you will complete</h2>
+      <ul><li>Identify the target stack and what each layer does.</li><li>Confirm tools, ISO, VM resources, and success criteria.</li><li>Prepare an evidence package plan for submission.</li></ul>
+    </div>
+    <aside class="checklist-box">
+      <h3>Verification checklist</h3>
+      <ul class="checklist" data-checklist-key="00-introduction-planning"><li><input type="checkbox" data-track-checklist aria-label="You can explain the target architecture in one or two sentences."><span>You can explain the target architecture in one or two sentences.</span></li><li><input type="checkbox" data-track-checklist aria-label="You have downloaded the Ubuntu Server ISO and installed a hypervisor."><span>You have downloaded the Ubuntu Server ISO and installed a hypervisor.</span></li><li><input type="checkbox" data-track-checklist aria-label="You created an evidence folder on your host machine."><span>You created an evidence folder on your host machine.</span></li></ul>
+    </aside>
+  </section>
+  <section class="panel" style="margin-top:1rem;">
+    <h2 style="margin-top:0;">Steps</h2>
+<div class="step-card"><h2>Understand the target architecture</h2>In this RLO, you will build a **single Ubuntu Server VM** that hosts:
+<ul>
+  <li><strong>Apache</strong> as the web server</li>
+  <li><strong>MariaDB</strong> as the relational database</li>
+  <li><strong>PHP</strong> for dynamic web pages</li>
+  <li><strong>Python</strong> for light server-side automation</li>
+</ul>
+The goal is a <em>production-oriented baseline</em>: updated packages, non-root administration, SSH access, a firewall, one virtual host, one demo database, one PHP application, and one small Python automation script.</div>
+<div class="step-card"><h2>Gather the required resources</h2>Download the latest <strong>Ubuntu Server LTS</strong> ISO available when you complete the lab. Install your virtualization platform first (for example, VirtualBox or VMware). For this guided lab, a practical baseline is:
+<ul>
+  <li>2 vCPUs</li>
+  <li>4 GB RAM</li>
+  <li>25 GB dynamically allocated disk</li>
+  <li>NAT networking for internet access</li>
+</ul>
+These values are tutorial recommendations for a smooth lab experience rather than hard minimums.</div>
+<div class="step-card"><h2>Create an evidence checklist before starting</h2>Keep a folder on your host machine for screenshots and notes. Capture evidence as you go instead of trying to recreate it later. A good evidence package for this RLO includes:
+<ul>
+  <li>VM settings screen</li>
+  <li>Ubuntu login prompt and IP address</li>
+  <li>Firewall status</li>
+  <li>Apache page loading in a browser</li>
+  <li>MariaDB login and database listing</li>
+  <li>PHP demo page showing a successful database connection</li>
+  <li>Python script output</li>
+</ul></div>
+  </section>
+<section class="panel" style="margin-top:1rem;"><h2 style="margin-top:0;">Command guide</h2>
+
+        <div class="command-block">
+          <div class="command-head"><strong>Check the VM IP address after install</strong><button class="copy-btn" data-copy="hostname -I">Copy</button></div>
+          <pre><code>hostname -I</code></pre>
+        </div>
+        
+
+        <div class="command-block">
+          <div class="command-head"><strong>Confirm the OS release</strong><button class="copy-btn" data-copy="cat /etc/os-release">Copy</button></div>
+          <pre><code>cat /etc/os-release</code></pre>
+        </div>
+        
+</section>
+<section class="panel" style="margin-top:1rem;"><h2 style="margin-top:0;">Troubleshooting</h2>
+<table class="trouble"><thead><tr><th>Issue</th><th>What to check</th></tr></thead><tbody>
+<tr><td>Not enough disk space on the host</td><td>Move the VM storage location to a drive with more free space before installation.</td></tr>
+<tr><td>No internet in the VM later on</td><td>Keep NAT enabled for the installation phase. You can experiment with bridged networking after the base stack works.</td></tr>
+</tbody></table></section>
+<section class="panel" style="margin-top:1rem;"><h2 style="margin-top:0;">Evidence to capture</h2>
+<p>Capture a screenshot of your VM configuration and a note listing the stack components you plan to install.</p>
+</section>
+
+      <div class="footer-nav">
+        <a class="button secondary" href="../index.html">← Overview</a>
+        <a class="button primary" href="01-vm-ubuntu-install.html">Module 1 — VM Creation and Ubuntu Server Installation →</a>
+      </div>
+    
+</article>
+      <div class="site-footer">Prepared as a reusable learning object aligned to the supplied design document. Commands are written for a modern Ubuntu Server LTS workflow and should still be verified against the current release when reused later.</div>
+    </main>
+  </div>
+  <script src="../script.js"></script>
+</body>
+</html>

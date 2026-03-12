@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Module 1 — VM Creation and Ubuntu Server Installation — Ubuntu Server + Production-Ready LAMPP Stack</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <div class="site-shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <h1>Ubuntu Server + Production-Ready LAMPP Stack</h1>
+        <p>A reusable learning object for graduate IS students and early-career developers</p>
+      </div>
+      <div class="nav-section">
+        <div class="nav-label">Navigation</div>
+        <ul class="nav-list"><li><a class="" href="../index.html">Overview</a></li>
+<li><a class="" href="00-introduction-planning.html">Module 0 — Introduction and Planning</a></li>
+<li><a class="active" href="01-vm-ubuntu-install.html">Module 1 — VM Creation and Ubuntu Server Installation</a></li>
+<li><a class="" href="02-hardening.html">Module 2 — Baseline Configuration and Hardening</a></li>
+<li><a class="" href="03-apache.html">Module 3 — Install Apache and Configure a Virtual Host</a></li>
+<li><a class="" href="04-mariadb.html">Module 4 — Install and Secure MariaDB</a></li>
+<li><a class="" href="05-php.html">Module 5 — Install PHP and Connect It to Apache</a></li>
+<li><a class="" href="06-demo-php-site.html">Module 6 — Deploy the Demo PHP Site</a></li>
+<li><a class="" href="07-python-automation.html">Module 7 — Install Python and Run a Small Automation Script</a></li>
+<li><a class="" href="08-final-validation.html">Module 8 — Final Validation and Evidence Package</a></li>
+<li><a class="" href="../references.html">References</a></li></ul>
+      </div>
+      <div class="nav-section panel">
+        <h3 style="margin-top:0;">Local progress</h3>
+        <p class="small">Your checklist progress is stored in your browser only on this device.</p>
+        <div class="progress">
+          <div class="progress-bar"><div class="progress-fill"></div></div>
+        </div>
+        <div class="small" data-progress-label>0 of 0 checkpoints completed</div>
+      </div>
+    </aside>
+    <main class="main">
+      <article class="module-page">
+  <header>
+    <div class="eyebrow">Hands-on module</div>
+    <h1>Module 1 — VM Creation and Ubuntu Server Installation</h1>
+    <p class="summary">Create the virtual machine, install Ubuntu Server, and verify that the VM boots and has an IP address.</p>
+    <div class="meta-row">
+      <span class="meta-chip">Estimated time: 20–30 minutes</span>
+      <span class="meta-chip">Verification-driven</span>
+      <span class="meta-chip">Copy-friendly commands</span>
+    </div>
+  </header>
+  <section class="two-col">
+    <div class="panel">
+      <h2 style="margin-top:0;">What you will complete</h2>
+      <ul><li>Create a working Ubuntu Server VM.</li><li>Complete the installer with a normal admin account.</li><li>Confirm the VM boots and is network reachable.</li></ul>
+    </div>
+    <aside class="checklist-box">
+      <h3>Verification checklist</h3>
+      <ul class="checklist" data-checklist-key="01-vm-ubuntu-install"><li><input type="checkbox" data-track-checklist aria-label="The VM boots into Ubuntu Server without the installer ISO."><span>The VM boots into Ubuntu Server without the installer ISO.</span></li><li><input type="checkbox" data-track-checklist aria-label="You can log in with the non-root account you created."><span>You can log in with the non-root account you created.</span></li><li><input type="checkbox" data-track-checklist aria-label="The VM reports an IP address and can reach the internet."><span>The VM reports an IP address and can reach the internet.</span></li></ul>
+    </aside>
+  </section>
+  <section class="panel" style="margin-top:1rem;">
+    <h2 style="margin-top:0;">Steps</h2>
+<div class="step-card"><h2>Create the virtual machine</h2>In your hypervisor, create a new 64-bit Ubuntu VM. Attach the Ubuntu Server ISO to the virtual optical drive. Use the resource profile from Module 0 unless your environment needs something else.
+<div class="callout note"><strong>Tip:</strong> Name the VM something clear like <code>ubuntu-lampp-lab</code> so your screenshots and notes stay organized.</div></div>
+<div class="step-card"><h2>Complete the Ubuntu installer</h2>Boot from the ISO and work through the installer. A straightforward lab-friendly setup is:
+<ol>
+  <li>Choose your language and keyboard layout.</li>
+  <li>Use the standard Ubuntu Server install path.</li>
+  <li>Accept DHCP networking if your NAT adapter provides it.</li>
+  <li>Use guided storage unless your course requires custom partitioning.</li>
+  <li>Create a normal administrative user account.</li>
+  <li>Select <strong>OpenSSH server</strong> during installation if the option is presented.</li>
+</ol>
+When installation finishes, reboot and detach the ISO if the VM keeps returning to the installer.</div>
+<div class="step-card"><h2>Log in and collect the first validation data</h2>Log in with the account you created during installation and record the machine IP address. If you intend to SSH in from the host later, note the address now.</div>
+  </section>
+<section class="panel" style="margin-top:1rem;"><h2 style="margin-top:0;">Command guide</h2>
+
+        <div class="command-block">
+          <div class="command-head"><strong>Display IPv4/IPv6 addresses</strong><button class="copy-btn" data-copy="hostname -I">Copy</button></div>
+          <pre><code>hostname -I</code></pre>
+        </div>
+        
+
+        <div class="command-block">
+          <div class="command-head"><strong>Show network interface details</strong><button class="copy-btn" data-copy="ip a">Copy</button></div>
+          <pre><code>ip a</code></pre>
+        </div>
+        
+
+        <div class="command-block">
+          <div class="command-head"><strong>Confirm that the VM can reach the internet</strong><button class="copy-btn" data-copy="ping -c 4 ubuntu.com">Copy</button></div>
+          <pre><code>ping -c 4 ubuntu.com</code></pre>
+        </div>
+        
+</section>
+<section class="panel" style="margin-top:1rem;"><h2 style="margin-top:0;">Troubleshooting</h2>
+<table class="trouble"><thead><tr><th>Issue</th><th>What to check</th></tr></thead><tbody>
+<tr><td>VM loops back to installer</td><td>Power off the VM and remove the ISO from the virtual optical drive.</td></tr>
+<tr><td>No IP address shown</td><td>Check that the virtual NIC is attached and enabled. In NAT mode, a reboot often renews the DHCP lease.</td></tr>
+<tr><td>Ping fails</td><td>Confirm your host has internet access and the VM NIC is connected. NAT is the easiest mode for the initial build.</td></tr>
+</tbody></table></section>
+<section class="panel" style="margin-top:1rem;"><h2 style="margin-top:0;">Evidence to capture</h2>
+<p>Capture the Ubuntu login prompt and a terminal showing the IP address from <code>hostname -I</code>.</p>
+</section>
+
+      <div class="footer-nav">
+        <a class="button secondary" href="00-introduction-planning.html">← Module 0 — Introduction and Planning</a>
+        <a class="button primary" href="02-hardening.html">Module 2 — Baseline Configuration and Hardening →</a>
+      </div>
+    
+</article>
+      <div class="site-footer">Prepared as a reusable learning object aligned to the supplied design document. Commands are written for a modern Ubuntu Server LTS workflow and should still be verified against the current release when reused later.</div>
+    </main>
+  </div>
+  <script src="../script.js"></script>
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Module 5 — Install PHP and Connect It to Apache — Ubuntu Server + Production-Ready LAMPP Stack</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <div class="site-shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <h1>Ubuntu Server + Production-Ready LAMPP Stack</h1>
+        <p>A reusable learning object for graduate IS students and early-career developers</p>
+      </div>
+      <div class="nav-section">
+        <div class="nav-label">Navigation</div>
+        <ul class="nav-list"><li><a class="" href="../index.html">Overview</a></li>
+<li><a class="" href="00-introduction-planning.html">Module 0 — Introduction and Planning</a></li>
+<li><a class="" href="01-vm-ubuntu-install.html">Module 1 — VM Creation and Ubuntu Server Installation</a></li>
+<li><a class="" href="02-hardening.html">Module 2 — Baseline Configuration and Hardening</a></li>
+<li><a class="" href="03-apache.html">Module 3 — Install Apache and Configure a Virtual Host</a></li>
+<li><a class="" href="04-mariadb.html">Module 4 — Install and Secure MariaDB</a></li>
+<li><a class="active" href="05-php.html">Module 5 — Install PHP and Connect It to Apache</a></li>
+<li><a class="" href="06-demo-php-site.html">Module 6 — Deploy the Demo PHP Site</a></li>
+<li><a class="" href="07-python-automation.html">Module 7 — Install Python and Run a Small Automation Script</a></li>
+<li><a class="" href="08-final-validation.html">Module 8 — Final Validation and Evidence Package</a></li>
+<li><a class="" href="../references.html">References</a></li></ul>
+      </div>
+      <div class="nav-section panel">
+        <h3 style="margin-top:0;">Local progress</h3>
+        <p class="small">Your checklist progress is stored in your browser only on this device.</p>
+        <div class="progress">
+          <div class="progress-bar"><div class="progress-fill"></div></div>
+        </div>
+        <div class="small" data-progress-label>0 of 0 checkpoints completed</div>
+      </div>
+    </aside>
+    <main class="main">
+      <article class="module-page">
+  <header>
+    <div class="eyebrow">Hands-on module</div>
+    <h1>Module 5 — Install PHP and Connect It to Apache</h1>
+    <p class="summary">Install PHP, the Apache PHP module, and the MariaDB driver, then confirm PHP executes in the browser.</p>
+    <div class="meta-row">
+      <span class="meta-chip">Estimated time: 10–15 minutes</span>
+      <span class="meta-chip">Verification-driven</span>
+      <span class="meta-chip">Copy-friendly commands</span>
+    </div>
+  </header>
+  <section class="two-col">
+    <div class="panel">
+      <h2 style="margin-top:0;">What you will complete</h2>
+      <ul><li>Install PHP and the required packages.</li><li>Restart Apache so PHP execution is active.</li><li>Confirm that PHP runs correctly.</li></ul>
+    </div>
+    <aside class="checklist-box">
+      <h3>Verification checklist</h3>
+      <ul class="checklist" data-checklist-key="05-php"><li><input type="checkbox" data-track-checklist aria-label="The php -v command reports a PHP version."><span>The <code>php -v</code> command reports a PHP version.</span></li><li><input type="checkbox" data-track-checklist aria-label="Visiting http://VM-IP/phpinfo.php loads a PHP info page before you remove it."><span>Visiting <code>http://VM-IP/phpinfo.php</code> loads a PHP info page before you remove it.</span></li><li><input type="checkbox" data-track-checklist aria-label="Apache remains active after restart."><span>Apache remains active after restart.</span></li></ul>
+    </aside>
+  </section>
+  <section class="panel" style="margin-top:1rem;">
+    <h2 style="margin-top:0;">Steps</h2>
+<div class="step-card"><h2>Install PHP packages</h2>Install PHP itself, the Apache integration module, the CLI package, and the MariaDB driver package.</div>
+<div class="step-card"><h2>Restart Apache and test PHP</h2>Create a temporary <code>phpinfo.php</code> file in the site document root to verify that Apache is executing PHP. Remove it afterward because it exposes detailed environment information.</div>
+  </section>
+<section class="panel" style="margin-top:1rem;"><h2 style="margin-top:0;">Command guide</h2>
+
+        <div class="command-block">
+          <div class="command-head"><strong>Install PHP and common packages for this lab</strong><button class="copy-btn" data-copy="sudo apt install php libapache2-mod-php php-cli php-mysql -y">Copy</button></div>
+          <pre><code>sudo apt install php libapache2-mod-php php-cli php-mysql -y</code></pre>
+        </div>
+        
+
+        <div class="command-block">
+          <div class="command-head"><strong>Restart Apache after PHP installation</strong><button class="copy-btn" data-copy="sudo systemctl restart apache2.service">Copy</button></div>
+          <pre><code>sudo systemctl restart apache2.service</code></pre>
+        </div>
+        
+
+        <div class="command-block">
+          <div class="command-head"><strong>Check the PHP version in the shell</strong><button class="copy-btn" data-copy="php -v">Copy</button></div>
+          <pre><code>php -v</code></pre>
+        </div>
+        
+
+        <div class="command-block">
+          <div class="command-head"><strong>Create a temporary PHP test file</strong><button class="copy-btn" data-copy="cat &lt;&lt;&#x27;PHP&#x27; &gt; /var/www/lampp-demo/public/phpinfo.php
+&lt;?php
+phpinfo();
+PHP">Copy</button></div>
+          <pre><code>cat &lt;&lt;&#x27;PHP&#x27; &gt; /var/www/lampp-demo/public/phpinfo.php
+&lt;?php
+phpinfo();
+PHP</code></pre>
+        </div>
+        
+
+        <div class="command-block">
+          <div class="command-head"><strong>Remove the PHP info page after validation</strong><button class="copy-btn" data-copy="rm /var/www/lampp-demo/public/phpinfo.php">Copy</button></div>
+          <pre><code>rm /var/www/lampp-demo/public/phpinfo.php</code></pre>
+        </div>
+        
+</section>
+<section class="panel" style="margin-top:1rem;"><h2 style="margin-top:0;">Troubleshooting</h2>
+<table class="trouble"><thead><tr><th>Issue</th><th>What to check</th></tr></thead><tbody>
+<tr><td>Browser downloads the PHP file instead of executing it</td><td>Confirm <code>libapache2-mod-php</code> is installed and restart Apache.</td></tr>
+<tr><td>Blank page in browser</td><td>Check <code>/var/log/apache2/lampp-demo-error.log</code> and the main Apache error log.</td></tr>
+<tr><td>PHP command not found</td><td>The package install may have failed. Rerun the package command and confirm network access.</td></tr>
+</tbody></table></section>
+<section class="panel" style="margin-top:1rem;"><h2 style="margin-top:0;">Evidence to capture</h2>
+<p>Capture the PHP version in the terminal and one screenshot of the PHP info page before you delete it.</p>
+</section>
+
+      <div class="footer-nav">
+        <a class="button secondary" href="04-mariadb.html">← Module 4 — Install and Secure MariaDB</a>
+        <a class="button primary" href="06-demo-php-site.html">Module 6 — Deploy the Demo PHP Site →</a>
+      </div>
+    
+</article>
+      <div class="site-footer">Prepared as a reusable learning object aligned to the supplied design document. Commands are written for a modern Ubuntu Server LTS workflow and should still be verified against the current release when reused later.</div>
+    </main>
+  </div>
+  <script src="../script.js"></script>
+</body>
+</html>

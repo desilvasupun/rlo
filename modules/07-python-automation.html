@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Module 7 — Install Python and Run a Small Automation Script — Ubuntu Server + Production-Ready LAMPP Stack</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <div class="site-shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <h1>Ubuntu Server + Production-Ready LAMPP Stack</h1>
+        <p>A reusable learning object for graduate IS students and early-career developers</p>
+      </div>
+      <div class="nav-section">
+        <div class="nav-label">Navigation</div>
+        <ul class="nav-list"><li><a class="" href="../index.html">Overview</a></li>
+<li><a class="" href="00-introduction-planning.html">Module 0 — Introduction and Planning</a></li>
+<li><a class="" href="01-vm-ubuntu-install.html">Module 1 — VM Creation and Ubuntu Server Installation</a></li>
+<li><a class="" href="02-hardening.html">Module 2 — Baseline Configuration and Hardening</a></li>
+<li><a class="" href="03-apache.html">Module 3 — Install Apache and Configure a Virtual Host</a></li>
+<li><a class="" href="04-mariadb.html">Module 4 — Install and Secure MariaDB</a></li>
+<li><a class="" href="05-php.html">Module 5 — Install PHP and Connect It to Apache</a></li>
+<li><a class="" href="06-demo-php-site.html">Module 6 — Deploy the Demo PHP Site</a></li>
+<li><a class="active" href="07-python-automation.html">Module 7 — Install Python and Run a Small Automation Script</a></li>
+<li><a class="" href="08-final-validation.html">Module 8 — Final Validation and Evidence Package</a></li>
+<li><a class="" href="../references.html">References</a></li></ul>
+      </div>
+      <div class="nav-section panel">
+        <h3 style="margin-top:0;">Local progress</h3>
+        <p class="small">Your checklist progress is stored in your browser only on this device.</p>
+        <div class="progress">
+          <div class="progress-bar"><div class="progress-fill"></div></div>
+        </div>
+        <div class="small" data-progress-label>0 of 0 checkpoints completed</div>
+      </div>
+    </aside>
+    <main class="main">
+      <article class="module-page">
+  <header>
+    <div class="eyebrow">Hands-on module</div>
+    <h1>Module 7 — Install Python and Run a Small Automation Script</h1>
+    <p class="summary">Install Python packaging tools, create a virtual environment, and run a script that checks the local web application.</p>
+    <div class="meta-row">
+      <span class="meta-chip">Estimated time: 10–15 minutes</span>
+      <span class="meta-chip">Verification-driven</span>
+      <span class="meta-chip">Copy-friendly commands</span>
+    </div>
+  </header>
+  <section class="two-col">
+    <div class="panel">
+      <h2 style="margin-top:0;">What you will complete</h2>
+      <ul><li>Install Python package-management support.</li><li>Create and activate a virtual environment.</li><li>Run a small health-check automation script.</li></ul>
+    </div>
+    <aside class="checklist-box">
+      <h3>Verification checklist</h3>
+      <ul class="checklist" data-checklist-key="07-python-automation"><li><input type="checkbox" data-track-checklist aria-label="The virtual environment is created successfully."><span>The virtual environment is created successfully.</span></li><li><input type="checkbox" data-track-checklist aria-label="The script prints an HTTP 200 status line."><span>The script prints an HTTP 200 status line.</span></li><li><input type="checkbox" data-track-checklist aria-label="The response preview shows HTML from the deployed site."><span>The response preview shows HTML from the deployed site.</span></li></ul>
+    </aside>
+  </section>
+  <section class="panel" style="margin-top:1rem;">
+    <h2 style="margin-top:0;">Steps</h2>
+<div class="step-card"><h2>Install Python support packages</h2>Ubuntu already includes Python, but for a repeatable workflow you should also install <code>python3-pip</code> and <code>python3-venv</code>.</div>
+<div class="step-card"><h2>Create a virtual environment</h2>Put the Python automation project under <code>/opt/lampp-demo-python</code> and create a dedicated virtual environment there. This keeps the automation files separate from the web application itself.</div>
+<div class="step-card"><h2>Create and run the health check</h2>The script below uses Python’s built-in <code>urllib</code> package to request the local homepage and print the HTTP status code with a timestamp. No third-party modules are required.</div>
+  </section>
+<section class="panel" style="margin-top:1rem;"><h2 style="margin-top:0;">Command guide</h2>
+
+        <div class="command-block">
+          <div class="command-head"><strong>Install Python support packages</strong><button class="copy-btn" data-copy="sudo apt install python3-pip python3-venv -y">Copy</button></div>
+          <pre><code>sudo apt install python3-pip python3-venv -y</code></pre>
+        </div>
+        
+
+        <div class="command-block">
+          <div class="command-head"><strong>Create a project directory</strong><button class="copy-btn" data-copy="sudo mkdir -p /opt/lampp-demo-python &amp;&amp; sudo chown -R $USER:$USER /opt/lampp-demo-python">Copy</button></div>
+          <pre><code>sudo mkdir -p /opt/lampp-demo-python &amp;&amp; sudo chown -R $USER:$USER /opt/lampp-demo-python</code></pre>
+        </div>
+        
+
+        <div class="command-block">
+          <div class="command-head"><strong>Create a virtual environment</strong><button class="copy-btn" data-copy="cd /opt/lampp-demo-python &amp;&amp; python3 -m venv .venv">Copy</button></div>
+          <pre><code>cd /opt/lampp-demo-python &amp;&amp; python3 -m venv .venv</code></pre>
+        </div>
+        
+
+        <div class="command-block">
+          <div class="command-head"><strong>Activate the virtual environment</strong><button class="copy-btn" data-copy="cd /opt/lampp-demo-python &amp;&amp; source .venv/bin/activate">Copy</button></div>
+          <pre><code>cd /opt/lampp-demo-python &amp;&amp; source .venv/bin/activate</code></pre>
+        </div>
+        
+
+        <div class="command-block">
+          <div class="command-head"><strong>Create the health-check script</strong><button class="copy-btn" data-copy="cat &lt;&lt;&#x27;PY&#x27; &gt; /opt/lampp-demo-python/check_site.py
+from datetime import datetime
+from urllib.request import urlopen
+
+url = &#x27;http://127.0.0.1/&#x27;
+now = datetime.utcnow().isoformat(timespec=&#x27;seconds&#x27;) + &#x27;Z&#x27;
+
+with urlopen(url, timeout=5) as response:
+    body = response.read(200).decode(&#x27;utf-8&#x27;, errors=&#x27;replace&#x27;)
+    print(f&#x27;[{now}] HTTP {response.status} from {url}&#x27;)
+    print(&#x27;Preview:&#x27;)
+    print(body[:120])
+PY">Copy</button></div>
+          <pre><code>cat &lt;&lt;&#x27;PY&#x27; &gt; /opt/lampp-demo-python/check_site.py
+from datetime import datetime
+from urllib.request import urlopen
+
+url = &#x27;http://127.0.0.1/&#x27;
+now = datetime.utcnow().isoformat(timespec=&#x27;seconds&#x27;) + &#x27;Z&#x27;
+
+with urlopen(url, timeout=5) as response:
+    body = response.read(200).decode(&#x27;utf-8&#x27;, errors=&#x27;replace&#x27;)
+    print(f&#x27;[{now}] HTTP {response.status} from {url}&#x27;)
+    print(&#x27;Preview:&#x27;)
+    print(body[:120])
+PY</code></pre>
+        </div>
+        
+
+        <div class="command-block">
+          <div class="command-head"><strong>Run the health-check script</strong><button class="copy-btn" data-copy="cd /opt/lampp-demo-python &amp;&amp; source .venv/bin/activate &amp;&amp; python check_site.py">Copy</button></div>
+          <pre><code>cd /opt/lampp-demo-python &amp;&amp; source .venv/bin/activate &amp;&amp; python check_site.py</code></pre>
+        </div>
+        
+
+        <div class="command-block">
+          <div class="command-head"><strong>Deactivate the virtual environment when finished</strong><button class="copy-btn" data-copy="deactivate">Copy</button></div>
+          <pre><code>deactivate</code></pre>
+        </div>
+        
+</section>
+<section class="panel" style="margin-top:1rem;"><h2 style="margin-top:0;">Troubleshooting</h2>
+<table class="trouble"><thead><tr><th>Issue</th><th>What to check</th></tr></thead><tbody>
+<tr><td>python3 -m venv fails</td><td>Make sure <code>python3-venv</code> is installed.</td></tr>
+<tr><td>HTTP request times out</td><td>Confirm Apache is active and the site loads locally in the browser or with <code>curl http://127.0.0.1/</code>.</td></tr>
+<tr><td>Permission denied under /opt</td><td>Use <code>sudo chown -R $USER:$USER /opt/lampp-demo-python</code> before creating files there.</td></tr>
+</tbody></table></section>
+<section class="panel" style="margin-top:1rem;"><h2 style="margin-top:0;">Evidence to capture</h2>
+<p>Capture the terminal output of the Python health-check script showing an HTTP 200 response.</p>
+</section>
+
+      <div class="footer-nav">
+        <a class="button secondary" href="06-demo-php-site.html">← Module 6 — Deploy the Demo PHP Site</a>
+        <a class="button primary" href="08-final-validation.html">Module 8 — Final Validation and Evidence Package →</a>
+      </div>
+    
+</article>
+      <div class="site-footer">Prepared as a reusable learning object aligned to the supplied design document. Commands are written for a modern Ubuntu Server LTS workflow and should still be verified against the current release when reused later.</div>
+    </main>
+  </div>
+  <script src="../script.js"></script>
+</body>
+</html>

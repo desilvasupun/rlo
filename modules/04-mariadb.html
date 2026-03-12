@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Module 4 — Install and Secure MariaDB — Ubuntu Server + Production-Ready LAMPP Stack</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <div class="site-shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <h1>Ubuntu Server + Production-Ready LAMPP Stack</h1>
+        <p>A reusable learning object for graduate IS students and early-career developers</p>
+      </div>
+      <div class="nav-section">
+        <div class="nav-label">Navigation</div>
+        <ul class="nav-list"><li><a class="" href="../index.html">Overview</a></li>
+<li><a class="" href="00-introduction-planning.html">Module 0 — Introduction and Planning</a></li>
+<li><a class="" href="01-vm-ubuntu-install.html">Module 1 — VM Creation and Ubuntu Server Installation</a></li>
+<li><a class="" href="02-hardening.html">Module 2 — Baseline Configuration and Hardening</a></li>
+<li><a class="" href="03-apache.html">Module 3 — Install Apache and Configure a Virtual Host</a></li>
+<li><a class="active" href="04-mariadb.html">Module 4 — Install and Secure MariaDB</a></li>
+<li><a class="" href="05-php.html">Module 5 — Install PHP and Connect It to Apache</a></li>
+<li><a class="" href="06-demo-php-site.html">Module 6 — Deploy the Demo PHP Site</a></li>
+<li><a class="" href="07-python-automation.html">Module 7 — Install Python and Run a Small Automation Script</a></li>
+<li><a class="" href="08-final-validation.html">Module 8 — Final Validation and Evidence Package</a></li>
+<li><a class="" href="../references.html">References</a></li></ul>
+      </div>
+      <div class="nav-section panel">
+        <h3 style="margin-top:0;">Local progress</h3>
+        <p class="small">Your checklist progress is stored in your browser only on this device.</p>
+        <div class="progress">
+          <div class="progress-bar"><div class="progress-fill"></div></div>
+        </div>
+        <div class="small" data-progress-label>0 of 0 checkpoints completed</div>
+      </div>
+    </aside>
+    <main class="main">
+      <article class="module-page">
+  <header>
+    <div class="eyebrow">Hands-on module</div>
+    <h1>Module 4 — Install and Secure MariaDB</h1>
+    <p class="summary">Install MariaDB, run the secure installation routine, create the demo database, and provision a least-privilege application account.</p>
+    <div class="meta-row">
+      <span class="meta-chip">Estimated time: 15–20 minutes</span>
+      <span class="meta-chip">Verification-driven</span>
+      <span class="meta-chip">Copy-friendly commands</span>
+    </div>
+  </header>
+  <section class="two-col">
+    <div class="panel">
+      <h2 style="margin-top:0;">What you will complete</h2>
+      <ul><li>Install MariaDB server and client tools.</li><li>Run the secure installation step.</li><li>Create a database, table, and application user.</li></ul>
+    </div>
+    <aside class="checklist-box">
+      <h3>Verification checklist</h3>
+      <ul class="checklist" data-checklist-key="04-mariadb"><li><input type="checkbox" data-track-checklist aria-label="MariaDB is active according to systemd."><span>MariaDB is active according to systemd.</span></li><li><input type="checkbox" data-track-checklist aria-label="The lampp_demo database exists."><span>The <code>lampp_demo</code> database exists.</span></li><li><input type="checkbox" data-track-checklist aria-label="The lampp_user account can read from app_info."><span>The <code>lampp_user</code> account can read from <code>app_info</code>.</span></li></ul>
+    </aside>
+  </section>
+  <section class="panel" style="margin-top:1rem;">
+    <h2 style="margin-top:0;">Steps</h2>
+<div class="step-card"><h2>Install MariaDB packages</h2>Install both the server and client packages. Then ensure the service is enabled and running.</div>
+<div class="step-card"><h2>Run the secure installation step</h2>MariaDB provides an interactive security routine to remove anonymous users, restrict remote root login, and apply other basic hardening. On some Ubuntu systems, the root database account authenticates with the local Unix socket. That is normal in many lab builds.</div>
+<div class="step-card"><h2>Create the demo database and application user</h2>Create one database called <code>lampp_demo</code>, create a small table, insert one row, and then create an application account that has only the permissions required to read that demo data.</div>
+  </section>
+<section class="panel" style="margin-top:1rem;"><h2 style="margin-top:0;">Command guide</h2>
+
+        <div class="command-block">
+          <div class="command-head"><strong>Install MariaDB packages</strong><button class="copy-btn" data-copy="sudo apt install mariadb-server mariadb-client -y">Copy</button></div>
+          <pre><code>sudo apt install mariadb-server mariadb-client -y</code></pre>
+        </div>
+        
+
+        <div class="command-block">
+          <div class="command-head"><strong>Enable and start MariaDB</strong><button class="copy-btn" data-copy="sudo systemctl enable --now mariadb">Copy</button></div>
+          <pre><code>sudo systemctl enable --now mariadb</code></pre>
+        </div>
+        
+
+        <div class="command-block">
+          <div class="command-head"><strong>Run the secure installation helper</strong><button class="copy-btn" data-copy="sudo mariadb-secure-installation">Copy</button></div>
+          <pre><code>sudo mariadb-secure-installation</code></pre>
+        </div>
+        
+
+        <div class="command-block">
+          <div class="command-head"><strong>Create the database, table, seed row, and least-privilege user</strong><button class="copy-btn" data-copy="sudo mariadb &lt;&lt;&#x27;SQL&#x27;
+CREATE DATABASE lampp_demo;
+USE lampp_demo;
+CREATE TABLE app_info (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    app_name VARCHAR(100) NOT NULL,
+    deployed_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+INSERT INTO app_info (app_name) VALUES (&#x27;LAMPP Demo Site&#x27;);
+CREATE USER &#x27;lampp_user&#x27;@&#x27;localhost&#x27; IDENTIFIED BY &#x27;ChangeThisPassword!&#x27;;
+GRANT SELECT ON lampp_demo.* TO &#x27;lampp_user&#x27;@&#x27;localhost&#x27;;
+FLUSH PRIVILEGES;
+SQL">Copy</button></div>
+          <pre><code>sudo mariadb &lt;&lt;&#x27;SQL&#x27;
+CREATE DATABASE lampp_demo;
+USE lampp_demo;
+CREATE TABLE app_info (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    app_name VARCHAR(100) NOT NULL,
+    deployed_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+INSERT INTO app_info (app_name) VALUES (&#x27;LAMPP Demo Site&#x27;);
+CREATE USER &#x27;lampp_user&#x27;@&#x27;localhost&#x27; IDENTIFIED BY &#x27;ChangeThisPassword!&#x27;;
+GRANT SELECT ON lampp_demo.* TO &#x27;lampp_user&#x27;@&#x27;localhost&#x27;;
+FLUSH PRIVILEGES;
+SQL</code></pre>
+        </div>
+        
+
+        <div class="command-block">
+          <div class="command-head"><strong>Test the new application account</strong><button class="copy-btn" data-copy="mariadb -u lampp_user -p lampp_demo -e &quot;SELECT * FROM app_info;&quot;">Copy</button></div>
+          <pre><code>mariadb -u lampp_user -p lampp_demo -e &quot;SELECT * FROM app_info;&quot;</code></pre>
+        </div>
+        
+</section>
+<section class="panel" style="margin-top:1rem;"><h2 style="margin-top:0;">Troubleshooting</h2>
+<table class="trouble"><thead><tr><th>Issue</th><th>What to check</th></tr></thead><tbody>
+<tr><td>Cannot log in as root with a password</td><td>On Ubuntu, try <code>sudo mariadb</code>. Socket authentication is common for the administrative account.</td></tr>
+<tr><td>SQL syntax error</td><td>Run one statement at a time inside the MariaDB shell to isolate the failing line.</td></tr>
+<tr><td>Application user cannot connect</td><td>Verify the username, password, host (<code>localhost</code>), and that <code>FLUSH PRIVILEGES;</code> completed.</td></tr>
+</tbody></table></section>
+<section class="panel" style="margin-top:1rem;"><h2 style="margin-top:0;">Evidence to capture</h2>
+<p>Capture the output of the database creation test or the app user query against <code>lampp_demo</code>.</p>
+</section>
+
+      <div class="footer-nav">
+        <a class="button secondary" href="03-apache.html">← Module 3 — Install Apache and Configure a Virtual Host</a>
+        <a class="button primary" href="05-php.html">Module 5 — Install PHP and Connect It to Apache →</a>
+      </div>
+    
+</article>
+      <div class="site-footer">Prepared as a reusable learning object aligned to the supplied design document. Commands are written for a modern Ubuntu Server LTS workflow and should still be verified against the current release when reused later.</div>
+    </main>
+  </div>
+  <script src="../script.js"></script>
+</body>
+</html>
