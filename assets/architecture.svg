@@ -17,12 +17,13 @@
   <text x="350" y="110" fill="#0f172a" font-family="Arial, sans-serif" font-size="30" font-weight="700">Ubuntu Server VM</text>
   <text x="350" y="142" fill="#475569" font-family="Arial, sans-serif" font-size="18">Updated, SSH enabled, firewall on, non-root admin</text>
 
-  <rect x="360" y="176" width="180" height="210" rx="20" fill="#f8fafc" stroke="#bfdbfe" stroke-width="2"/>
+  <rect x="350" y="176" width="200" height="210" rx="20" fill="#f8fafc" stroke="#bfdbfe" stroke-width="2"/>
   <text x="450" y="220" text-anchor="middle" fill="#1d4ed8" font-family="Arial, sans-serif" font-size="28" font-weight="700">Apache</text>
   <text x="450" y="254" text-anchor="middle" fill="#334155" font-family="Arial, sans-serif" font-size="18">Virtual host</text>
-  <text x="450" y="280" text-anchor="middle" fill="#334155" font-family="Arial, sans-serif" font-size="18">/var/www/lampp-demo/public</text>
-  <text x="450" y="325" text-anchor="middle" fill="#334155" font-family="Arial, sans-serif" font-size="18">Serves HTML</text>
-  <text x="450" y="350" text-anchor="middle" fill="#334155" font-family="Arial, sans-serif" font-size="18">Executes PHP</text>
+  <text x="450" y="280" text-anchor="middle" fill="#334155" font-family="Arial, sans-serif" font-size="18">/var/www/lampp-demo/</text>
+  <text x="450" y="304" text-anchor="middle" fill="#334155" font-family="Arial, sans-serif" font-size="18">public</text>
+  <text x="450" y="333" text-anchor="middle" fill="#334155" font-family="Arial, sans-serif" font-size="18">Serves HTML</text>
+  <text x="450" y="358" text-anchor="middle" fill="#334155" font-family="Arial, sans-serif" font-size="18">Executes PHP</text>
 
   <rect x="570" y="176" width="140" height="210" rx="20" fill="#eff6ff" stroke="#93c5fd" stroke-width="2"/>
   <text x="640" y="220" text-anchor="middle" fill="#1d4ed8" font-family="Arial, sans-serif" font-size="28" font-weight="700">PHP</text>
