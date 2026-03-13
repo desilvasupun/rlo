@@ -185,6 +185,24 @@ a:hover { text-decoration: underline; }
 .button:hover { text-decoration: none; filter: brightness(.98); }
 .panel { padding: 1.3rem 1.35rem; }
 .panel p:last-child { margin-bottom: 0; }
+.outcomes-panel {
+  margin-top: 1.5rem;
+}
+.outcomes-intro {
+  margin: 0 0 .85rem;
+  color: var(--muted);
+}
+.outcomes-list {
+  margin: 0;
+  padding-left: 1.35rem;
+  display: grid;
+  gap: .75rem;
+}
+.outcomes-list li {
+  padding-left: .2rem;
+  line-height: 1.5;
+  font-weight: 400;
+}
 .callout {
   border-radius: 14px;
   padding: 1rem 1rem;
