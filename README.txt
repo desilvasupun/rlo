@@ -1,4 +1,4 @@
-Ubuntu Server + Production-Ready LAMPP Stack RLO
+Production-Ready LAMPP Stack on Ubuntu Server RLO
 ===============================================
 
 Open index.html in a web browser to use the learning object.
