@@ -58,7 +58,13 @@
   </section>
   <section class="panel" style="margin-top:1rem;">
     <h2 style="margin-top:0;">Steps</h2>
-<div class="step-card"><h2>Create the virtual machine</h2>In your hypervisor, create a new 64-bit Ubuntu VM. Attach the Ubuntu Server ISO to the virtual optical drive. Use the resource profile from Module 0 unless your environment needs something else.
+<div class="step-card"><h2>Create the virtual machine</h2>In your hypervisor, create a new 64-bit Ubuntu VM. Attach the Ubuntu Server ISO to the virtual optical drive. For this guided lab, use the following baseline unless your environment requires something different:
+<ul>
+  <li>2 vCPUs</li>
+  <li>4 GB RAM</li>
+  <li>25 GB dynamically allocated disk</li>
+  <li>NAT networking for internet access</li>
+</ul>
 <div class="callout note"><strong>Tip:</strong> Name the VM something clear like <code>ubuntu-lampp-lab</code> so your screenshots and notes stay organized.</div></div>
 <div class="step-card"><h2>Complete the Ubuntu installer</h2>Boot from the ISO and work through the installer. A straightforward lab-friendly setup is:
 <ol>
