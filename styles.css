@@ -313,6 +313,28 @@ a:hover { text-decoration: underline; }
 article.module-page header {
   margin-bottom: 1.2rem;
 }
+.module-progress {
+  margin-top: 1.1rem;
+  padding: 1rem 1.1rem;
+  background:
+    linear-gradient(180deg, rgba(232, 240, 255, 0.72), rgba(255, 255, 255, 0) 120px),
+    var(--panel);
+}
+.module-progress-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.module-progress-title {
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: .02em;
+}
+.module-progress-note {
+  margin: .35rem 0 0;
+}
 .eyebrow {
   color: var(--accent);
   text-transform: uppercase;
@@ -480,7 +502,7 @@ table.trouble th { background: #f8fafc; }
 }
 .progress-bar {
   flex: 1;
-  height: 10px;
+  height: 14px;
   border-radius: 999px;
   background: #e2e8f0;
   overflow: hidden;
@@ -489,6 +511,7 @@ table.trouble th { background: #f8fafc; }
   height: 100%;
   background: linear-gradient(90deg, #2563eb, #22c55e);
   width: 0;
+  transition: width .2s ease;
 }
 .small { font-size: .88rem; color: var(--muted); }
 @media (max-width: 1020px) {
@@ -498,6 +521,7 @@ table.trouble th { background: #f8fafc; }
   .hero { grid-template-columns: 1fr; }
   .two-col { grid-template-columns: 1fr; }
   .checklist-box { position: relative; top: 0; }
+  .module-progress-head { align-items: flex-start; }
   .success-list li { padding-left: 3rem; }
 }
 @media print {

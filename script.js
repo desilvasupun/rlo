@@ -20,13 +20,26 @@ document.querySelectorAll('[data-copy]').forEach((button) => {
 
 function refreshOverallProgress() {
   const allBoxes = [...document.querySelectorAll('input[data-track-checklist]')];
-  if (!allBoxes.length) return;
+  const fills = document.querySelectorAll('.progress-fill');
+  const labels = document.querySelectorAll('[data-progress-label]');
+  if (!allBoxes.length) {
+    fills.forEach((fill) => {
+      fill.style.width = '0%';
+    });
+    labels.forEach((label) => {
+      label.textContent = '0 of 0 checkpoints completed';
+    });
+    return;
+  }
   const total = allBoxes.length;
   const done = allBoxes.filter((el) => el.checked).length;
-  const fill = document.querySelector('.progress-fill');
-  const label = document.querySelector('[data-progress-label]');
-  if (fill) fill.style.width = `${(done / total) * 100}%`;
-  if (label) label.textContent = `${done} of ${total} checkpoints completed`;
+  const width = `${(done / total) * 100}%`;
+  fills.forEach((fill) => {
+    fill.style.width = width;
+  });
+  labels.forEach((label) => {
+    label.textContent = `${done} of ${total} checkpoints completed`;
+  });
 }
 
 document.querySelectorAll('[data-checklist-key]').forEach((list) => {
