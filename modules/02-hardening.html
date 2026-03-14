@@ -63,7 +63,7 @@
 <div class="step-card"><h2>Update the system</h2>The first maintenance task on a new Ubuntu system is to refresh the package index and install available updates. This reduces the risk of building the rest of the stack on top of outdated packages.</div>
 <div class="step-card"><h2>Install and verify OpenSSH</h2>If you did not select OpenSSH during the installer, install it now. Then check that the <code>ssh</code> service is running before you make configuration changes.</div>
 <div class="step-card"><h2>Apply one safe SSH hardening step</h2>Create a drop-in file in <code>/etc/ssh/sshd_config.d/</code> and set <code>PermitRootLogin no</code>. This blocks direct root logins while keeping your normal administrative account available.
-<div class="callout warning"><strong>Do not disable password authentication in this lab</strong> unless you have already configured SSH keys and tested them. The main goal here is to avoid locking yourself out.</div></div>
+<div class="callout warning"><strong>Do not disable password authentication in this RLO</strong> unless you have already configured SSH keys and tested them. The main goal here is to avoid locking yourself out.</div></div>
 <div class="step-card"><h2>Enable the firewall for SSH only</h2>Turn on <code>ufw</code> and allow only SSH for now. You will add web traffic once Apache is installed.</div>
   </section>
 <section class="panel" style="margin-top:1rem;"><h2 style="margin-top:0;">Command guide</h2>
