@@ -221,6 +221,9 @@ a:hover { text-decoration: underline; }
   gap: .65rem;
   margin-top: .15rem;
 }
+.hero .module-actions {
+  margin-top: 1rem;
+}
 .button {
   display: inline-flex;
   align-items: center;
