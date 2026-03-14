@@ -332,6 +332,9 @@ article.module-page header {
   line-height: 1.7;
   max-width: 70ch;
 }
+.module-page .summary-wide {
+  max-width: none;
+}
 .meta-row {
   display: flex;
   flex-wrap: wrap;
