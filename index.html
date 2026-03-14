@@ -75,73 +75,154 @@
 <h2 class="section-title">Module map</h2><section class="module-list">
 
     <article class="module-card">
-      <h3><a href="modules/00-introduction-planning.html">Module 0 — Introduction and Planning</a></h3>
-      <div class="module-meta"><span>Estimated time: 10–15 minutes</span><span>Goal: Define the target build, gather the required files, and decide what “done” looks like before you touch the VM.</span></div>
-      <p class="small">Checkpoint example: You can explain the target architecture in one or two sentences.</p>
+      <div class="module-card-top">
+        <div class="module-time">10–15 minutes</div>
+        <h3><a href="modules/00-introduction-planning.html">Module 0 — Introduction and Planning</a></h3>
+      </div>
+      <div class="module-detail">
+        <span class="module-label">Goal</span>
+        <p>Define the target build, gather the required files, and decide what “done” looks like before you touch the VM.</p>
+      </div>
+      <div class="module-detail module-detail-muted">
+        <span class="module-label">Checkpoint example</span>
+        <p>You can explain the target architecture in one or two sentences.</p>
+      </div>
       <div class="module-actions"><a class="button secondary" href="modules/00-introduction-planning.html">Open module</a></div>
     </article>
     
 
     <article class="module-card">
-      <h3><a href="modules/01-vm-ubuntu-install.html">Module 1 — VM Creation and Ubuntu Server Installation</a></h3>
-      <div class="module-meta"><span>Estimated time: 20–30 minutes</span><span>Goal: Create the virtual machine, install Ubuntu Server, and verify that the VM boots and has an IP address.</span></div>
-      <p class="small">Checkpoint example: The VM boots into Ubuntu Server without the installer ISO.</p>
+      <div class="module-card-top">
+        <div class="module-time">20–30 minutes</div>
+        <h3><a href="modules/01-vm-ubuntu-install.html">Module 1 — VM Creation and Ubuntu Server Installation</a></h3>
+      </div>
+      <div class="module-detail">
+        <span class="module-label">Goal</span>
+        <p>Create the virtual machine, install Ubuntu Server, and verify that the VM boots and has an IP address.</p>
+      </div>
+      <div class="module-detail module-detail-muted">
+        <span class="module-label">Checkpoint example</span>
+        <p>The VM boots into Ubuntu Server without the installer ISO.</p>
+      </div>
       <div class="module-actions"><a class="button secondary" href="modules/01-vm-ubuntu-install.html">Open module</a></div>
     </article>
     
 
     <article class="module-card">
-      <h3><a href="modules/02-hardening.html">Module 2 — Baseline Configuration and Hardening</a></h3>
-      <div class="module-meta"><span>Estimated time: 15–20 minutes</span><span>Goal: Update the server, make sure SSH is available, disable direct root SSH login, and enable the firewall.</span></div>
-      <p class="small">Checkpoint example: Package upgrade completed successfully.</p>
+      <div class="module-card-top">
+        <div class="module-time">15–20 minutes</div>
+        <h3><a href="modules/02-hardening.html">Module 2 — Baseline Configuration and Hardening</a></h3>
+      </div>
+      <div class="module-detail">
+        <span class="module-label">Goal</span>
+        <p>Update the server, make sure SSH is available, disable direct root SSH login, and enable the firewall.</p>
+      </div>
+      <div class="module-detail module-detail-muted">
+        <span class="module-label">Checkpoint example</span>
+        <p>Package upgrade completed successfully.</p>
+      </div>
       <div class="module-actions"><a class="button secondary" href="modules/02-hardening.html">Open module</a></div>
     </article>
     
 
     <article class="module-card">
-      <h3><a href="modules/03-apache.html">Module 3 — Install Apache and Configure a Virtual Host</a></h3>
-      <div class="module-meta"><span>Estimated time: 15–20 minutes</span><span>Goal: Install Apache2, create one dedicated site directory, configure a virtual host, and publish a placeholder page.</span></div>
-      <p class="small">Checkpoint example: Apache is active according to systemd.</p>
+      <div class="module-card-top">
+        <div class="module-time">15–20 minutes</div>
+        <h3><a href="modules/03-apache.html">Module 3 — Install Apache and Configure a Virtual Host</a></h3>
+      </div>
+      <div class="module-detail">
+        <span class="module-label">Goal</span>
+        <p>Install Apache2, create one dedicated site directory, configure a virtual host, and publish a placeholder page.</p>
+      </div>
+      <div class="module-detail module-detail-muted">
+        <span class="module-label">Checkpoint example</span>
+        <p>Apache is active according to systemd.</p>
+      </div>
       <div class="module-actions"><a class="button secondary" href="modules/03-apache.html">Open module</a></div>
     </article>
     
 
     <article class="module-card">
-      <h3><a href="modules/04-mariadb.html">Module 4 — Install and Secure MariaDB</a></h3>
-      <div class="module-meta"><span>Estimated time: 15–20 minutes</span><span>Goal: Install MariaDB, run the secure installation routine, create the demo database, and provision a least-privilege application account.</span></div>
-      <p class="small">Checkpoint example: MariaDB is active according to systemd.</p>
+      <div class="module-card-top">
+        <div class="module-time">15–20 minutes</div>
+        <h3><a href="modules/04-mariadb.html">Module 4 — Install and Secure MariaDB</a></h3>
+      </div>
+      <div class="module-detail">
+        <span class="module-label">Goal</span>
+        <p>Install MariaDB, run the secure installation routine, create the demo database, and provision a least-privilege application account.</p>
+      </div>
+      <div class="module-detail module-detail-muted">
+        <span class="module-label">Checkpoint example</span>
+        <p>MariaDB is active according to systemd.</p>
+      </div>
       <div class="module-actions"><a class="button secondary" href="modules/04-mariadb.html">Open module</a></div>
     </article>
     
 
     <article class="module-card">
-      <h3><a href="modules/05-php.html">Module 5 — Install PHP and Connect It to Apache</a></h3>
-      <div class="module-meta"><span>Estimated time: 10–15 minutes</span><span>Goal: Install PHP, the Apache PHP module, and the MariaDB driver, then confirm PHP executes in the browser.</span></div>
-      <p class="small">Checkpoint example: The <code>php -v</code> command reports a PHP version.</p>
+      <div class="module-card-top">
+        <div class="module-time">10–15 minutes</div>
+        <h3><a href="modules/05-php.html">Module 5 — Install PHP and Connect It to Apache</a></h3>
+      </div>
+      <div class="module-detail">
+        <span class="module-label">Goal</span>
+        <p>Install PHP, the Apache PHP module, and the MariaDB driver, then confirm PHP executes in the browser.</p>
+      </div>
+      <div class="module-detail module-detail-muted">
+        <span class="module-label">Checkpoint example</span>
+        <p>The <code>php -v</code> command reports a PHP version.</p>
+      </div>
       <div class="module-actions"><a class="button secondary" href="modules/05-php.html">Open module</a></div>
     </article>
     
 
     <article class="module-card">
-      <h3><a href="modules/06-demo-php-site.html">Module 6 — Deploy the Demo PHP Site</a></h3>
-      <div class="module-meta"><span>Estimated time: 15–20 minutes</span><span>Goal: Replace the placeholder page with a PHP application that reads from MariaDB and reports a successful deployment.</span></div>
-      <p class="small">Checkpoint example: The homepage loads at <code>http://VM-IP/</code>.</p>
+      <div class="module-card-top">
+        <div class="module-time">15–20 minutes</div>
+        <h3><a href="modules/06-demo-php-site.html">Module 6 — Deploy the Demo PHP Site</a></h3>
+      </div>
+      <div class="module-detail">
+        <span class="module-label">Goal</span>
+        <p>Replace the placeholder page with a PHP application that reads from MariaDB and reports a successful deployment.</p>
+      </div>
+      <div class="module-detail module-detail-muted">
+        <span class="module-label">Checkpoint example</span>
+        <p>The homepage loads at <code>http://VM-IP/</code>.</p>
+      </div>
       <div class="module-actions"><a class="button secondary" href="modules/06-demo-php-site.html">Open module</a></div>
     </article>
     
 
     <article class="module-card">
-      <h3><a href="modules/07-python-automation.html">Module 7 — Install Python and Run a Small Automation Script</a></h3>
-      <div class="module-meta"><span>Estimated time: 10–15 minutes</span><span>Goal: Install Python packaging tools, create a virtual environment, and run a script that checks the local web application.</span></div>
-      <p class="small">Checkpoint example: The virtual environment is created successfully.</p>
+      <div class="module-card-top">
+        <div class="module-time">10–15 minutes</div>
+        <h3><a href="modules/07-python-automation.html">Module 7 — Install Python and Run a Small Automation Script</a></h3>
+      </div>
+      <div class="module-detail">
+        <span class="module-label">Goal</span>
+        <p>Install Python packaging tools, create a virtual environment, and run a script that checks the local web application.</p>
+      </div>
+      <div class="module-detail module-detail-muted">
+        <span class="module-label">Checkpoint example</span>
+        <p>The virtual environment is created successfully.</p>
+      </div>
       <div class="module-actions"><a class="button secondary" href="modules/07-python-automation.html">Open module</a></div>
     </article>
     
 
     <article class="module-card">
-      <h3><a href="modules/08-final-validation.html">Module 8 — Final Validation and Evidence Package</a></h3>
-      <div class="module-meta"><span>Estimated time: 10 minutes</span><span>Goal: Confirm that every layer of the stack works and gather a clean evidence package.</span></div>
-      <p class="small">Checkpoint example: All required services are running.</p>
+      <div class="module-card-top">
+        <div class="module-time">10 minutes</div>
+        <h3><a href="modules/08-final-validation.html">Module 8 — Final Validation and Evidence Package</a></h3>
+      </div>
+      <div class="module-detail">
+        <span class="module-label">Goal</span>
+        <p>Confirm that every layer of the stack works and gather a clean evidence package.</p>
+      </div>
+      <div class="module-detail module-detail-muted">
+        <span class="module-label">Checkpoint example</span>
+        <p>All required services are running.</p>
+      </div>
       <div class="module-actions"><a class="button secondary" href="modules/08-final-validation.html">Open module</a></div>
     </article>
     
