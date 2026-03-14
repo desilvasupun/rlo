@@ -66,14 +66,42 @@
   <li><strong>Python</strong> for server-side automation</li>
 </ul>
 The goal is a <em>production-oriented baseline</em>: updated packages, non-root administration, SSH access, a firewall, one virtual host, one demo database, one PHP application, and one Python automation script.</div>
-<div class="step-card"><h2>Gather the required resources</h2>Download the latest <strong>Ubuntu Server LTS</strong> ISO available when you complete the lab. Install your virtualization platform first (for example, VirtualBox or VMware). For this guided lab, a practical baseline is:
+<div class="step-card"><h2>Gather the required resources</h2>
+<p>Before you build the VM, prepare the two host-side items you need: the <strong>Ubuntu Server LTS ISO</strong> and a working hypervisor. The steps below use <strong>VirtualBox on Windows</strong>, which is a common lab setup.</p>
+<h3>1. Download the Ubuntu Server ISO</h3>
+<ol>
+  <li>Open the Ubuntu Server download page in your host browser.</li>
+  <li>Choose the most recent <strong>Ubuntu Server LTS</strong> release, not the desktop edition.</li>
+  <li>Download the <strong>64-bit AMD64</strong> ISO file.</li>
+  <li>Save the file somewhere easy to find later, such as <code>Downloads</code> or a dedicated <code>isos</code> folder.</li>
+  <li>Wait for the download to finish completely before moving on.</li>
+  <li>Confirm that the downloaded file ends in <code>.iso</code> so you know you have the installer image and not a web shortcut.</li>
+</ol>
+<h3>2. Install VirtualBox on the host machine</h3>
+<ol>
+  <li>Open the VirtualBox downloads page in your browser.</li>
+  <li>Download the <strong>Windows hosts</strong> installer if your host computer runs Windows.</li>
+  <li>Close other applications so the installer can add required drivers cleanly.</li>
+  <li>Run the installer and allow Windows to approve the installation if a security prompt appears.</li>
+  <li>Keep the default installation options unless your environment requires a different location.</li>
+  <li>Approve any Oracle or networking driver prompts during setup. VirtualBox networking features depend on those components.</li>
+  <li>Finish the installation and launch VirtualBox once to confirm it opens without errors.</li>
+</ol>
+<h3>3. Confirm that the host is ready for Module 1</h3>
+<ul>
+  <li>Make sure you can locate the Ubuntu ISO from File Explorer.</li>
+  <li>Make sure VirtualBox opens and lets you start the new VM wizard.</li>
+  <li>Keep at least 25 GB of free disk space available on the host for the virtual disk and snapshots.</li>
+</ul>
+<p>For this guided lab, a practical VM baseline is:</p>
 <ul>
   <li>2 vCPUs</li>
   <li>4 GB RAM</li>
   <li>25 GB dynamically allocated disk</li>
   <li>NAT networking for internet access</li>
 </ul>
-These values are tutorial recommendations for a smooth lab experience rather than hard minimums.</div>
+<div class="callout note"><strong>Tip:</strong> If VirtualBox does not offer 64-bit guest options later, hardware virtualization may be disabled in the computer firmware, or another hypervisor may be taking control of it.</div>
+</div>
 <div class="step-card"><h2>Create an evidence checklist before starting</h2>Keep a folder on your host machine for screenshots and notes. Capture evidence as you go instead of trying to recreate it later. A good evidence package for this RLO includes:
 <ul>
   <li>VM settings screen</li>
