@@ -129,33 +129,25 @@
   <li>Run <code>ip a</code> if you want to see which interface received the address.</li>
   <li>Write the IP address down in your notes or capture it in a screenshot because you will need it later for browser testing and optional SSH access.</li>
 </ol>
+        <div class="command-block">
+          <div class="command-head"><strong>Display IPv4/IPv6 addresses</strong><button class="copy-btn" data-copy="hostname -I">Copy</button></div>
+          <pre><code>hostname -I</code></pre>
+        </div>
+        <div class="command-block">
+          <div class="command-head"><strong>Show network interface details</strong><button class="copy-btn" data-copy="ip a">Copy</button></div>
+          <pre><code>ip a</code></pre>
+        </div>
 <h3>3. Confirm outbound connectivity</h3>
 <ol>
   <li>Run <code>ping -c 4 ubuntu.com</code> to verify that the VM can reach the internet.</li>
   <li>If the ping succeeds, the machine is ready for package installation in the next module.</li>
   <li>If it fails, stop and fix networking now rather than building the rest of the stack on a disconnected VM.</li>
-</ol></div>
-  </section>
-<section class="panel" style="margin-top:1rem;"><h2 style="margin-top:0;">Command guide</h2>
-
-        <div class="command-block">
-          <div class="command-head"><strong>Display IPv4/IPv6 addresses</strong><button class="copy-btn" data-copy="hostname -I">Copy</button></div>
-          <pre><code>hostname -I</code></pre>
-        </div>
-        
-
-        <div class="command-block">
-          <div class="command-head"><strong>Show network interface details</strong><button class="copy-btn" data-copy="ip a">Copy</button></div>
-          <pre><code>ip a</code></pre>
-        </div>
-        
-
+</ol>
         <div class="command-block">
           <div class="command-head"><strong>Confirm that the VM can reach the internet</strong><button class="copy-btn" data-copy="ping -c 4 ubuntu.com">Copy</button></div>
           <pre><code>ping -c 4 ubuntu.com</code></pre>
-        </div>
-        
-</section>
+        </div></div>
+  </section>
 <section class="panel" style="margin-top:1rem;"><h2 style="margin-top:0;">Troubleshooting</h2>
 <table class="trouble"><thead><tr><th>Issue</th><th>What to check</th></tr></thead><tbody>
 <tr><td>VM loops back to installer</td><td>Power off the VM and remove the ISO from the virtual optical drive.</td></tr>

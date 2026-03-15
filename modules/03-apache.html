@@ -68,6 +68,10 @@
   <li>Wait for the installation to finish completely.</li>
   <li>Watch for package errors before moving to configuration.</li>
 </ol>
+        <div class="command-block">
+          <div class="command-head"><strong>Install Apache2</strong><button class="copy-btn" data-copy="sudo apt install apache2 -y">Copy</button></div>
+          <pre><code>sudo apt install apache2 -y</code></pre>
+        </div>
 <h3>2. Verify the service</h3>
 <ol>
   <li>Check that Apache started by reviewing its status with <code>systemctl</code>.</li>
@@ -88,84 +92,30 @@
   <li>Create <code>/var/www/lampp-demo/public</code> as the document root for public web content.</li>
   <li>The <code>public</code> subdirectory will hold the files Apache should actually serve to browsers.</li>
 </ol>
+        <div class="command-block">
+          <div class="command-head"><strong>Create the site directory</strong><button class="copy-btn" data-copy="sudo mkdir -p /var/www/lampp-demo/public">Copy</button></div>
+          <pre><code>sudo mkdir -p /var/www/lampp-demo/public</code></pre>
+        </div>
 <h3>2. Set ownership and permissions</h3>
 <ol>
   <li>Set ownership so your user can manage the files and the web server group can read them.</li>
   <li>Apply safe directory permissions such as <code>755</code> so Apache can traverse the directory tree.</li>
   <li>Avoid world-writable permissions. They are not needed for this build.</li>
 </ol>
+        <div class="command-block">
+          <div class="command-head"><strong>Set directory ownership to your user and the web group</strong><button class="copy-btn" data-copy="sudo chown -R $USER:www-data /var/www/lampp-demo">Copy</button></div>
+          <pre><code>sudo chown -R $USER:www-data /var/www/lampp-demo</code></pre>
+        </div>
+        <div class="command-block">
+          <div class="command-head"><strong>Apply safe directory permissions</strong><button class="copy-btn" data-copy="sudo chmod -R 755 /var/www/lampp-demo">Copy</button></div>
+          <pre><code>sudo chmod -R 755 /var/www/lampp-demo</code></pre>
+        </div>
 <h3>3. Publish a simple placeholder page</h3>
 <ol>
   <li>Create a basic <code>index.html</code> file inside <code>/var/www/lampp-demo/public</code>.</li>
   <li>Include a short heading and a sentence showing that the custom site directory is being served.</li>
   <li>This gives you a simple browser test before PHP is introduced in the next modules.</li>
-</ol></div>
-<div class="step-card"><h2>Create and enable a virtual host</h2>
-<p>The virtual host tells Apache which directory to serve and which logging files to use. Configure it cleanly so your demo site becomes the default site for port 80.</p>
-<h3>1. Create the site configuration file</h3>
-<ol>
-  <li>Copy the default site file to a new file named <code>lampp-demo.conf</code>.</li>
-  <li>Edit the new file instead of changing <code>000-default.conf</code> directly.</li>
-  <li>Set <code>DocumentRoot</code> to <code>/var/www/lampp-demo/public</code>.</li>
-  <li>Add a matching <code>&lt;Directory&gt;</code> block so Apache is allowed to serve content from that path.</li>
 </ol>
-<h3>2. Enable the correct site</h3>
-<ol>
-  <li>Run <code>a2ensite</code> for the new <code>lampp-demo</code> site.</li>
-  <li>Disable <code>000-default</code> with <code>a2dissite</code> so your custom site becomes the active default on port 80.</li>
-  <li>This prevents confusion when you later browse to the VM and expect your own page instead of the Apache default page.</li>
-</ol>
-<h3>3. Validate and reload Apache</h3>
-<ol>
-  <li>Run <code>sudo apache2ctl configtest</code>.</li>
-  <li>Do not restart Apache unless the result is <code>Syntax OK</code>.</li>
-  <li>Restart Apache after the test passes so the new site configuration takes effect.</li>
-</ol></div>
-<div class="step-card"><h2>Open HTTP access in the firewall</h2>
-<p>Once Apache is serving the correct document root, allow inbound web traffic through UFW so the site can be reached from a browser.</p>
-<h3>1. Add the Apache firewall rule</h3>
-<ol>
-  <li>Use the Apache application profile provided by UFW rather than creating manual port rules.</li>
-  <li>Allow <code>Apache Full</code> so both standard web ports are available if needed later.</li>
-</ol>
-<h3>2. Confirm the firewall result</h3>
-<ol>
-  <li>Review <code>sudo ufw status verbose</code> to make sure the Apache rule appears.</li>
-  <li>Keep the existing OpenSSH rule in place.</li>
-</ol>
-<h3>3. Test from a browser</h3>
-<ol>
-  <li>Open a browser on the host machine.</li>
-  <li>Go to <code>http://VM-IP/</code> using the IP address collected earlier.</li>
-  <li>Confirm the placeholder page loads from your custom virtual host.</li>
-</ol></div>
-  </section>
-<section class="panel" style="margin-top:1rem;"><h2 style="margin-top:0;">Command guide</h2>
-
-        <div class="command-block">
-          <div class="command-head"><strong>Install Apache2</strong><button class="copy-btn" data-copy="sudo apt install apache2 -y">Copy</button></div>
-          <pre><code>sudo apt install apache2 -y</code></pre>
-        </div>
-        
-
-        <div class="command-block">
-          <div class="command-head"><strong>Create the site directory</strong><button class="copy-btn" data-copy="sudo mkdir -p /var/www/lampp-demo/public">Copy</button></div>
-          <pre><code>sudo mkdir -p /var/www/lampp-demo/public</code></pre>
-        </div>
-        
-
-        <div class="command-block">
-          <div class="command-head"><strong>Set directory ownership to your user and the web group</strong><button class="copy-btn" data-copy="sudo chown -R $USER:www-data /var/www/lampp-demo">Copy</button></div>
-          <pre><code>sudo chown -R $USER:www-data /var/www/lampp-demo</code></pre>
-        </div>
-        
-
-        <div class="command-block">
-          <div class="command-head"><strong>Apply safe directory permissions</strong><button class="copy-btn" data-copy="sudo chmod -R 755 /var/www/lampp-demo">Copy</button></div>
-          <pre><code>sudo chmod -R 755 /var/www/lampp-demo</code></pre>
-        </div>
-        
-
         <div class="command-block">
           <div class="command-head"><strong>Create a placeholder index page</strong><button class="copy-btn" data-copy="cat &lt;&lt;&#x27;HTML&#x27; &gt; /var/www/lampp-demo/public/index.html
 &lt;!doctype html&gt;
@@ -175,21 +125,24 @@ HTML">Copy</button></div>
 &lt;!doctype html&gt;
 &lt;html lang=&quot;en&quot;&gt;&lt;head&gt;&lt;meta charset=&quot;utf-8&quot;&gt;&lt;title&gt;Apache Ready&lt;/title&gt;&lt;/head&gt;&lt;body&gt;&lt;h1&gt;Apache is serving this site.&lt;/h1&gt;&lt;p&gt;The custom virtual host is active.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
 HTML</code></pre>
-        </div>
-        
-
+        </div></div>
+<div class="step-card"><h2>Create and enable a virtual host</h2>
+<p>The virtual host tells Apache which directory to serve and which logging files to use. Configure it cleanly so your demo site becomes the default site for port 80.</p>
+<h3>1. Create the site configuration file</h3>
+<ol>
+  <li>Copy the default site file to a new file named <code>lampp-demo.conf</code>.</li>
+  <li>Edit the new file instead of changing <code>000-default.conf</code> directly.</li>
+  <li>Set <code>DocumentRoot</code> to <code>/var/www/lampp-demo/public</code>.</li>
+  <li>Add a matching <code>&lt;Directory&gt;</code> block so Apache is allowed to serve content from that path.</li>
+</ol>
         <div class="command-block">
           <div class="command-head"><strong>Copy the default virtual host as a new site config</strong><button class="copy-btn" data-copy="sudo cp /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/lampp-demo.conf">Copy</button></div>
           <pre><code>sudo cp /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/lampp-demo.conf</code></pre>
         </div>
-        
-
         <div class="command-block">
           <div class="command-head"><strong>Edit the site config</strong><button class="copy-btn" data-copy="sudo nano /etc/apache2/sites-available/lampp-demo.conf">Copy</button></div>
           <pre><code>sudo nano /etc/apache2/sites-available/lampp-demo.conf</code></pre>
         </div>
-        
-
         <div class="command-block">
           <div class="command-head"><strong>Config snippet to put inside lampp-demo.conf</strong><button class="copy-btn" data-copy="&lt;VirtualHost *:80&gt;
     ServerAdmin webmaster@localhost
@@ -216,38 +169,57 @@ HTML</code></pre>
     &lt;/Directory&gt;
 &lt;/VirtualHost&gt;</code></pre>
         </div>
-        
-
+<h3>2. Enable the correct site</h3>
+<ol>
+  <li>Run <code>a2ensite</code> for the new <code>lampp-demo</code> site.</li>
+  <li>Disable <code>000-default</code> with <code>a2dissite</code> so your custom site becomes the active default on port 80.</li>
+  <li>This prevents confusion when you later browse to the VM and expect your own page instead of the Apache default page.</li>
+</ol>
         <div class="command-block">
           <div class="command-head"><strong>Enable the new site</strong><button class="copy-btn" data-copy="sudo a2ensite lampp-demo">Copy</button></div>
           <pre><code>sudo a2ensite lampp-demo</code></pre>
         </div>
-        
-
         <div class="command-block">
           <div class="command-head"><strong>Disable the default site</strong><button class="copy-btn" data-copy="sudo a2dissite 000-default">Copy</button></div>
           <pre><code>sudo a2dissite 000-default</code></pre>
         </div>
-        
-
+<h3>3. Validate and reload Apache</h3>
+<ol>
+  <li>Run <code>sudo apache2ctl configtest</code>.</li>
+  <li>Do not restart Apache unless the result is <code>Syntax OK</code>.</li>
+  <li>Restart Apache after the test passes so the new site configuration takes effect.</li>
+</ol>
         <div class="command-block">
           <div class="command-head"><strong>Validate Apache configuration</strong><button class="copy-btn" data-copy="sudo apache2ctl configtest">Copy</button></div>
           <pre><code>sudo apache2ctl configtest</code></pre>
         </div>
-        
-
         <div class="command-block">
           <div class="command-head"><strong>Restart Apache</strong><button class="copy-btn" data-copy="sudo systemctl restart apache2.service">Copy</button></div>
           <pre><code>sudo systemctl restart apache2.service</code></pre>
-        </div>
-        
-
+        </div></div>
+<div class="step-card"><h2>Open HTTP access in the firewall</h2>
+<p>Once Apache is serving the correct document root, allow inbound web traffic through UFW so the site can be reached from a browser.</p>
+<h3>1. Add the Apache firewall rule</h3>
+<ol>
+  <li>Use the Apache application profile provided by UFW rather than creating manual port rules.</li>
+  <li>Allow <code>Apache Full</code> so both standard web ports are available if needed later.</li>
+</ol>
         <div class="command-block">
           <div class="command-head"><strong>Allow Apache through UFW</strong><button class="copy-btn" data-copy="sudo ufw allow &#x27;Apache Full&#x27;">Copy</button></div>
           <pre><code>sudo ufw allow &#x27;Apache Full&#x27;</code></pre>
         </div>
-        
-</section>
+<h3>2. Confirm the firewall result</h3>
+<ol>
+  <li>Review <code>sudo ufw status verbose</code> to make sure the Apache rule appears.</li>
+  <li>Keep the existing OpenSSH rule in place.</li>
+</ol>
+<h3>3. Test from a browser</h3>
+<ol>
+  <li>Open a browser on the host machine.</li>
+  <li>Go to <code>http://VM-IP/</code> using the IP address collected earlier.</li>
+  <li>Confirm the placeholder page loads from your custom virtual host.</li>
+</ol></div>
+  </section>
 <section class="panel" style="margin-top:1rem;"><h2 style="margin-top:0;">Troubleshooting</h2>
 <table class="trouble"><thead><tr><th>Issue</th><th>What to check</th></tr></thead><tbody>
 <tr><td>Apache fails to restart after enabling the site</td><td>Run <code>sudo apache2ctl configtest</code> and fix syntax or path errors first.</td></tr>

@@ -74,6 +74,10 @@
   <li>Wait until the upgrade completes fully. Some updates take a few minutes, especially on the first run after installation.</li>
   <li>If the command reports held packages or package lock issues, resolve those before moving on.</li>
 </ol>
+        <div class="command-block">
+          <div class="command-head"><strong>Refresh package lists and install updates</strong><button class="copy-btn" data-copy="sudo apt update &amp;&amp; sudo apt upgrade -y">Copy</button></div>
+          <pre><code>sudo apt update &amp;&amp; sudo apt upgrade -y</code></pre>
+        </div>
 <h3>3. Confirm the system is ready</h3>
 <ol>
   <li>Review the final output for errors.</li>
@@ -88,12 +92,20 @@
   <li>Run <code>sudo systemctl status ssh --no-pager</code> to see whether the service exists and is active.</li>
   <li>If the service is missing, continue with the install step below.</li>
 </ol>
+        <div class="command-block">
+          <div class="command-head"><strong>Check the SSH service</strong><button class="copy-btn" data-copy="sudo systemctl status ssh --no-pager">Copy</button></div>
+          <pre><code>sudo systemctl status ssh --no-pager</code></pre>
+        </div>
 <h3>2. Install the server package if needed</h3>
 <ol>
   <li>Run <code>sudo apt install openssh-server -y</code>.</li>
   <li>Wait for the installation to finish and watch for package errors.</li>
   <li>Run the status command again to confirm the service now exists.</li>
 </ol>
+        <div class="command-block">
+          <div class="command-head"><strong>Install OpenSSH if needed</strong><button class="copy-btn" data-copy="sudo apt install openssh-server -y">Copy</button></div>
+          <pre><code>sudo apt install openssh-server -y</code></pre>
+        </div>
 <h3>3. Verify the service state</h3>
 <ol>
   <li>Confirm that the <code>ssh</code> service shows as <strong>active (running)</strong>.</li>
@@ -108,18 +120,32 @@
   <li>Create a file such as <code>60-hardening.conf</code> and add the line <code>PermitRootLogin no</code>.</li>
   <li>This keeps the change small, easy to review, and easy to remove if something goes wrong.</li>
 </ol>
+        <div class="command-block">
+          <div class="command-head"><strong>Create a drop-in hardening file</strong><button class="copy-btn" data-copy="printf &#x27;PermitRootLogin no
+&#x27; | sudo tee /etc/ssh/sshd_config.d/60-hardening.conf">Copy</button></div>
+          <pre><code>printf &#x27;PermitRootLogin no
+&#x27; | sudo tee /etc/ssh/sshd_config.d/60-hardening.conf</code></pre>
+        </div>
 <h3>2. Validate before restarting</h3>
 <ol>
   <li>Run <code>sudo sshd -t</code> to check the SSH configuration syntax.</li>
   <li>If the command returns no errors, the configuration is valid.</li>
   <li>If it reports a problem, fix the file first. Do not restart SSH until the validation command succeeds.</li>
 </ol>
+        <div class="command-block">
+          <div class="command-head"><strong>Validate SSH configuration</strong><button class="copy-btn" data-copy="sudo sshd -t">Copy</button></div>
+          <pre><code>sudo sshd -t</code></pre>
+        </div>
 <h3>3. Restart the service carefully</h3>
 <ol>
   <li>Restart SSH with <code>sudo systemctl restart ssh.service</code>.</li>
   <li>Run the status command again to confirm the service came back up cleanly.</li>
   <li>Keep your VM console available while testing changes so you are not relying only on SSH access during hardening.</li>
 </ol>
+        <div class="command-block">
+          <div class="command-head"><strong>Restart SSH after validation</strong><button class="copy-btn" data-copy="sudo systemctl restart ssh.service">Copy</button></div>
+          <pre><code>sudo systemctl restart ssh.service</code></pre>
+        </div>
 <div class="callout warning"><strong>Do not disable password authentication in this RLO</strong> unless you have already configured SSH keys and tested them. The main goal here is to avoid locking yourself out.</div></div>
 <div class="step-card"><h2>Enable the firewall for SSH only</h2>
 <p>Enable Ubuntu's uncomplicated firewall after you know SSH is installed. At this stage, allow only management access. Web traffic will be opened later when Apache is ready.</p>
@@ -128,82 +154,34 @@
   <li>Run <code>sudo ufw app list</code> to see the application profiles installed on the system.</li>
   <li>Look for the <code>OpenSSH</code> profile in the list.</li>
 </ol>
+        <div class="command-block">
+          <div class="command-head"><strong>List application firewall profiles</strong><button class="copy-btn" data-copy="sudo ufw app list">Copy</button></div>
+          <pre><code>sudo ufw app list</code></pre>
+        </div>
 <h3>2. Allow SSH before enabling the firewall</h3>
 <ol>
   <li>Run <code>sudo ufw allow OpenSSH</code>.</li>
   <li>This creates a rule for SSH so you do not block your own management access when the firewall turns on.</li>
 </ol>
+        <div class="command-block">
+          <div class="command-head"><strong>Allow SSH by application profile</strong><button class="copy-btn" data-copy="sudo ufw allow OpenSSH">Copy</button></div>
+          <pre><code>sudo ufw allow OpenSSH</code></pre>
+        </div>
 <h3>3. Turn on UFW and verify the rules</h3>
 <ol>
   <li>Run <code>sudo ufw enable</code> and confirm the prompt.</li>
   <li>Run <code>sudo ufw status verbose</code> immediately afterward.</li>
   <li>Confirm the firewall is <strong>active</strong> and that the OpenSSH rule appears in the allowed list.</li>
-</ol></div>
-  </section>
-<section class="panel" style="margin-top:1rem;"><h2 style="margin-top:0;">Command guide</h2>
-
-        <div class="command-block">
-          <div class="command-head"><strong>Refresh package lists and install updates</strong><button class="copy-btn" data-copy="sudo apt update &amp;&amp; sudo apt upgrade -y">Copy</button></div>
-          <pre><code>sudo apt update &amp;&amp; sudo apt upgrade -y</code></pre>
-        </div>
-        
-
-        <div class="command-block">
-          <div class="command-head"><strong>Install OpenSSH if needed</strong><button class="copy-btn" data-copy="sudo apt install openssh-server -y">Copy</button></div>
-          <pre><code>sudo apt install openssh-server -y</code></pre>
-        </div>
-        
-
-        <div class="command-block">
-          <div class="command-head"><strong>Check the SSH service</strong><button class="copy-btn" data-copy="sudo systemctl status ssh --no-pager">Copy</button></div>
-          <pre><code>sudo systemctl status ssh --no-pager</code></pre>
-        </div>
-        
-
-        <div class="command-block">
-          <div class="command-head"><strong>Create a drop-in hardening file</strong><button class="copy-btn" data-copy="printf &#x27;PermitRootLogin no
-&#x27; | sudo tee /etc/ssh/sshd_config.d/60-hardening.conf">Copy</button></div>
-          <pre><code>printf &#x27;PermitRootLogin no
-&#x27; | sudo tee /etc/ssh/sshd_config.d/60-hardening.conf</code></pre>
-        </div>
-        
-
-        <div class="command-block">
-          <div class="command-head"><strong>Validate SSH configuration</strong><button class="copy-btn" data-copy="sudo sshd -t">Copy</button></div>
-          <pre><code>sudo sshd -t</code></pre>
-        </div>
-        
-
-        <div class="command-block">
-          <div class="command-head"><strong>Restart SSH after validation</strong><button class="copy-btn" data-copy="sudo systemctl restart ssh.service">Copy</button></div>
-          <pre><code>sudo systemctl restart ssh.service</code></pre>
-        </div>
-        
-
-        <div class="command-block">
-          <div class="command-head"><strong>List application firewall profiles</strong><button class="copy-btn" data-copy="sudo ufw app list">Copy</button></div>
-          <pre><code>sudo ufw app list</code></pre>
-        </div>
-        
-
-        <div class="command-block">
-          <div class="command-head"><strong>Allow SSH by application profile</strong><button class="copy-btn" data-copy="sudo ufw allow OpenSSH">Copy</button></div>
-          <pre><code>sudo ufw allow OpenSSH</code></pre>
-        </div>
-        
-
+</ol>
         <div class="command-block">
           <div class="command-head"><strong>Enable the firewall</strong><button class="copy-btn" data-copy="sudo ufw enable">Copy</button></div>
           <pre><code>sudo ufw enable</code></pre>
         </div>
-        
-
         <div class="command-block">
           <div class="command-head"><strong>Review the firewall status</strong><button class="copy-btn" data-copy="sudo ufw status verbose">Copy</button></div>
           <pre><code>sudo ufw status verbose</code></pre>
-        </div>
-        
-</section>
+        </div></div>
+  </section>
 <section class="panel" style="margin-top:1rem;"><h2 style="margin-top:0;">Troubleshooting</h2>
 <table class="trouble"><thead><tr><th>Issue</th><th>What to check</th></tr></thead><tbody>
 <tr><td>APT is locked by another process</td><td>Wait for unattended package activity to finish, then rerun the update commands.</td></tr>

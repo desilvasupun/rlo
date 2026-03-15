@@ -68,12 +68,34 @@
   <li>Keep this directory alongside <code>public</code>, not inside it.</li>
   <li>This structure helps separate private configuration from browser-accessible files.</li>
 </ol>
+        <div class="command-block">
+          <div class="command-head"><strong>Create the private config directory</strong><button class="copy-btn" data-copy="mkdir -p /var/www/lampp-demo/config">Copy</button></div>
+          <pre><code>mkdir -p /var/www/lampp-demo/config</code></pre>
+        </div>
 <h3>2. Create the database configuration file</h3>
 <ol>
   <li>Create <code>/var/www/lampp-demo/config/db.php</code>.</li>
   <li>Store the DSN, username, and password in the returned PHP array.</li>
   <li>Use the exact password you assigned to <code>lampp_user</code> in Module 4.</li>
 </ol>
+        <div class="command-block">
+          <div class="command-head"><strong>Create the database config file</strong><button class="copy-btn" data-copy="cat &lt;&lt;&#x27;PHP&#x27; &gt; /var/www/lampp-demo/config/db.php
+&lt;?php
+return [
+    &#x27;dsn&#x27; =&gt; &#x27;mysql:host=localhost;dbname=lampp_demo;charset=utf8mb4&#x27;,
+    &#x27;username&#x27; =&gt; &#x27;lampp_user&#x27;,
+    &#x27;password&#x27; =&gt; &#x27;ChangeThisPassword!&#x27;,
+];
+PHP">Copy</button></div>
+          <pre><code>cat &lt;&lt;&#x27;PHP&#x27; &gt; /var/www/lampp-demo/config/db.php
+&lt;?php
+return [
+    &#x27;dsn&#x27; =&gt; &#x27;mysql:host=localhost;dbname=lampp_demo;charset=utf8mb4&#x27;,
+    &#x27;username&#x27; =&gt; &#x27;lampp_user&#x27;,
+    &#x27;password&#x27; =&gt; &#x27;ChangeThisPassword!&#x27;,
+];
+PHP</code></pre>
+        </div>
 <h3>3. Double-check the values before testing</h3>
 <ol>
   <li>Confirm the database name is <code>lampp_demo</code>.</li>
@@ -100,59 +122,6 @@
   <li>If the connection fails, return an HTTP 500 response and display a clear failure message.</li>
   <li>This makes troubleshooting much easier than a blank page or raw PHP warning.</li>
 </ol>
-<h3>4. Make the PHP page the default homepage</h3>
-<ol>
-  <li>Remove the old <code>index.html</code> placeholder file so Apache serves <code>index.php</code> by default.</li>
-  <li>Keep only the files needed for the live demo page inside the public document root.</li>
-</ol></div>
-<div class="step-card"><h2>Lock down the file permissions</h2>
-<p>Once the application files are in place, set permissions that let Apache read the content without making the project writable by everyone.</p>
-<h3>1. Apply ownership deliberately</h3>
-<ol>
-  <li>Set ownership so your administrative user can still maintain the project files.</li>
-  <li>Use the web server group so Apache can read the application and configuration files.</li>
-</ol>
-<h3>2. Apply safe permissions</h3>
-<ol>
-  <li>Use restrictive permissions on the project directories, such as <code>750</code>, so only the owner and group can access them.</li>
-  <li>Use a tighter permission such as <code>640</code> on <code>db.php</code> because it contains the database password.</li>
-  <li>Avoid <code>777</code> or any other world-writable setting.</li>
-</ol>
-<h3>3. Restart Apache and test the final page</h3>
-<ol>
-  <li>Restart Apache so it picks up the new homepage cleanly.</li>
-  <li>Open <code>http://VM-IP/</code> in a browser.</li>
-  <li>Confirm the page shows the deployment message, the database success message, and the seeded row values from <code>app_info</code>.</li>
-</ol></div>
-  </section>
-<section class="panel" style="margin-top:1rem;"><h2 style="margin-top:0;">Command guide</h2>
-
-        <div class="command-block">
-          <div class="command-head"><strong>Create the private config directory</strong><button class="copy-btn" data-copy="mkdir -p /var/www/lampp-demo/config">Copy</button></div>
-          <pre><code>mkdir -p /var/www/lampp-demo/config</code></pre>
-        </div>
-        
-
-        <div class="command-block">
-          <div class="command-head"><strong>Create the database config file</strong><button class="copy-btn" data-copy="cat &lt;&lt;&#x27;PHP&#x27; &gt; /var/www/lampp-demo/config/db.php
-&lt;?php
-return [
-    &#x27;dsn&#x27; =&gt; &#x27;mysql:host=localhost;dbname=lampp_demo;charset=utf8mb4&#x27;,
-    &#x27;username&#x27; =&gt; &#x27;lampp_user&#x27;,
-    &#x27;password&#x27; =&gt; &#x27;ChangeThisPassword!&#x27;,
-];
-PHP">Copy</button></div>
-          <pre><code>cat &lt;&lt;&#x27;PHP&#x27; &gt; /var/www/lampp-demo/config/db.php
-&lt;?php
-return [
-    &#x27;dsn&#x27; =&gt; &#x27;mysql:host=localhost;dbname=lampp_demo;charset=utf8mb4&#x27;,
-    &#x27;username&#x27; =&gt; &#x27;lampp_user&#x27;,
-    &#x27;password&#x27; =&gt; &#x27;ChangeThisPassword!&#x27;,
-];
-PHP</code></pre>
-        </div>
-        
-
         <div class="command-block">
           <div class="command-head"><strong>Create the demo application page</strong><button class="copy-btn" data-copy="cat &lt;&lt;&#x27;PHP&#x27; &gt; /var/www/lampp-demo/public/index.php
 &lt;?php
@@ -257,26 +226,43 @@ try {
 &lt;/html&gt;
 PHP</code></pre>
         </div>
-        
-
+<h3>4. Make the PHP page the default homepage</h3>
+<ol>
+  <li>Remove the old <code>index.html</code> placeholder file so Apache serves <code>index.php</code> by default.</li>
+  <li>Keep only the files needed for the live demo page inside the public document root.</li>
+</ol>
         <div class="command-block">
           <div class="command-head"><strong>Remove the old placeholder page so index.php becomes the default</strong><button class="copy-btn" data-copy="rm -f /var/www/lampp-demo/public/index.html">Copy</button></div>
           <pre><code>rm -f /var/www/lampp-demo/public/index.html</code></pre>
-        </div>
-        
-
+        </div></div>
+<div class="step-card"><h2>Lock down the file permissions</h2>
+<p>Once the application files are in place, set permissions that let Apache read the content without making the project writable by everyone.</p>
+<h3>1. Apply ownership deliberately</h3>
+<ol>
+  <li>Set ownership so your administrative user can still maintain the project files.</li>
+  <li>Use the web server group so Apache can read the application and configuration files.</li>
+</ol>
+<h3>2. Apply safe permissions</h3>
+<ol>
+  <li>Use restrictive permissions on the project directories, such as <code>750</code>, so only the owner and group can access them.</li>
+  <li>Use a tighter permission such as <code>640</code> on <code>db.php</code> because it contains the database password.</li>
+  <li>Avoid <code>777</code> or any other world-writable setting.</li>
+</ol>
         <div class="command-block">
           <div class="command-head"><strong>Set safe ownership and permissions</strong><button class="copy-btn" data-copy="sudo chown -R $USER:www-data /var/www/lampp-demo &amp;&amp; sudo chmod -R 750 /var/www/lampp-demo &amp;&amp; sudo chmod 640 /var/www/lampp-demo/config/db.php">Copy</button></div>
           <pre><code>sudo chown -R $USER:www-data /var/www/lampp-demo &amp;&amp; sudo chmod -R 750 /var/www/lampp-demo &amp;&amp; sudo chmod 640 /var/www/lampp-demo/config/db.php</code></pre>
         </div>
-        
-
+<h3>3. Restart Apache and test the final page</h3>
+<ol>
+  <li>Restart Apache so it picks up the new homepage cleanly.</li>
+  <li>Open <code>http://VM-IP/</code> in a browser.</li>
+  <li>Confirm the page shows the deployment message, the database success message, and the seeded row values from <code>app_info</code>.</li>
+</ol>
         <div class="command-block">
           <div class="command-head"><strong>Restart Apache after deploying the app</strong><button class="copy-btn" data-copy="sudo systemctl restart apache2.service">Copy</button></div>
           <pre><code>sudo systemctl restart apache2.service</code></pre>
-        </div>
-        
-</section>
+        </div></div>
+  </section>
 <section class="panel" style="margin-top:1rem;"><h2 style="margin-top:0;">Troubleshooting</h2>
 <table class="trouble"><thead><tr><th>Issue</th><th>What to check</th></tr></thead><tbody>
 <tr><td>500 Internal Server Error</td><td>Check the Apache error log and confirm the database password in <code>db.php</code> matches the MariaDB user password.</td></tr>

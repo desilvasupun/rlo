@@ -68,12 +68,20 @@
   <li>Wait for the package install to complete without errors.</li>
   <li>Make sure the command finishes before moving to any SQL work.</li>
 </ol>
+        <div class="command-block">
+          <div class="command-head"><strong>Install MariaDB packages</strong><button class="copy-btn" data-copy="sudo apt install mariadb-server mariadb-client -y">Copy</button></div>
+          <pre><code>sudo apt install mariadb-server mariadb-client -y</code></pre>
+        </div>
 <h3>2. Start and enable the service</h3>
 <ol>
   <li>Run <code>sudo systemctl enable --now mariadb</code> so the database starts now and also after future reboots.</li>
   <li>Check the service status to confirm MariaDB is active.</li>
   <li>If the service fails to start, troubleshoot that first rather than attempting database creation.</li>
-</ol></div>
+</ol>
+        <div class="command-block">
+          <div class="command-head"><strong>Enable and start MariaDB</strong><button class="copy-btn" data-copy="sudo systemctl enable --now mariadb">Copy</button></div>
+          <pre><code>sudo systemctl enable --now mariadb</code></pre>
+        </div></div>
 <div class="step-card"><h2>Run the secure installation step</h2>
 <p>Before creating application data, apply MariaDB's built-in baseline hardening. The goal is to remove common insecure defaults on a fresh install.</p>
 <h3>1. Launch the helper</h3>
@@ -81,6 +89,10 @@
   <li>Run <code>sudo mariadb-secure-installation</code>.</li>
   <li>Read each prompt carefully because the script is interactive.</li>
 </ol>
+        <div class="command-block">
+          <div class="command-head"><strong>Run the secure installation helper</strong><button class="copy-btn" data-copy="sudo mariadb-secure-installation">Copy</button></div>
+          <pre><code>sudo mariadb-secure-installation</code></pre>
+        </div>
 <h3>2. Work through the common security prompts</h3>
 <ol>
   <li>If asked for the current root password and you have not set one, follow the prompt guidance for a fresh installation.</li>
@@ -112,33 +124,6 @@
   <li>Grant only <code>SELECT</code> access on <code>lampp_demo</code> so the account has the minimum rights needed for the demo site.</li>
   <li>Run <code>FLUSH PRIVILEGES;</code> after the grant statements.</li>
 </ol>
-<h3>3. Test the least-privilege account</h3>
-<ol>
-  <li>Exit the administrative session if needed.</li>
-  <li>Connect using <code>lampp_user</code> and query <code>app_info</code>.</li>
-  <li>Confirm the row you inserted is returned successfully. That proves both the database content and the application account are ready for Module 6.</li>
-</ol></div>
-  </section>
-<section class="panel" style="margin-top:1rem;"><h2 style="margin-top:0;">Command guide</h2>
-
-        <div class="command-block">
-          <div class="command-head"><strong>Install MariaDB packages</strong><button class="copy-btn" data-copy="sudo apt install mariadb-server mariadb-client -y">Copy</button></div>
-          <pre><code>sudo apt install mariadb-server mariadb-client -y</code></pre>
-        </div>
-        
-
-        <div class="command-block">
-          <div class="command-head"><strong>Enable and start MariaDB</strong><button class="copy-btn" data-copy="sudo systemctl enable --now mariadb">Copy</button></div>
-          <pre><code>sudo systemctl enable --now mariadb</code></pre>
-        </div>
-        
-
-        <div class="command-block">
-          <div class="command-head"><strong>Run the secure installation helper</strong><button class="copy-btn" data-copy="sudo mariadb-secure-installation">Copy</button></div>
-          <pre><code>sudo mariadb-secure-installation</code></pre>
-        </div>
-        
-
         <div class="command-block">
           <div class="command-head"><strong>Create the database, table, seed row, and least-privilege user</strong><button class="copy-btn" data-copy="sudo mariadb &lt;&lt;&#x27;SQL&#x27;
 CREATE DATABASE lampp_demo;
@@ -167,14 +152,17 @@ GRANT SELECT ON lampp_demo.* TO &#x27;lampp_user&#x27;@&#x27;localhost&#x27;;
 FLUSH PRIVILEGES;
 SQL</code></pre>
         </div>
-        
-
+<h3>3. Test the least-privilege account</h3>
+<ol>
+  <li>Exit the administrative session if needed.</li>
+  <li>Connect using <code>lampp_user</code> and query <code>app_info</code>.</li>
+  <li>Confirm the row you inserted is returned successfully. That proves both the database content and the application account are ready for Module 6.</li>
+</ol>
         <div class="command-block">
           <div class="command-head"><strong>Test the new application account</strong><button class="copy-btn" data-copy="mariadb -u lampp_user -p lampp_demo -e &quot;SELECT * FROM app_info;&quot;">Copy</button></div>
           <pre><code>mariadb -u lampp_user -p lampp_demo -e &quot;SELECT * FROM app_info;&quot;</code></pre>
-        </div>
-        
-</section>
+        </div></div>
+  </section>
 <section class="panel" style="margin-top:1rem;"><h2 style="margin-top:0;">Troubleshooting</h2>
 <table class="trouble"><thead><tr><th>Issue</th><th>What to check</th></tr></thead><tbody>
 <tr><td>Cannot log in as root with a password</td><td>On Ubuntu, try <code>sudo mariadb</code>. Socket authentication is common for the administrative account.</td></tr>
