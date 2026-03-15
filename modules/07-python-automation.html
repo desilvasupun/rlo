@@ -189,7 +189,13 @@ PY</code></pre>
 <tr><td>Permission denied under /opt</td><td>Use <code>sudo chown -R $USER:$USER /opt/lampp-demo-python</code> before creating files there.</td></tr>
 </tbody></table></section>
 <section class="panel" style="margin-top:1rem;"><h2 style="margin-top:0;">Evidence to capture</h2>
-<p>Capture the terminal output of the Python health-check script showing an HTTP 200 response.</p>
+<ul class="evidence-list">
+  <li>A screenshot or terminal capture showing the Python tooling packages installed successfully.</li>
+  <li>A screenshot or directory listing showing that the <code>.venv</code> virtual environment was created inside <code>/opt/lampp-demo-python</code>.</li>
+  <li>A screenshot of the shell after activation showing the virtual environment is active.</li>
+  <li>A screenshot of the terminal output from <code>python check_site.py</code> showing an <code>HTTP 200</code> response.</li>
+  <li>A screenshot of the response preview showing HTML returned from the deployed site.</li>
+</ul>
 </section>
 
       <div class="footer-nav">

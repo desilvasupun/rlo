@@ -177,7 +177,13 @@ SQL</code></pre>
 <tr><td>Application user cannot connect</td><td>Verify the username, password, host (<code>localhost</code>), and that <code>FLUSH PRIVILEGES;</code> completed.</td></tr>
 </tbody></table></section>
 <section class="panel" style="margin-top:1rem;"><h2 style="margin-top:0;">Evidence to capture</h2>
-<p>Capture the output of the database creation test or the app user query against <code>lampp_demo</code>.</p>
+<ul class="evidence-list">
+  <li>A screenshot or terminal capture showing the MariaDB service is active after installation.</li>
+  <li>A short note or screenshot summarizing the key choices made during <code>mariadb-secure-installation</code>.</li>
+  <li>A screenshot or terminal capture showing that the <code>lampp_demo</code> database and <code>app_info</code> table were created.</li>
+  <li>A screenshot of the query results from <code>mariadb -u lampp_user -p lampp_demo -e "SELECT * FROM app_info;"</code>.</li>
+  <li>A note recording the application username and where you stored the password securely, without exposing the password in the evidence itself.</li>
+</ul>
 </section>
 
       <div class="footer-nav">

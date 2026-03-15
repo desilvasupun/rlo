@@ -159,7 +159,13 @@
 <tr><td>Ping fails</td><td>Confirm your host has internet access and the VM NIC is connected. NAT is the easiest mode for the initial build.</td></tr>
 </tbody></table></section>
 <section class="panel" style="margin-top:1rem;"><h2 style="margin-top:0;">Evidence to capture</h2>
-<p>Capture the Ubuntu login prompt and a terminal showing the IP address from <code>hostname -I</code>.</p>
+<ul class="evidence-list">
+  <li>A screenshot of the VM summary or settings page showing the VM name, CPU count, RAM, disk size, and NAT networking.</li>
+  <li>A screenshot showing the Ubuntu Server installation completed and the VM booting from the virtual disk instead of the installer ISO.</li>
+  <li>A screenshot of the Ubuntu login prompt and a successful login using the non-root administrative account you created.</li>
+  <li>A screenshot of a terminal showing the IP address from <code>hostname -I</code>.</li>
+  <li>A screenshot or note showing successful outbound connectivity from <code>ping -c 4 ubuntu.com</code>.</li>
+</ul>
 </section>
 
       <div class="footer-nav">

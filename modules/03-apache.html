@@ -243,7 +243,13 @@ HTML</code></pre>
 <tr><td>Default page still appears</td><td>Confirm <code>000-default</code> was disabled and the Apache service was restarted.</td></tr>
 </tbody></table></section>
 <section class="panel" style="margin-top:1rem;"><h2 style="margin-top:0;">Evidence to capture</h2>
-<p>Capture the browser showing the placeholder page plus the result of <code>sudo apache2ctl configtest</code>.</p>
+<ul class="evidence-list">
+  <li>A screenshot or terminal capture showing Apache installed and running.</li>
+  <li>A screenshot of the custom document root or placeholder <code>index.html</code> inside <code>/var/www/lampp-demo/public</code>.</li>
+  <li>A screenshot of <code>/etc/apache2/sites-available/lampp-demo.conf</code> showing the custom <code>DocumentRoot</code>.</li>
+  <li>A screenshot of <code>sudo apache2ctl configtest</code> returning <code>Syntax OK</code>.</li>
+  <li>A screenshot of the browser loading the placeholder page from <code>http://VM-IP/</code>.</li>
+</ul>
 </section>
 
       <div class="footer-nav">

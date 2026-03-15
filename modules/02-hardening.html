@@ -205,7 +205,13 @@
 <tr><td>SSH stops working after restart</td><td>Use the VM console directly, remove the bad config file, validate again, and restart the service.</td></tr>
 </tbody></table></section>
 <section class="panel" style="margin-top:1rem;"><h2 style="margin-top:0;">Evidence to capture</h2>
-<p>Capture screenshots of <code>sudo systemctl status ssh --no-pager</code> and <code>sudo ufw status verbose</code>.</p>
+<ul class="evidence-list">
+  <li>A screenshot or terminal capture showing <code>sudo apt update</code> and <code>sudo apt upgrade -y</code> completed without errors.</li>
+  <li>A screenshot of <code>sudo systemctl status ssh --no-pager</code> showing that the SSH service is active.</li>
+  <li>A screenshot of the SSH hardening drop-in file or a terminal capture confirming <code>PermitRootLogin no</code> was added.</li>
+  <li>A screenshot or terminal capture showing <code>sudo sshd -t</code> succeeded before the SSH service was restarted.</li>
+  <li>A screenshot of <code>sudo ufw status verbose</code> showing that the firewall is active and the <code>OpenSSH</code> rule is allowed.</li>
+</ul>
 </section>
 
       <div class="footer-nav">
