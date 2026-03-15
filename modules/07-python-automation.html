@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Module 7: Install Python and Run a Small Automation Script — Production-Ready LAMPP Stack on Ubuntu Server</title>
+  <title>Module 7: Install Python and Run a Small Automation Script &mdash; Production-Ready LAMPP Stack on Ubuntu Server</title>
   <link rel="stylesheet" href="../styles.css">
 </head>
 <body>
@@ -35,7 +35,7 @@
     <h1>Module 7: Install Python and Run a Small Automation Script</h1>
     <p class="summary summary-wide">Install Python packaging tools, create a virtual environment, and run a script that checks the local web application.</p>
     <div class="meta-row">
-      <span class="meta-chip">Estimated time: 10–15 minutes</span>
+      <span class="meta-chip">Estimated time: 10&ndash;15 minutes</span>
     </div>
     <div class="module-progress panel" aria-label="Module progress">
       <div class="module-progress-head">
@@ -60,9 +60,61 @@
   </section>
   <section class="panel" style="margin-top:1rem;">
     <h2 style="margin-top:0;">Steps</h2>
-<div class="step-card"><h2>Install Python support packages</h2>Ubuntu already includes Python, but for a repeatable workflow you should also install <code>python3-pip</code> and <code>python3-venv</code>.</div>
-<div class="step-card"><h2>Create a virtual environment</h2>Put the Python automation project under <code>/opt/lampp-demo-python</code> and create a dedicated virtual environment there. This keeps the automation files separate from the web application itself.</div>
-<div class="step-card"><h2>Create and run the health check</h2>The script below uses Python’s built-in <code>urllib</code> package to request the local homepage and print the HTTP status code with a timestamp. No third-party modules are required.</div>
+<div class="step-card"><h2>Install Python support packages</h2>
+<p>Ubuntu includes Python itself, but this module also needs package-management and virtual-environment support so the automation workflow is isolated and repeatable.</p>
+<h3>1. Install the Python tooling packages</h3>
+<ol>
+  <li>Run <code>sudo apt install python3-pip python3-venv -y</code>.</li>
+  <li>Wait for the package installation to finish fully.</li>
+  <li>Confirm there are no package errors before creating the project directory.</li>
+</ol>
+<h3>2. Understand the purpose of the tools</h3>
+<ol>
+  <li><code>python3-pip</code> gives you Python package installation support if you need it later.</li>
+  <li><code>python3-venv</code> allows you to create isolated Python environments for small automation projects.</li>
+  <li>Even though this demo does not install third-party modules, using a virtual environment is still good practice.</li>
+</ol></div>
+<div class="step-card"><h2>Create a virtual environment</h2>
+<p>Keep the automation project separate from the web application. The Python script belongs under <code>/opt/lampp-demo-python</code>, and the virtual environment should live inside that project folder.</p>
+<h3>1. Create the project directory</h3>
+<ol>
+  <li>Create <code>/opt/lampp-demo-python</code>.</li>
+  <li>Change ownership to your normal user so you can create files there without running the project as root.</li>
+  <li>Verify that you can enter the directory and list its contents.</li>
+</ol>
+<h3>2. Create the virtual environment</h3>
+<ol>
+  <li>From inside the project directory, run <code>python3 -m venv .venv</code>.</li>
+  <li>Wait for the environment creation to finish. This creates an isolated Python interpreter and supporting scripts.</li>
+  <li>Confirm the <code>.venv</code> directory now exists.</li>
+</ol>
+<h3>3. Activate it before running Python commands</h3>
+<ol>
+  <li>Run <code>source .venv/bin/activate</code> from the project directory.</li>
+  <li>Notice that the shell prompt changes to show the active environment.</li>
+  <li>Keep that environment active while creating and running the health-check script.</li>
+</ol></div>
+<div class="step-card"><h2>Create and run the health check</h2>
+<p>The goal of the script is simple: request the locally hosted site and report whether the stack returns a successful HTTP response. Using the built-in <code>urllib</code> module keeps the example lightweight.</p>
+<h3>1. Create the script file</h3>
+<ol>
+  <li>Create <code>/opt/lampp-demo-python/check_site.py</code>.</li>
+  <li>Use Python code that sends a request to <code>http://127.0.0.1/</code>.</li>
+  <li>Include a timestamp in the output so the result looks like a real automation check.</li>
+  <li>Print both the HTTP status code and a short preview of the returned HTML.</li>
+</ol>
+<h3>2. Run the script inside the virtual environment</h3>
+<ol>
+  <li>With the virtual environment still active, run <code>python check_site.py</code>.</li>
+  <li>Confirm the script prints an <code>HTTP 200</code> response.</li>
+  <li>Confirm the response preview contains HTML from the deployed site rather than an error page.</li>
+</ol>
+<h3>3. Close the environment cleanly</h3>
+<ol>
+  <li>Run <code>deactivate</code> after the test completes.</li>
+  <li>This returns the shell to the system Python environment.</li>
+  <li>Keep the script and environment in place so you can rerun the health check during final validation.</li>
+</ol></div>
   </section>
 <section class="panel" style="margin-top:1rem;"><h2 style="margin-top:0;">Command guide</h2>
 
@@ -143,8 +195,8 @@ PY</code></pre>
 </section>
 
       <div class="footer-nav">
-        <a class="button secondary" href="06-demo-php-site.html">← Module 6: Deploy the Demo PHP Site</a>
-        <a class="button primary" href="08-final-validation.html">Module 8: Final Validation and Evidence Package →</a>
+        <a class="button secondary" href="06-demo-php-site.html">&larr; Module 6: Deploy the Demo PHP Site</a>
+        <a class="button primary" href="08-final-validation.html">Module 8: Final Validation and Evidence Package &rarr;</a>
       </div>
     
 </article>

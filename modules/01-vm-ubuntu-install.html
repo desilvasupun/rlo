@@ -60,25 +60,81 @@
   </section>
   <section class="panel" style="margin-top:1rem;">
     <h2 style="margin-top:0;">Steps</h2>
-<div class="step-card"><h2>Create the virtual machine</h2>In your hypervisor, create a new 64-bit Ubuntu VM. Attach the Ubuntu Server ISO to the virtual optical drive. For this guided RLO, use the following baseline unless your environment requires something different:
-<ul>
-  <li>2 vCPUs</li>
-  <li>4 GB RAM</li>
-  <li>25 GB dynamically allocated disk</li>
-  <li>NAT networking for internet access</li>
-</ul>
-<div class="callout note"><strong>Tip:</strong> Name the VM something clear like <code>ubuntu-lampp-rlo</code> so your screenshots and notes stay organized.</div></div>
-<div class="step-card"><h2>Complete the Ubuntu installer</h2>Boot from the ISO and work through the installer. A straightforward RLO-friendly setup is:
+<div class="step-card"><h2>Create the virtual machine</h2>
+<p>Build the VM carefully before you ever boot the installer. A clean VM definition prevents avoidable problems later, such as disk shortages, boot loops, or missing network access.</p>
+<h3>1. Start the VM wizard</h3>
 <ol>
-  <li>Choose your language and keyboard layout.</li>
-  <li>Use the standard Ubuntu Server install path.</li>
-  <li>Accept DHCP networking if your NAT adapter provides it.</li>
-  <li>Use guided storage unless your course requires custom partitioning.</li>
-  <li>Create a normal administrative user account.</li>
-  <li>Select <strong>OpenSSH server</strong> during installation if the option is presented.</li>
+  <li>Open your hypervisor and choose the option to create a <strong>new virtual machine</strong>.</li>
+  <li>Enter a clear name such as <code>ubuntu-lampp-rlo</code> so the VM is easy to identify in screenshots and later maintenance work.</li>
+  <li>Select the downloaded <strong>Ubuntu Server ISO</strong> as the startup or installation media when the wizard asks for it.</li>
+  <li>Make sure the operating system type is set to <strong>Linux</strong> and the version matches a 64-bit Ubuntu release.</li>
 </ol>
-When installation finishes, reboot and detach the ISO if the VM keeps returning to the installer.</div>
-<div class="step-card"><h2>Log in and collect the first validation data</h2>Log in with the account you created during installation and record the machine IP address. If you intend to SSH in from the host later, note the address now.</div>
+<h3>2. Assign the baseline hardware</h3>
+<ol>
+  <li>Set the VM to use <strong>2 vCPUs</strong>. That is enough for this RLO without placing unnecessary load on the host machine.</li>
+  <li>Allocate <strong>4 GB of RAM</strong>. This is a practical balance for Ubuntu Server, Apache, MariaDB, PHP, and Python tooling.</li>
+  <li>Create a <strong>25 GB</strong> virtual hard disk.</li>
+  <li>Choose a <strong>dynamically allocated</strong> disk if that option is available so the file grows as needed instead of consuming the full size immediately.</li>
+</ol>
+<h3>3. Confirm the network and boot settings</h3>
+<ol>
+  <li>Open the VM settings before first boot and confirm the network adapter is <strong>enabled</strong>.</li>
+  <li>Use <strong>NAT</strong> networking. NAT is the simplest choice for package downloads and outbound internet access.</li>
+  <li>Check that the Ubuntu ISO is attached to the virtual optical drive.</li>
+  <li>Save the settings and review them one more time so you know the VM name, CPU count, RAM amount, disk size, and network mode are correct.</li>
+</ol>
+<div class="callout note"><strong>Tip:</strong> Take a screenshot of the VM summary or settings page now. It is useful evidence for the build and helps if you need to recreate the machine later.</div></div>
+<div class="step-card"><h2>Complete the Ubuntu installer</h2>
+<p>Boot the VM from the ISO and work through the server installer carefully. The exact screen wording can vary slightly by Ubuntu release, but the overall flow stays consistent.</p>
+<h3>1. Work through the initial installer screens</h3>
+<ol>
+  <li>Start the VM and wait for the Ubuntu Server installer menu to appear.</li>
+  <li>Select the option to install Ubuntu Server if the boot menu asks what you want to do.</li>
+  <li>Choose your preferred language.</li>
+  <li>Select the correct keyboard layout and test it if the installer provides a keyboard check screen.</li>
+</ol>
+<h3>2. Accept the standard server installation path</h3>
+<ol>
+  <li>Choose the normal Ubuntu Server installation workflow rather than an advanced or customized path for this RLO.</li>
+  <li>When the installer configures networking, accept the automatically assigned DHCP settings if the VM already shows a valid network connection.</li>
+  <li>If the installer asks about a proxy and you do not use one in your environment, leave it blank.</li>
+  <li>If the installer asks about the package mirror, keep the default mirror unless your environment provides a local mirror.</li>
+</ol>
+<h3>3. Configure storage and create the admin account</h3>
+<ol>
+  <li>Use the installer's guided storage option.</li>
+  <li>Review the storage summary before confirming so you know Ubuntu will install onto the correct virtual disk.</li>
+  <li>Create a normal user account with a username and password that you can remember for the rest of the RLO.</li>
+  <li>Make sure this account has administrative rights when the installer offers that option.</li>
+</ol>
+<h3>4. Finish the install cleanly</h3>
+<ol>
+  <li>Select <strong>OpenSSH server</strong> during installation if the installer offers that checkbox. It saves time in the next module.</li>
+  <li>Skip optional server snaps unless you specifically want them. They are not required for this RLO.</li>
+  <li>Wait for package installation to finish fully. Do not reset or power off the VM during this stage.</li>
+  <li>When the installer says the process is complete, choose <strong>Reboot</strong>.</li>
+  <li>If the VM boots back into the installer after reboot, power it off, detach the ISO from the virtual optical drive, and boot again.</li>
+</ol></div>
+<div class="step-card"><h2>Log in and collect the first validation data</h2>
+<p>After the reboot, confirm that the server is usable before you continue to hardening and package installation.</p>
+<h3>1. Verify that Ubuntu boots normally</h3>
+<ol>
+  <li>Wait for the text login prompt to appear instead of the installer menu.</li>
+  <li>Log in with the non-root account you created during installation.</li>
+  <li>Confirm you can reach a normal shell prompt without errors.</li>
+</ol>
+<h3>2. Record the network information</h3>
+<ol>
+  <li>Run <code>hostname -I</code> to display the current IP address.</li>
+  <li>Run <code>ip a</code> if you want to see which interface received the address.</li>
+  <li>Write the IP address down in your notes or capture it in a screenshot because you will need it later for browser testing and optional SSH access.</li>
+</ol>
+<h3>3. Confirm outbound connectivity</h3>
+<ol>
+  <li>Run <code>ping -c 4 ubuntu.com</code> to verify that the VM can reach the internet.</li>
+  <li>If the ping succeeds, the machine is ready for package installation in the next module.</li>
+  <li>If it fails, stop and fix networking now rather than building the rest of the stack on a disconnected VM.</li>
+</ol></div>
   </section>
 <section class="panel" style="margin-top:1rem;"><h2 style="margin-top:0;">Command guide</h2>
 

@@ -60,9 +60,64 @@
   </section>
   <section class="panel" style="margin-top:1rem;">
     <h2 style="margin-top:0;">Steps</h2>
-<div class="step-card"><h2>Install MariaDB packages</h2>Install both the server and client packages. Then ensure the service is enabled and running.</div>
-<div class="step-card"><h2>Run the secure installation step</h2>MariaDB provides an interactive security routine to remove anonymous users, restrict remote root login, and apply other basic hardening. On some Ubuntu systems, the root database account authenticates with the local Unix socket. That is normal in many RLO builds.</div>
-<div class="step-card"><h2>Create the demo database and application user</h2>Create one database called <code>lampp_demo</code>, create a small table, insert one row, and then create an application account that has only the permissions required to read that demo data.</div>
+<div class="step-card"><h2>Install MariaDB packages</h2>
+<p>MariaDB provides the relational database layer for the demo application. Install both the server and client tools so you can manage the database locally from the Ubuntu shell.</p>
+<h3>1. Install the required packages</h3>
+<ol>
+  <li>Run <code>sudo apt install mariadb-server mariadb-client -y</code>.</li>
+  <li>Wait for the package install to complete without errors.</li>
+  <li>Make sure the command finishes before moving to any SQL work.</li>
+</ol>
+<h3>2. Start and enable the service</h3>
+<ol>
+  <li>Run <code>sudo systemctl enable --now mariadb</code> so the database starts now and also after future reboots.</li>
+  <li>Check the service status to confirm MariaDB is active.</li>
+  <li>If the service fails to start, troubleshoot that first rather than attempting database creation.</li>
+</ol></div>
+<div class="step-card"><h2>Run the secure installation step</h2>
+<p>Before creating application data, apply MariaDB's built-in baseline hardening. The goal is to remove common insecure defaults on a fresh install.</p>
+<h3>1. Launch the helper</h3>
+<ol>
+  <li>Run <code>sudo mariadb-secure-installation</code>.</li>
+  <li>Read each prompt carefully because the script is interactive.</li>
+</ol>
+<h3>2. Work through the common security prompts</h3>
+<ol>
+  <li>If asked for the current root password and you have not set one, follow the prompt guidance for a fresh installation.</li>
+  <li>Choose the options that remove anonymous users.</li>
+  <li>Choose the options that disallow remote root login.</li>
+  <li>Choose the options that remove the test database if it is present.</li>
+  <li>Choose the option to reload privilege tables when the helper asks.</li>
+</ol>
+<h3>3. Understand the Ubuntu authentication model</h3>
+<ol>
+  <li>On Ubuntu, the database root account often uses local socket authentication instead of a password.</li>
+  <li>That means <code>sudo mariadb</code> is often the normal way to administer the database from the server console.</li>
+  <li>This behavior is normal and does not mean the installation failed.</li>
+</ol></div>
+<div class="step-card"><h2>Create the demo database and application user</h2>
+<p>Now create the sample data that the PHP application will read later. Keep the design simple: one database, one table, one seed row, and one application user with limited privileges.</p>
+<h3>1. Create the demo database objects</h3>
+<ol>
+  <li>Open the MariaDB shell as an administrator.</li>
+  <li>Create a database named <code>lampp_demo</code>.</li>
+  <li>Switch into that database with <code>USE lampp_demo;</code>.</li>
+  <li>Create the <code>app_info</code> table with an ID column, application name, and timestamp.</li>
+  <li>Insert one seed row so the application has something to display.</li>
+</ol>
+<h3>2. Create the application login</h3>
+<ol>
+  <li>Create a user named <code>lampp_user</code> that connects from <code>localhost</code>.</li>
+  <li>Assign a strong password and record it because you will need the same value in the PHP configuration later.</li>
+  <li>Grant only <code>SELECT</code> access on <code>lampp_demo</code> so the account has the minimum rights needed for the demo site.</li>
+  <li>Run <code>FLUSH PRIVILEGES;</code> after the grant statements.</li>
+</ol>
+<h3>3. Test the least-privilege account</h3>
+<ol>
+  <li>Exit the administrative session if needed.</li>
+  <li>Connect using <code>lampp_user</code> and query <code>app_info</code>.</li>
+  <li>Confirm the row you inserted is returned successfully. That proves both the database content and the application account are ready for Module 6.</li>
+</ol></div>
   </section>
 <section class="panel" style="margin-top:1rem;"><h2 style="margin-top:0;">Command guide</h2>
 

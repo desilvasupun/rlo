@@ -60,11 +60,85 @@
   </section>
   <section class="panel" style="margin-top:1rem;">
     <h2 style="margin-top:0;">Steps</h2>
-<div class="step-card"><h2>Update the system</h2>The first maintenance task on a new Ubuntu system is to refresh the package index and install available updates. This reduces the risk of building the rest of the stack on top of outdated packages.</div>
-<div class="step-card"><h2>Install and verify OpenSSH</h2>If you did not select OpenSSH during the installer, install it now. Then check that the <code>ssh</code> service is running before you make configuration changes.</div>
-<div class="step-card"><h2>Apply one safe SSH hardening step</h2>Create a drop-in file in <code>/etc/ssh/sshd_config.d/</code> and set <code>PermitRootLogin no</code>. This blocks direct root logins while keeping your normal administrative account available.
+<div class="step-card"><h2>Update the system</h2>
+<p>Start by bringing the operating system up to date. This gives you the latest package metadata and reduces the chance that you build the rest of the stack on top of outdated or vulnerable packages.</p>
+<h3>1. Refresh the package index</h3>
+<ol>
+  <li>Log in with your normal administrative account.</li>
+  <li>Run <code>sudo apt update</code> so Ubuntu downloads the latest package lists from its configured repositories.</li>
+  <li>Read the summary output and make sure the command finishes without repository or network errors.</li>
+</ol>
+<h3>2. Install the available upgrades</h3>
+<ol>
+  <li>Run <code>sudo apt upgrade -y</code> to install the pending updates.</li>
+  <li>Wait until the upgrade completes fully. Some updates take a few minutes, especially on the first run after installation.</li>
+  <li>If the command reports held packages or package lock issues, resolve those before moving on.</li>
+</ol>
+<h3>3. Confirm the system is ready</h3>
+<ol>
+  <li>Review the final output for errors.</li>
+  <li>If the update process suggests a reboot, note that recommendation and reboot before continuing.</li>
+  <li>Keep the terminal open so you can continue with SSH setup immediately after the update.</li>
+</ol></div>
+<div class="step-card"><h2>Install and verify OpenSSH</h2>
+<p>SSH gives you a standard way to administer the server remotely. Even if you plan to keep using the VM console, it is still useful to verify that the service is installed and healthy.</p>
+<h3>1. Check whether SSH is already present</h3>
+<ol>
+  <li>If you selected OpenSSH during the Ubuntu installer, the package may already be installed.</li>
+  <li>Run <code>sudo systemctl status ssh --no-pager</code> to see whether the service exists and is active.</li>
+  <li>If the service is missing, continue with the install step below.</li>
+</ol>
+<h3>2. Install the server package if needed</h3>
+<ol>
+  <li>Run <code>sudo apt install openssh-server -y</code>.</li>
+  <li>Wait for the installation to finish and watch for package errors.</li>
+  <li>Run the status command again to confirm the service now exists.</li>
+</ol>
+<h3>3. Verify the service state</h3>
+<ol>
+  <li>Confirm that the <code>ssh</code> service shows as <strong>active (running)</strong>.</li>
+  <li>If it is inactive, start it and investigate the reason before making configuration changes.</li>
+  <li>Do not move on until you know SSH is installed and healthy.</li>
+</ol></div>
+<div class="step-card"><h2>Apply one safe SSH hardening step</h2>
+<p>Use a small, low-risk hardening change that improves the baseline without making the server harder to recover. In this module, the goal is only to block direct root SSH login.</p>
+<h3>1. Create a drop-in configuration file</h3>
+<ol>
+  <li>Use the directory <code>/etc/ssh/sshd_config.d/</code> instead of editing the main SSH config directly.</li>
+  <li>Create a file such as <code>60-hardening.conf</code> and add the line <code>PermitRootLogin no</code>.</li>
+  <li>This keeps the change small, easy to review, and easy to remove if something goes wrong.</li>
+</ol>
+<h3>2. Validate before restarting</h3>
+<ol>
+  <li>Run <code>sudo sshd -t</code> to check the SSH configuration syntax.</li>
+  <li>If the command returns no errors, the configuration is valid.</li>
+  <li>If it reports a problem, fix the file first. Do not restart SSH until the validation command succeeds.</li>
+</ol>
+<h3>3. Restart the service carefully</h3>
+<ol>
+  <li>Restart SSH with <code>sudo systemctl restart ssh.service</code>.</li>
+  <li>Run the status command again to confirm the service came back up cleanly.</li>
+  <li>Keep your VM console available while testing changes so you are not relying only on SSH access during hardening.</li>
+</ol>
 <div class="callout warning"><strong>Do not disable password authentication in this RLO</strong> unless you have already configured SSH keys and tested them. The main goal here is to avoid locking yourself out.</div></div>
-<div class="step-card"><h2>Enable the firewall for SSH only</h2>Turn on <code>ufw</code> and allow only SSH for now. You will add web traffic once Apache is installed.</div>
+<div class="step-card"><h2>Enable the firewall for SSH only</h2>
+<p>Enable Ubuntu's uncomplicated firewall after you know SSH is installed. At this stage, allow only management access. Web traffic will be opened later when Apache is ready.</p>
+<h3>1. Review the available firewall profiles</h3>
+<ol>
+  <li>Run <code>sudo ufw app list</code> to see the application profiles installed on the system.</li>
+  <li>Look for the <code>OpenSSH</code> profile in the list.</li>
+</ol>
+<h3>2. Allow SSH before enabling the firewall</h3>
+<ol>
+  <li>Run <code>sudo ufw allow OpenSSH</code>.</li>
+  <li>This creates a rule for SSH so you do not block your own management access when the firewall turns on.</li>
+</ol>
+<h3>3. Turn on UFW and verify the rules</h3>
+<ol>
+  <li>Run <code>sudo ufw enable</code> and confirm the prompt.</li>
+  <li>Run <code>sudo ufw status verbose</code> immediately afterward.</li>
+  <li>Confirm the firewall is <strong>active</strong> and that the OpenSSH rule appears in the allowed list.</li>
+</ol></div>
   </section>
 <section class="panel" style="margin-top:1rem;"><h2 style="margin-top:0;">Command guide</h2>
 
