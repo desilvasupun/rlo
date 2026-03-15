@@ -451,12 +451,14 @@ article.module-page header {
   line-height: 1.5;
 }
 .checklist input { margin-top: .2rem; }
+.completion-list,
 .evidence-list {
   margin: 0;
   padding-left: 1.35rem;
   display: grid;
   gap: .75rem;
 }
+.completion-list li,
 .evidence-list li {
   line-height: 1.6;
 }
