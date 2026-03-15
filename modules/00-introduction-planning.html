@@ -67,9 +67,14 @@
   <li><strong>PHP</strong> for dynamic web pages</li>
   <li><strong>Python</strong> for server-side automation</li>
 </ul>
-The goal is a <em>production-oriented baseline</em>: updated packages, non-root administration, SSH access, a firewall, one virtual host, one demo database, one PHP application, and one Python automation script.</div>
+The goal is a <em>production-oriented baseline</em>: updated packages, non-root administration, SSH access, a firewall, one virtual host, one demo database, one PHP application, and one Python automation script.
+<figure class="step-visual step-visual-wide">
+  <img src="../assets/architecture.svg" alt="Diagram showing a learner browser reaching Apache on the Ubuntu Server virtual machine, with PHP connecting to MariaDB and Python running local automation." loading="lazy">
+  <figcaption><strong>Architecture view:</strong> The browser reaches Apache inside the Ubuntu Server VM, Apache runs the PHP app, PHP talks to MariaDB, and Python is used locally for a small automation check later in the RLO.</figcaption>
+</figure></div>
 <div class="step-card"><h2>Gather the required resources</h2>
 <p>Before you build the VM, prepare the two host-side items you need: the <strong>Ubuntu Server LTS ISO</strong> and a working hypervisor. The steps below use <strong>VirtualBox on Windows</strong>, which is a common RLO setup.</p>
+<div class="callout note"><strong>Focus on the page structure, not the exact version number:</strong> download pages change over time, so use the screenshots as layout references even if the release shown in the example is older than the current one.</div>
 <h3>1. Download the Ubuntu Server ISO</h3>
 <ol>
   <li>Open the official <a href="https://ubuntu.com/download/server" target="_blank" rel="noopener noreferrer">Ubuntu Server download page</a> in your host browser.</li>
@@ -79,6 +84,10 @@ The goal is a <em>production-oriented baseline</em>: updated packages, non-root 
   <li>Wait for the download to finish completely before moving on.</li>
   <li>Confirm that the downloaded file ends in <code>.iso</code> so you know you have the installer image and not a web shortcut.</li>
 </ol>
+<figure class="step-visual step-visual-compact">
+  <img src="../assets/module_0/ubuntu_download.png" alt="Ubuntu Server download page showing the Ubuntu Server LTS release and its download button." loading="lazy">
+  <figcaption><strong>Screenshot guide:</strong> This is the Ubuntu Server download page. Use it to confirm you are on the server download screen and selecting the LTS ISO rather than Ubuntu Desktop.</figcaption>
+</figure>
 <h3>2. Install VirtualBox on the host machine</h3>
 <ol>
   <li>Open the official <a href="https://www.virtualbox.org/wiki/Downloads" target="_blank" rel="noopener noreferrer">VirtualBox downloads page</a> in your browser.</li>
@@ -89,12 +98,20 @@ The goal is a <em>production-oriented baseline</em>: updated packages, non-root 
   <li>Approve any Oracle or networking driver prompts during setup. VirtualBox networking features depend on those components.</li>
   <li>Finish the installation and launch VirtualBox once to confirm it opens without errors.</li>
 </ol>
+<figure class="step-visual step-visual-compact">
+  <img src="../assets/module_0/virtual_box_download.png" alt="VirtualBox downloads page showing the platform packages section with the Windows hosts link." loading="lazy">
+  <figcaption><strong>Screenshot guide:</strong> This page shows the VirtualBox platform packages list. On a Windows host, choose the <code>Windows hosts</code> installer. The extension pack shown on the right is optional for this RLO.</figcaption>
+</figure>
 <h3>3. Confirm that the host is ready for Module 1</h3>
 <ul>
   <li>Make sure you can locate the Ubuntu ISO from File Explorer.</li>
   <li>Make sure VirtualBox opens and lets you start the new VM wizard.</li>
   <li>Keep at least 25 GB of free disk space available on the host for the virtual disk and snapshots.</li>
 </ul>
+<figure class="step-visual step-visual-compact">
+  <img src="../assets/module_0/download_progress.png" alt="Browser download history showing both the VirtualBox installer and Ubuntu Server ISO downloads in progress." loading="lazy">
+  <figcaption><strong>Readiness check:</strong> Your browser download history should show both target files: the VirtualBox installer and the Ubuntu Server ISO. In your actual setup, wait for both downloads to finish before starting Module 1.</figcaption>
+</figure>
 <p>For this guided RLO, a practical VM baseline is:</p>
 <ul>
   <li>2 vCPUs</li>

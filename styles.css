@@ -392,6 +392,36 @@ article.module-page header {
   line-height: 1.7;
 }
 .step-card ul, .step-card ol { padding-left: 1.15rem; }
+.step-visual {
+  margin: 1rem 0 1.15rem;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  overflow: hidden;
+  background: linear-gradient(180deg, #ffffff, #f8fafc);
+  box-shadow: 0 14px 30px rgba(15, 23, 42, 0.08);
+}
+.step-visual img {
+  width: 100%;
+  height: auto;
+  display: block;
+  background: #ffffff;
+}
+.step-visual figcaption {
+  padding: .9rem 1rem 1rem;
+  color: var(--muted);
+  font-size: .93rem;
+  line-height: 1.6;
+  border-top: 1px solid var(--line);
+}
+.step-visual figcaption strong {
+  color: var(--ink);
+}
+.step-visual-wide {
+  max-width: 860px;
+}
+.step-visual-compact {
+  max-width: 760px;
+}
 .command-block {
   margin: .8rem 0 1.1rem;
   border: 1px solid #1e293b;
