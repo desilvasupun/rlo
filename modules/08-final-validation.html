@@ -72,27 +72,30 @@
 <ol>
   <li>Check that the <code>ssh</code> service is running.</li>
   <li>Confirm your SSH hardening file still disables direct root login.</li>
-  <li>Run <code>sudo ufw status verbose</code> and verify the firewall is active.</li>
-  <li>Make sure both the OpenSSH and Apache rules are still present.</li>
-</ol>
+  <li>Run <code>sudo ufw status verbose</code> and verify the firewall is active.
         <div class="command-block">
           <div class="command-head"><strong>Check firewall status</strong><button class="copy-btn" data-copy="sudo ufw status verbose">Copy</button></div>
           <pre><code>sudo ufw status verbose</code></pre>
         </div>
+  </li>
+  <li>Make sure both the OpenSSH and Apache rules are still present.</li>
+</ol>
 <h3>3. Confirm the web and database services</h3>
 <ol>
   <li>Check that Apache is running.</li>
-  <li>Check that MariaDB is running.</li>
-  <li>Query the database as <code>lampp_user</code> and confirm the seeded row is returned.</li>
-</ol>
+  <li>Check that MariaDB is running.
         <div class="command-block">
           <div class="command-head"><strong>Check key service status in one pass</strong><button class="copy-btn" data-copy="systemctl --no-pager --type=service --state=running | egrep &quot;ssh|apache2|mariadb&quot;">Copy</button></div>
           <pre><code>systemctl --no-pager --type=service --state=running | egrep &quot;ssh|apache2|mariadb&quot;</code></pre>
         </div>
+  </li>
+  <li>Query the database as <code>lampp_user</code> and confirm the seeded row is returned.
         <div class="command-block">
           <div class="command-head"><strong>Test database access as the app user</strong><button class="copy-btn" data-copy="mariadb -u lampp_user -p lampp_demo -e &quot;SELECT * FROM app_info;&quot;">Copy</button></div>
           <pre><code>mariadb -u lampp_user -p lampp_demo -e &quot;SELECT * FROM app_info;&quot;</code></pre>
         </div>
+  </li>
+</ol>
 <h3>4. Confirm the application layer</h3>
 <ol>
   <li>Open <code>http://VM-IP/</code> in a browser.</li>
@@ -103,13 +106,15 @@
 <h3>5. Confirm the automation layer</h3>
 <ol>
   <li>Activate the Python virtual environment again.</li>
-  <li>Run the health-check script from Module 7.</li>
-  <li>Confirm it prints an <code>HTTP 200</code> response and a short HTML preview.</li>
-</ol>
+  <li>Run the health-check script from Module 7.
         <div class="command-block">
           <div class="command-head"><strong>Run the Python health-check again</strong><button class="copy-btn" data-copy="cd /opt/lampp-demo-python &amp;&amp; source .venv/bin/activate &amp;&amp; python check_site.py">Copy</button></div>
           <pre><code>cd /opt/lampp-demo-python &amp;&amp; source .venv/bin/activate &amp;&amp; python check_site.py</code></pre>
-        </div></div>
+        </div>
+  </li>
+  <li>Confirm it prints an <code>HTTP 200</code> response and a short HTML preview.</li>
+</ol>
+</div>
 <div class="step-card"><h2>Export a clean evidence package</h2>
 <p>Organize the evidence while the system is still running and verified. A tidy evidence package is easier to grade, review, and reuse later.</p>
 <h3>1. Gather one clear artifact per major module</h3>

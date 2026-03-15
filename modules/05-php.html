@@ -64,14 +64,15 @@
 <p>PHP adds server-side processing to the Apache site you created in the last module. Install the runtime, the Apache integration module, command-line support, and the MariaDB driver in one pass.</p>
 <h3>1. Install the required packages</h3>
 <ol>
-  <li>Run <code>sudo apt install php libapache2-mod-php php-cli php-mysql -y</code>.</li>
-  <li>Wait for the installation to complete fully before testing anything in the browser.</li>
-  <li>If package installation fails, resolve that problem before moving on to Apache restart or PHP file creation.</li>
-</ol>
+  <li>Run <code>sudo apt install php libapache2-mod-php php-cli php-mysql -y</code>.
         <div class="command-block">
           <div class="command-head"><strong>Install PHP and common packages for this RLO</strong><button class="copy-btn" data-copy="sudo apt install php libapache2-mod-php php-cli php-mysql -y">Copy</button></div>
           <pre><code>sudo apt install php libapache2-mod-php php-cli php-mysql -y</code></pre>
         </div>
+  </li>
+  <li>Wait for the installation to complete fully before testing anything in the browser.</li>
+  <li>If package installation fails, resolve that problem before moving on to Apache restart or PHP file creation.</li>
+</ol>
 <h3>2. Know what each package provides</h3>
 <ol>
   <li><code>php</code> installs the main PHP runtime.</li>
@@ -81,32 +82,32 @@
 </ol>
 <h3>3. Verify the CLI installation</h3>
 <ol>
-  <li>Run <code>php -v</code> after installation.</li>
-  <li>Confirm that PHP reports a version number instead of a command-not-found error.</li>
-  <li>Capture the version output for your notes if required by your course.</li>
-</ol>
+  <li>Run <code>php -v</code> after installation.
         <div class="command-block">
           <div class="command-head"><strong>Check the PHP version in the shell</strong><button class="copy-btn" data-copy="php -v">Copy</button></div>
           <pre><code>php -v</code></pre>
-        </div></div>
+        </div>
+  </li>
+  <li>Confirm that PHP reports a version number instead of a command-not-found error.</li>
+  <li>Capture the version output for your notes if required by your course.</li>
+</ol>
+</div>
 <div class="step-card"><h2>Restart Apache and test PHP</h2>
 <p>After installing the Apache PHP module, restart the web server and use a temporary test page to confirm that PHP is being interpreted instead of downloaded as plain text.</p>
 <h3>1. Restart Apache</h3>
 <ol>
-  <li>Run <code>sudo systemctl restart apache2.service</code>.</li>
-  <li>Check the service status if the restart fails.</li>
-  <li>Do not continue until Apache is active again.</li>
-</ol>
+  <li>Run <code>sudo systemctl restart apache2.service</code>.
         <div class="command-block">
           <div class="command-head"><strong>Restart Apache after PHP installation</strong><button class="copy-btn" data-copy="sudo systemctl restart apache2.service">Copy</button></div>
           <pre><code>sudo systemctl restart apache2.service</code></pre>
         </div>
+  </li>
+  <li>Check the service status if the restart fails.</li>
+  <li>Do not continue until Apache is active again.</li>
+</ol>
 <h3>2. Create a temporary PHP test file</h3>
 <ol>
-  <li>Create <code>phpinfo.php</code> inside <code>/var/www/lampp-demo/public</code>.</li>
-  <li>Put only <code>&lt;?php phpinfo();</code> in the file so the test stays simple.</li>
-  <li>Save the file and make sure it exists in the same document root used by your virtual host.</li>
-</ol>
+  <li>Create <code>phpinfo.php</code> inside <code>/var/www/lampp-demo/public</code>.
         <div class="command-block">
           <div class="command-head"><strong>Create a temporary PHP test file</strong><button class="copy-btn" data-copy="cat &lt;&lt;&#x27;PHP&#x27; &gt; /var/www/lampp-demo/public/phpinfo.php
 &lt;?php
@@ -117,6 +118,10 @@ PHP">Copy</button></div>
 phpinfo();
 PHP</code></pre>
         </div>
+  </li>
+  <li>Put only <code>&lt;?php phpinfo();</code> in the file so the test stays simple.</li>
+  <li>Save the file and make sure it exists in the same document root used by your virtual host.</li>
+</ol>
 <h3>3. Test in the browser</h3>
 <ol>
   <li>From the host machine, open <code>http://VM-IP/phpinfo.php</code> in a browser.</li>
@@ -125,14 +130,16 @@ PHP</code></pre>
 </ol>
 <h3>4. Remove the test page</h3>
 <ol>
-  <li>Delete <code>/var/www/lampp-demo/public/phpinfo.php</code> as soon as you confirm PHP works.</li>
-  <li>This file exposes detailed server configuration information and should not remain on a deployed system.</li>
-  <li>After removing it, reload the main site URL to make sure Apache still serves the site normally.</li>
-</ol>
+  <li>Delete <code>/var/www/lampp-demo/public/phpinfo.php</code> as soon as you confirm PHP works.
         <div class="command-block">
           <div class="command-head"><strong>Remove the PHP info page after validation</strong><button class="copy-btn" data-copy="rm /var/www/lampp-demo/public/phpinfo.php">Copy</button></div>
           <pre><code>rm /var/www/lampp-demo/public/phpinfo.php</code></pre>
-        </div></div>
+        </div>
+  </li>
+  <li>This file exposes detailed server configuration information and should not remain on a deployed system.</li>
+  <li>After removing it, reload the main site URL to make sure Apache still serves the site normally.</li>
+</ol>
+</div>
   </section>
 <section class="panel" style="margin-top:1rem;"><h2 style="margin-top:0;">Troubleshooting</h2>
 <table class="trouble"><thead><tr><th>Issue</th><th>What to check</th></tr></thead><tbody>

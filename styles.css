@@ -429,6 +429,10 @@ article.module-page header {
   white-space: pre-wrap;
   word-break: break-word;
 }
+.step-card li > .command-block {
+  margin-top: .6rem;
+  margin-bottom: .35rem;
+}
 .checklist-box {
   padding: 1rem 1rem 1.15rem;
   position: sticky;
