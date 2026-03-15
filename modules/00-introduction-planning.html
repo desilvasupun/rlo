@@ -99,16 +99,89 @@ The goal is a <em>production-oriented baseline</em>: updated packages, non-root 
 <h3>2. Install VirtualBox on the host machine</h3>
 <ol>
   <li>Open the official <a href="https://www.virtualbox.org/wiki/Downloads" target="_blank" rel="noopener noreferrer">VirtualBox downloads page</a> in your browser.</li>
-  <li>Download the <strong>Windows hosts</strong> installer if your host computer runs Windows.</li>
-  <li>Close other applications so the installer can add required drivers cleanly.</li>
-  <li>Run the installer and allow Windows to approve the installation if a security prompt appears.</li>
-  <li>Keep the default installation options unless your environment requires a different location.</li>
-  <li>Approve any Oracle or networking driver prompts during setup. VirtualBox networking features depend on those components.</li>
-  <li>Finish the installation and launch VirtualBox once to confirm it opens without errors.</li>
+  <li>Under <strong>VirtualBox Platform Packages</strong>, select <strong>Windows hosts</strong> to download the Windows installer.</li>
+</ol>
+<figure class="step-visual step-visual-wide">
+  <img src="../assets/module_0/virtual_box_download.png" alt="VirtualBox downloads page showing the platform packages section with the Windows hosts link." loading="lazy">
+  <figcaption><strong>Download page:</strong> This is the VirtualBox downloads page. For a Windows host, use the <code>Windows hosts</code> link under <strong>VirtualBox Platform Packages</strong>.</figcaption>
+</figure>
+<ol start="3">
+  <li>Wait for the installer file to download completely before opening it.</li>
+</ol>
+<figure class="step-visual step-visual-wide">
+  <img src="../assets/module_0/virtual_box_downloading.png" alt="Browser showing the VirtualBox installer download in progress." loading="lazy">
+  <figcaption><strong>Download progress:</strong> The browser should show the <code>.exe</code> installer downloading. Let it finish before you start the setup wizard.</figcaption>
+</figure>
+<ol start="4">
+  <li>Open File Explorer and go to the folder where the installer was saved, such as <code>Downloads</code>.</li>
+  <li>Double-click the VirtualBox installer to start setup. If Windows shows a security or User Account Control prompt, allow it to continue.</li>
+</ol>
+<figure class="step-visual step-visual-wide">
+  <img src="../assets/module_0/downloads.png" alt="Downloads folder showing the VirtualBox installer and Ubuntu Server ISO files." loading="lazy">
+  <figcaption><strong>Locate the installer:</strong> The installer should appear in your downloads folder as a Windows application file. In this example, both the VirtualBox installer and the Ubuntu Server ISO are ready to use.</figcaption>
+</figure>
+<ol start="6">
+  <li>When the Oracle VirtualBox installer opens, review the welcome screen and click <strong>Next</strong>.</li>
 </ol>
 <figure class="step-visual step-visual-compact">
-  <img src="../assets/module_0/virtual_box_download.png" alt="VirtualBox downloads page showing the platform packages section with the Windows hosts link." loading="lazy">
-  <figcaption><strong>Screenshot guide:</strong> This page shows the VirtualBox platform packages list. On a Windows host, choose the <code>Windows hosts</code> installer. The extension pack shown on the right is optional for this RLO.</figcaption>
+  <img src="../assets/module_0/vbox_installer_1.png" alt="Oracle VirtualBox installer welcome screen." loading="lazy">
+  <figcaption><strong>Installer start:</strong> The setup wizard opens with a welcome screen before the installation choices begin.</figcaption>
+</figure>
+<ol start="7">
+  <li>Review the license agreement, choose the option to accept it, and click <strong>Next</strong>.</li>
+</ol>
+<figure class="step-visual step-visual-compact">
+  <img src="../assets/module_0/vbox_installer_2.png" alt="Oracle VirtualBox installer license agreement screen." loading="lazy">
+  <figcaption><strong>License agreement:</strong> Read the agreement, then accept it so the installer can continue.</figcaption>
+</figure>
+<ol start="8">
+  <li>Review the <strong>Custom Setup</strong> screen, confirm the install location and features you want, and then click <strong>Next</strong>.</li>
+</ol>
+<figure class="step-visual step-visual-compact">
+  <img src="../assets/module_0/vbox_installer_3.png" alt="Oracle VirtualBox installer custom setup screen showing features and installation location." loading="lazy">
+  <figcaption><strong>Custom setup:</strong> This screen lets you confirm the VirtualBox components and installation folder. Your install path may differ from the example shown.</figcaption>
+</figure>
+<ol start="9">
+  <li>If the installer warns that your network connection will be interrupted briefly, make sure nothing important is using the network and click <strong>Yes</strong> to continue.</li>
+</ol>
+<figure class="step-visual step-visual-compact">
+  <img src="../assets/module_0/vbox_installer_4.png" alt="Oracle VirtualBox installer warning that the network connection may be interrupted during installation." loading="lazy">
+  <figcaption><strong>Network warning:</strong> VirtualBox installs networking components, so a short connection drop during setup is normal.</figcaption>
+</figure>
+<ol start="10">
+  <li>Review the startup options, such as adding a Start menu entry or desktop shortcut, and click <strong>Next</strong>.</li>
+</ol>
+<figure class="step-visual step-visual-compact">
+  <img src="../assets/module_0/vbox_installer_5.png" alt="Oracle VirtualBox installer startup options screen." loading="lazy">
+  <figcaption><strong>Startup options:</strong> These checkboxes control shortcut and file-association behavior after installation.</figcaption>
+</figure>
+<ol start="11">
+  <li>At the <strong>Ready to Install</strong> screen, click <strong>Install</strong>.</li>
+</ol>
+<figure class="step-visual step-visual-compact">
+  <img src="../assets/module_0/vbox_installer_6.png" alt="Oracle VirtualBox installer ready to install screen." loading="lazy">
+  <figcaption><strong>Ready screen:</strong> This is the final confirmation before files are copied and drivers are installed.</figcaption>
+</figure>
+<ol start="12">
+  <li>Wait while the installer copies files and configures VirtualBox. Approve any driver prompts if Windows asks for confirmation.</li>
+</ol>
+<figure class="step-visual step-visual-compact">
+  <img src="../assets/module_0/vbox_installer_7.png" alt="Oracle VirtualBox installer progress screen during installation." loading="lazy">
+  <figcaption><strong>Installation progress:</strong> Let the setup finish completely before closing the wizard.</figcaption>
+</figure>
+<ol start="13">
+  <li>When the installation completes, leave <strong>Start Oracle VirtualBox</strong> checked if you want it to open immediately, then click <strong>Finish</strong>.</li>
+</ol>
+<figure class="step-visual step-visual-compact">
+  <img src="../assets/module_0/vbox_installer_8.png" alt="Oracle VirtualBox installer completion screen with Start Oracle VirtualBox selected." loading="lazy">
+  <figcaption><strong>Finish screen:</strong> The installer confirms that VirtualBox has been installed and can launch it immediately.</figcaption>
+</figure>
+<ol start="14">
+  <li>Confirm that Oracle VirtualBox Manager opens without errors and shows the main toolbar with options such as <strong>New</strong>. That means the host is ready for the VM creation steps in Module 1.</li>
+</ol>
+<figure class="step-visual step-visual-wide">
+  <img src="../assets/module_0/virtual_box.png" alt="Oracle VirtualBox Manager open after installation." loading="lazy">
+  <figcaption><strong>Post-install check:</strong> VirtualBox Manager should open successfully and display the main controls used to create a new VM.</figcaption>
 </figure>
 <h3>3. Confirm that the host is ready for Module 1</h3>
 <ul>
