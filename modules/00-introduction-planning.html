@@ -184,15 +184,30 @@ The goal is a <em>production-oriented baseline</em>: updated packages, non-root 
   <figcaption><strong>Post-install check:</strong> VirtualBox Manager should open successfully and display the main controls used to create a new VM.</figcaption>
 </figure>
 <h3>3. Confirm that the host is ready for Module 1</h3>
-<ul>
-  <li>Make sure you can locate the Ubuntu ISO from File Explorer.</li>
-  <li>Make sure VirtualBox opens and lets you start the new VM wizard.</li>
-  <li>Keep at least 25 GB of free disk space available on the host for the virtual disk and snapshots.</li>
-</ul>
-<figure class="step-visual step-visual-compact">
-  <img src="../assets/module_0/download_progress.png" alt="Browser download history showing both the VirtualBox installer and Ubuntu Server ISO downloads in progress." loading="lazy">
-  <figcaption><strong>Readiness check:</strong> Your browser download history should show both target files: the VirtualBox installer and the Ubuntu Server ISO. In your actual setup, wait for both downloads to finish before starting Module 1.</figcaption>
+<ol>
+  <li>Open File Explorer and make sure you can locate the Ubuntu ISO on the host machine.</li>
+</ol>
+<figure class="step-visual step-visual-wide">
+  <img src="../assets/module_0/downloads.png" alt="Downloads folder showing the VirtualBox installer and Ubuntu Server ISO files." loading="lazy">
+  <figcaption><strong>ISO location check:</strong> Before starting Module 1, confirm that the Ubuntu Server ISO is saved somewhere easy to find, such as your <code>Downloads</code> folder.</figcaption>
 </figure>
+<ol start="2">
+  <li>Open VirtualBox and confirm that the main manager window loads without errors.</li>
+</ol>
+<figure class="step-visual step-visual-wide">
+  <img src="../assets/module_0/virtual_box.png" alt="Oracle VirtualBox Manager open after installation." loading="lazy">
+  <figcaption><strong>VirtualBox check:</strong> The manager should open cleanly and show the main toolbar, including the <strong>New</strong> button used to create the VM in Module 1.</figcaption>
+</figure>
+<ol start="3">
+  <li>Click <strong>New</strong> once to confirm the VM creation wizard opens.</li>
+</ol>
+<figure class="step-visual step-visual-wide">
+  <img src="../assets/module_0/new_vm.png" alt="VirtualBox New Virtual Machine wizard open." loading="lazy">
+  <figcaption><strong>Wizard check:</strong> This confirms that VirtualBox is ready for the next module. The exact fields can vary, but the key check is that the <strong>New Virtual Machine</strong> window opens successfully.</figcaption>
+</figure>
+<ol start="4">
+  <li>Keep at least 25 GB of free disk space available on the host for the virtual disk and snapshots.</li>
+</ol>
 <p>For this guided RLO, a practical VM baseline is:</p>
 <ul>
   <li>2 vCPUs</li>
