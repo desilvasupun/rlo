@@ -64,24 +64,59 @@
 <p>Build the VM carefully before you ever boot the installer. A clean VM definition prevents avoidable problems later, such as disk shortages, boot loops, or missing network access.</p>
 <h3>1. Start the VM wizard</h3>
 <ol>
-  <li>Open your hypervisor and choose the option to create a <strong>new virtual machine</strong>.</li>
+  <li>Open your hypervisor and choose the option to create a <strong>new virtual machine</strong>.
+    <figure class="step-visual step-visual-compact">
+      <img src="../assets/module_1/1.1.png" alt="VirtualBox New Virtual Machine wizard open at the name and operating system screen before the Ubuntu settings are selected." loading="lazy">
+      <figcaption><strong>Wizard start:</strong> Start from the <strong>New Virtual Machine</strong> screen in VirtualBox. This is where the VM name, operating system, and installation media are defined.</figcaption>
+    </figure>
+  </li>
   <li>Enter a clear name such as <code>ubuntu-lampp-rlo</code> so the VM is easy to identify in screenshots and later maintenance work.</li>
   <li>Select the downloaded <strong>Ubuntu Server ISO</strong> as the startup or installation media when the wizard asks for it.</li>
-  <li>Make sure the operating system type is set to <strong>Linux</strong> and the version matches a 64-bit Ubuntu release.</li>
+  <li>Make sure the operating system type is set to <strong>Linux</strong> and the version matches a 64-bit Ubuntu release.
+    <figure class="step-visual step-visual-compact">
+      <img src="../assets/module_1/1.3.png" alt="VirtualBox New Virtual Machine wizard showing the VM name, Ubuntu Server ISO, and Ubuntu Linux 64-bit settings in the wizard." loading="lazy">
+      <figcaption><strong>Name, ISO, and OS:</strong> This screen covers steps 2 through 4: enter the VM name, attach the Ubuntu Server ISO, and confirm the operating system is set to <strong>Linux</strong> with <strong>Ubuntu (64-bit)</strong>.</figcaption>
+    </figure>
+  </li>
 </ol>
 <h3>2. Assign the baseline hardware</h3>
 <ol>
   <li>Set the VM to use <strong>2 vCPUs</strong>. That is enough for this RLO without placing unnecessary load on the host machine.</li>
-  <li>Allocate <strong>4 GB of RAM</strong>. This is a practical balance for Ubuntu Server, Apache, MariaDB, PHP, and Python tooling.</li>
+  <li>Allocate <strong>4 GB of RAM</strong>. This is a practical balance for Ubuntu Server, Apache, MariaDB, PHP, and Python tooling.
+    <figure class="step-visual step-visual-compact">
+      <img src="../assets/module_1/1.4.png" alt="VirtualBox hardware screen showing 4096 MB of memory and 2 CPUs selected for the virtual machine." loading="lazy">
+      <figcaption><strong>Hardware baseline:</strong> Set the VM to <strong>4096 MB</strong> of memory and <strong>2 CPUs</strong> before finishing the wizard.</figcaption>
+    </figure>
+  </li>
   <li>Create a <strong>25 GB</strong> virtual hard disk.</li>
-  <li>Choose a <strong>dynamically allocated</strong> disk if that option is available so the file grows as needed instead of consuming the full size immediately.</li>
+  <li>Choose a <strong>dynamically allocated</strong> disk if that option is available so the file grows as needed instead of consuming the full size immediately.
+    <figure class="step-visual step-visual-compact">
+      <img src="../assets/module_1/1.5.png" alt="VirtualBox disk screen showing a new 25 GB virtual hard disk being created." loading="lazy">
+      <figcaption><strong>Virtual disk:</strong> Create a new <strong>25 GB</strong> virtual disk. Leaving full pre-allocation off keeps the disk dynamically allocated.</figcaption>
+    </figure>
+  </li>
 </ol>
 <h3>3. Confirm the network and boot settings</h3>
 <ol>
+  <li>After the VM is created, review the summary page once so you can confirm the VM name, CPU count, RAM amount, disk size, and attached ISO.
+    <figure class="step-visual step-visual-wide">
+      <img src="../assets/module_1/1.6.png" alt="VirtualBox Manager showing the ubuntu-lampp-rlo VM summary with Ubuntu 64-bit, 4096 MB RAM, 2 processors, the ISO attached, and a 25 GB virtual disk." loading="lazy">
+      <figcaption><strong>VM summary:</strong> Review the completed VM definition before first boot. This is a good place to confirm the name, memory, CPU count, disk, and installer ISO in one view.</figcaption>
+    </figure>
+  </li>
   <li>Open the VM settings before first boot and confirm the network adapter is <strong>enabled</strong>.</li>
-  <li>Use <strong>NAT</strong> networking. NAT is the simplest choice for package downloads and outbound internet access.</li>
-  <li>Check that the Ubuntu ISO is attached to the virtual optical drive.</li>
-  <li>Save the settings and review them one more time so you know the VM name, CPU count, RAM amount, disk size, and network mode are correct.</li>
+  <li>Use <strong>NAT</strong> networking. NAT is the simplest choice for package downloads and outbound internet access.
+    <figure class="step-visual step-visual-compact">
+      <img src="../assets/module_1/1.7.png" alt="VirtualBox network settings showing Adapter 1 enabled and attached to NAT." loading="lazy">
+      <figcaption><strong>Network mode:</strong> Keep <strong>Adapter 1</strong> enabled and attached to <strong>NAT</strong> so the VM can reach package repositories during installation.</figcaption>
+    </figure>
+  </li>
+  <li>Check that the Ubuntu ISO is attached to the virtual optical drive, then save the settings and do one final review.
+    <figure class="step-visual step-visual-compact">
+      <img src="../assets/module_1/1.8.png" alt="VirtualBox storage settings showing the Ubuntu Server ISO attached to the IDE controller and the virtual disk attached to the SATA controller." loading="lazy">
+      <figcaption><strong>Storage check:</strong> Confirm that the Ubuntu Server ISO is still mounted in the optical drive and that the new virtual disk is attached before booting.</figcaption>
+    </figure>
+  </li>
 </ol>
 <div class="callout note"><strong>Tip:</strong> Take a screenshot of the VM summary or settings page now. It is useful evidence for the build and helps if you need to recreate the machine later.</div></div>
 <div class="step-card"><h2>Complete the Ubuntu installer</h2>
