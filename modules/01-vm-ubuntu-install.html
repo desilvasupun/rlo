@@ -245,9 +245,19 @@
 <p>After the reboot, confirm that the server is usable before you continue to hardening and package installation.</p>
 <h3>1. Verify that Ubuntu boots normally</h3>
 <ol>
-  <li>Wait for the text login prompt to appear instead of the installer menu.</li>
+  <li>Wait for the text login prompt to appear instead of the installer menu.
+    <figure class="step-visual step-visual-wide">
+      <img src="../assets/module_1/3.1.png" alt="Ubuntu Server text login prompt shown after reboot." loading="lazy">
+      <figcaption><strong>Login prompt:</strong> After the reboot, the VM should stop at the Ubuntu login prompt rather than returning to the installer.</figcaption>
+    </figure>
+  </li>
   <li>Log in with the non-root account you created during installation.</li>
-  <li>Confirm you can reach a normal shell prompt without errors.</li>
+  <li>Confirm you can reach a normal shell prompt without errors.
+    <figure class="step-visual step-visual-wide">
+      <img src="../assets/module_1/3.2.png" alt="Successful Ubuntu Server login showing the welcome message and a normal shell prompt for the non-root account." loading="lazy">
+      <figcaption><strong>Successful login:</strong> A successful sign-in should show the Ubuntu welcome text and leave you at a normal shell prompt for your non-root account.</figcaption>
+    </figure>
+  </li>
 </ol>
 <h3>2. Record the network information</h3>
 <ol>
@@ -256,12 +266,20 @@
           <div class="command-head"><strong>Display IPv4/IPv6 addresses</strong><button class="copy-btn" data-copy="hostname -I">Copy</button></div>
           <pre><code>hostname -I</code></pre>
         </div>
+        <figure class="step-visual step-visual-wide">
+          <img src="../assets/module_1/3.3.png" alt="Ubuntu Server terminal showing the hostname -I command and the VM IP addresses." loading="lazy">
+          <figcaption><strong>IP address check:</strong> The <code>hostname -I</code> command prints the current IP addresses assigned to the VM.</figcaption>
+        </figure>
   </li>
   <li>Run <code>ip a</code> if you want to see which interface received the address.
         <div class="command-block">
           <div class="command-head"><strong>Show network interface details</strong><button class="copy-btn" data-copy="ip a">Copy</button></div>
           <pre><code>ip a</code></pre>
         </div>
+        <figure class="step-visual step-visual-wide">
+          <img src="../assets/module_1/3.4.png" alt="Ubuntu Server terminal showing the ip a command output with interface enp0s3 and its assigned addresses." loading="lazy">
+          <figcaption><strong>Interface details:</strong> Use <code>ip a</code> to confirm which network interface, such as <code>enp0s3</code>, received the VM's address.</figcaption>
+        </figure>
   </li>
   <li>Write the IP address down in your notes or capture it in a screenshot because you will need it later for browser testing and optional SSH access.</li>
 </ol>
@@ -272,6 +290,10 @@
           <div class="command-head"><strong>Confirm that the VM can reach the internet</strong><button class="copy-btn" data-copy="ping -c 4 ubuntu.com">Copy</button></div>
           <pre><code>ping -c 4 ubuntu.com</code></pre>
         </div>
+        <figure class="step-visual step-visual-wide">
+          <img src="../assets/module_1/3.5.png" alt="Ubuntu Server terminal showing a successful ping -c 4 ubuntu.com test." loading="lazy">
+          <figcaption><strong>Connectivity check:</strong> A successful <code>ping</code> confirms that the VM can reach the internet for package installation and updates.</figcaption>
+        </figure>
   </li>
   <li>If the ping succeeds, the machine is ready for package installation in the next module.</li>
   <li>If it fails, stop and fix networking now rather than building the rest of the stack on a disconnected VM.</li>
