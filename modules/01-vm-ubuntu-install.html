@@ -123,32 +123,123 @@
 <p>Boot the VM from the ISO and work through the server installer carefully. The exact screen wording can vary slightly by Ubuntu release, but the overall flow stays consistent.</p>
 <h3>1. Work through the initial installer screens</h3>
 <ol>
-  <li>Start the VM and wait for the Ubuntu Server installer menu to appear.</li>
-  <li>Select the option to install Ubuntu Server if the boot menu asks what you want to do.</li>
-  <li>Choose your preferred language.</li>
-  <li>Select the correct keyboard layout and test it if the installer provides a keyboard check screen.</li>
+  <li>Start the VM and wait for the GRUB boot menu to appear. Choose <strong>Try or Install Ubuntu Server</strong> if the menu asks what you want to do.
+    <figure class="step-visual step-visual-wide">
+      <img src="../assets/module_1/2.1.png" alt="Ubuntu Server GRUB boot menu in VirtualBox with Try or Install Ubuntu Server selected." loading="lazy">
+      <figcaption><strong>Boot menu:</strong> Start the installer from the GRUB screen by choosing <strong>Try or Install Ubuntu Server</strong>.</figcaption>
+    </figure>
+  </li>
+  <li>After the boot selection, Ubuntu may show a short sequence of startup messages while the installer loads. Wait for the installer interface instead of interrupting the boot process.
+    <figure class="step-visual step-visual-wide">
+      <img src="../assets/module_1/2.2.png" alt="Ubuntu boot messages in VirtualBox while the installer is loading." loading="lazy">
+      <figcaption><strong>Installer loading:</strong> A brief stream of startup messages is normal before the installer screens appear.</figcaption>
+    </figure>
+  </li>
+  <li>Choose your preferred language.
+    <figure class="step-visual step-visual-compact">
+      <img src="../assets/module_1/2.3.png" alt="Ubuntu Server installer language selection screen." loading="lazy">
+      <figcaption><strong>Language selection:</strong> Pick the language you want to use for the installer and the initial server setup.</figcaption>
+    </figure>
+  </li>
+  <li>Select the correct keyboard layout and test it if the installer provides a keyboard check screen.
+    <figure class="step-visual step-visual-compact">
+      <img src="../assets/module_1/2.4.png" alt="Ubuntu Server installer keyboard layout screen showing English US selected." loading="lazy">
+      <figcaption><strong>Keyboard layout:</strong> Confirm the keyboard layout before continuing so your login credentials behave as expected later.</figcaption>
+    </figure>
+  </li>
 </ol>
 <h3>2. Accept the standard server installation path</h3>
 <ol>
-  <li>Choose the normal Ubuntu Server installation workflow rather than an advanced or customized path for this RLO.</li>
-  <li>When the installer configures networking, accept the automatically assigned DHCP settings if the VM already shows a valid network connection.</li>
-  <li>If the installer asks about a proxy and you do not use one in your environment, leave it blank.</li>
-  <li>If the installer asks about the package mirror, keep the default mirror unless your environment provides a local mirror.</li>
+  <li>Choose the normal <strong>Ubuntu Server</strong> installation workflow rather than a minimized or customized path for this RLO.
+    <figure class="step-visual step-visual-compact">
+      <img src="../assets/module_1/2.5.png" alt="Ubuntu Server installer base selection screen showing Ubuntu Server selected instead of the minimized option." loading="lazy">
+      <figcaption><strong>Server installation:</strong> Use the standard <strong>Ubuntu Server</strong> option for this RLO rather than the minimized install.</figcaption>
+    </figure>
+  </li>
+  <li>When the installer configures networking, accept the automatically assigned DHCP settings if the VM already shows a valid network connection.
+    <figure class="step-visual step-visual-wide">
+      <img src="../assets/module_1/2.6.png" alt="Ubuntu Server installer network configuration screen showing interface enp0s3 with a DHCP IPv4 address assigned." loading="lazy">
+      <figcaption><strong>Network configuration:</strong> If the VM already has a valid DHCP address, you can accept the detected network settings and continue.</figcaption>
+    </figure>
+  </li>
+  <li>If the installer asks about a proxy and you do not use one in your environment, leave it blank.
+    <figure class="step-visual step-visual-compact">
+      <img src="../assets/module_1/2.7.png" alt="Ubuntu Server installer proxy configuration screen with the proxy field left blank." loading="lazy">
+      <figcaption><strong>Proxy screen:</strong> Leave the proxy field empty unless your environment specifically requires an HTTP proxy.</figcaption>
+    </figure>
+  </li>
+  <li>If the installer asks about the package mirror, keep the default mirror unless your environment provides a local mirror.
+    <figure class="step-visual step-visual-wide">
+      <img src="../assets/module_1/2.8.png" alt="Ubuntu Server installer package mirror screen showing the default Ubuntu archive mirror passing its connectivity test." loading="lazy">
+      <figcaption><strong>Mirror check:</strong> Keep the default Ubuntu archive mirror if it passes the connectivity test.</figcaption>
+    </figure>
+  </li>
 </ol>
 <h3>3. Configure storage and create the admin account</h3>
 <ol>
-  <li>Use the installer's guided storage option.</li>
-  <li>Review the storage summary before confirming so you know Ubuntu will install onto the correct virtual disk.</li>
-  <li>Create a normal user account with a username and password that you can remember for the rest of the RLO.</li>
-  <li>Make sure this account has administrative rights when the installer offers that option.</li>
+  <li>Use the installer's guided storage option.
+    <figure class="step-visual step-visual-wide">
+      <img src="../assets/module_1/2.9.png" alt="Ubuntu Server installer guided storage screen showing use entire disk with LVM selected on the 25 GB virtual disk." loading="lazy">
+      <figcaption><strong>Guided storage:</strong> For this RLO, the guided storage layout is the simplest and most reliable choice.</figcaption>
+    </figure>
+  </li>
+  <li>Review the storage summary before confirming so you know Ubuntu will install onto the correct virtual disk.
+    <figure class="step-visual step-visual-wide">
+      <img src="../assets/module_1/2.10.png" alt="Ubuntu Server installer file system summary showing the planned partitions and logical volumes on the 25 GB virtual disk." loading="lazy">
+      <figcaption><strong>Storage summary:</strong> Read the file system summary carefully before you commit the installation to disk.</figcaption>
+    </figure>
+  </li>
+  <li>Create a normal user account with a username and password that you can remember for the rest of the RLO. This profile becomes your day-to-day administrative account on the server.
+    <figure class="step-visual step-visual-compact">
+      <img src="../assets/module_1/2.11.png" alt="Ubuntu Server installer profile setup screen for entering the username and password used to log in to the system." loading="lazy">
+      <figcaption><strong>Profile setup:</strong> Create the non-root account you will use for login and <code>sudo</code> throughout the remaining modules.</figcaption>
+    </figure>
+  </li>
+  <li>If Ubuntu Pro is offered, choose <strong>Skip for now</strong> unless your environment specifically requires it.
+    <figure class="step-visual step-visual-compact">
+      <img src="../assets/module_1/2.12.png" alt="Ubuntu Pro offer screen in the Ubuntu Server installer with Skip for now selected." loading="lazy">
+      <figcaption><strong>Ubuntu Pro option:</strong> You can skip Ubuntu Pro for this RLO and enable it later only if you need it.</figcaption>
+    </figure>
+  </li>
 </ol>
 <h3>4. Finish the install cleanly</h3>
 <ol>
-  <li>Select <strong>OpenSSH server</strong> during installation if the installer offers that checkbox. It saves time in the next module.</li>
-  <li>Skip optional server snaps unless you specifically want them. They are not required for this RLO.</li>
-  <li>Wait for package installation to finish fully. Do not reset or power off the VM during this stage.</li>
-  <li>When the installer says the process is complete, choose <strong>Reboot</strong>.</li>
-  <li>If the VM boots back into the installer after reboot, power it off, detach the ISO from the virtual optical drive, and boot again.</li>
+  <li>Select <strong>OpenSSH server</strong> during installation if the installer offers that checkbox. It saves time in the next module.
+    <figure class="step-visual step-visual-compact">
+      <img src="../assets/module_1/2.13.png" alt="Ubuntu Server installer screen showing Install OpenSSH server enabled." loading="lazy">
+      <figcaption><strong>OpenSSH selection:</strong> Enable the OpenSSH server package now so remote access is available immediately after installation.</figcaption>
+    </figure>
+  </li>
+  <li>Skip optional server snaps unless you specifically want them. They are not required for this RLO.
+    <figure class="step-visual step-visual-wide">
+      <img src="../assets/module_1/2.14.png" alt="Ubuntu Server installer featured server snaps screen listing optional packages such as microk8s and nextcloud." loading="lazy">
+      <figcaption><strong>Featured snaps:</strong> Leave the optional snaps unselected unless you have a specific reason to add them during installation.</figcaption>
+    </figure>
+  </li>
+  <li>Wait for package installation to finish fully. Do not reset or power off the VM during this stage.
+    <figure class="step-visual step-visual-wide">
+      <img src="../assets/module_1/2.15.png" alt="Ubuntu Server installer progress screen showing packages being installed and the system being configured." loading="lazy">
+      <figcaption><strong>Installation progress:</strong> Let the installer finish extracting packages, configuring the system, and applying updates.</figcaption>
+    </figure>
+  </li>
+  <li>When the installer says the process is complete, choose <strong>Reboot Now</strong>.
+    <figure class="step-visual step-visual-wide">
+      <img src="../assets/module_1/2.16.png" alt="Ubuntu Server installer completion screen with the Reboot Now button available." loading="lazy">
+      <figcaption><strong>Reboot prompt:</strong> Use the reboot screen to finish the installer cleanly once setup has completed.</figcaption>
+    </figure>
+  </li>
+  <li>If the installer asks you to remove the installation medium, detach the ISO from settings if needed and press <strong>Enter</strong>.
+    <figure class="step-visual step-visual-compact">
+      <img src="../assets/module_1/2.17.png" alt="Ubuntu Server installer prompt asking for the installation medium to be removed before continuing." loading="lazy">
+      <figcaption><strong>Install media prompt:</strong> Remove the installer ISO when prompted so the VM boots from the virtual disk on the next restart.</figcaption>
+    </figure>
+  </li>
+  <li>After reboot, confirm that the VM starts from the virtual disk and reaches the Ubuntu login prompt.
+    <figure class="step-visual step-visual-wide">
+      <img src="../assets/module_1/2.18.png" alt="Ubuntu Server login prompt shown after the installation has completed and the system has rebooted." loading="lazy">
+      <figcaption><strong>Login prompt:</strong> A successful reboot should land at the Ubuntu login prompt rather than returning to the installer.</figcaption>
+    </figure>
+  </li>
 </ol></div>
 <div class="step-card"><h2>Log in and collect the first validation data</h2>
 <p>After the reboot, confirm that the server is usable before you continue to hardening and package installation.</p>
