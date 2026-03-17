@@ -70,8 +70,12 @@
           <div class="command-head"><strong>Refresh package lists</strong><button class="copy-btn" data-copy="sudo apt update">Copy</button></div>
           <pre><code>sudo apt update</code></pre>
         </div>
+        <figure class="step-visual step-visual-wide">
+          <img src="../assets/module_2/1.1.png" alt="Ubuntu Server terminal showing sudo apt update running and downloading package metadata from Ubuntu repositories." loading="lazy">
+          <figcaption><strong>Package index refresh:</strong> While <code>sudo apt update</code> runs, Ubuntu contacts its configured repositories and downloads the latest package metadata.</figcaption>
+        </figure>
   </li>
-  <li>Read the summary output and make sure the command finishes without repository or network errors.</li>
+  <li>Read the summary output and make sure the command finishes without repository or network errors. It is normal to see a message showing how many packages can be upgraded once the refresh completes.</li>
 </ol>
 <h3>2. Install the available upgrades</h3>
 <ol>
@@ -80,6 +84,10 @@
           <div class="command-head"><strong>Install available package upgrades</strong><button class="copy-btn" data-copy="sudo apt upgrade -y">Copy</button></div>
           <pre><code>sudo apt upgrade -y</code></pre>
         </div>
+        <figure class="step-visual step-visual-wide">
+          <img src="../assets/module_2/1.2.png" alt="Ubuntu Server terminal showing the apt update summary followed by the sudo apt upgrade -y command starting to install updates." loading="lazy">
+          <figcaption><strong>Upgrade start:</strong> After reviewing the <code>apt update</code> summary, run <code>sudo apt upgrade -y</code> to begin installing the available package updates.</figcaption>
+        </figure>
   </li>
   <li>Wait until the upgrade completes fully. Some updates take a few minutes, especially on the first run after installation.</li>
   <li>If the command reports held packages or package lock issues, resolve those before moving on.</li>
@@ -100,6 +108,10 @@
           <div class="command-head"><strong>Check the SSH service</strong><button class="copy-btn" data-copy="sudo systemctl status ssh --no-pager">Copy</button></div>
           <pre><code>sudo systemctl status ssh --no-pager</code></pre>
         </div>
+        <figure class="step-visual step-visual-wide">
+          <img src="../assets/module_2/2.1.png" alt="Ubuntu Server terminal showing sudo systemctl status ssh --no-pager with ssh.service present but inactive and triggered by ssh.socket." loading="lazy">
+          <figcaption><strong>Initial SSH status:</strong> On Ubuntu Server, it is possible to see <code>ssh.service</code> present but <strong>inactive (dead)</strong> while it is still associated with <code>ssh.socket</code>.</figcaption>
+        </figure>
   </li>
   <li>If the service is missing, continue with the install step below.</li>
 </ol>
@@ -116,8 +128,17 @@
 </ol>
 <h3>3. Verify the service state</h3>
 <ol>
-  <li>Confirm that the <code>ssh</code> service shows as <strong>active (running)</strong>.</li>
-  <li>If it is inactive, start it and investigate the reason before making configuration changes.</li>
+  <li>Confirm that the <code>ssh</code> service shows as <strong>active (running)</strong>. If it instead shows <strong>inactive (dead)</strong>, bring it up explicitly with <code>sudo systemctl enable --now ssh.service</code>.
+        <div class="command-block">
+          <div class="command-head"><strong>Enable and start SSH</strong><button class="copy-btn" data-copy="sudo systemctl enable --now ssh.service">Copy</button></div>
+          <pre><code>sudo systemctl enable --now ssh.service</code></pre>
+        </div>
+        <figure class="step-visual step-visual-wide">
+          <img src="../assets/module_2/2.2.png" alt="Ubuntu Server terminal showing ssh.service initially inactive, then sudo systemctl enable --now ssh.service, followed by sudo systemctl status ssh --no-pager reporting active running." loading="lazy">
+          <figcaption><strong>SSH activated:</strong> If the service is not already running, enable and start it, then confirm that <code>sudo systemctl status ssh --no-pager</code> reports <strong>active (running)</strong>.</figcaption>
+        </figure>
+  </li>
+  <li>If the service still fails to start, investigate the error before making configuration changes.</li>
   <li>Do not move on until you know SSH is installed and healthy.</li>
 </ol></div>
 <div class="step-card"><h2>Apply one safe SSH hardening step</h2>
@@ -132,6 +153,10 @@
           <pre><code>printf &#x27;PermitRootLogin no
 &#x27; | sudo tee /etc/ssh/sshd_config.d/60-hardening.conf</code></pre>
         </div>
+        <figure class="step-visual step-visual-wide">
+          <img src="../assets/module_2/3.1.png" alt="Ubuntu Server terminal showing the PermitRootLogin no line being written to the SSH drop-in configuration file with sudo tee." loading="lazy">
+          <figcaption><strong>Hardening file created:</strong> This command writes <code>PermitRootLogin no</code> into the SSH drop-in file used for the hardening change.</figcaption>
+        </figure>
   </li>
   <li>This keeps the change small, easy to review, and easy to remove if something goes wrong.</li>
 </ol>
@@ -142,6 +167,10 @@
           <div class="command-head"><strong>Validate SSH configuration</strong><button class="copy-btn" data-copy="sudo sshd -t">Copy</button></div>
           <pre><code>sudo sshd -t</code></pre>
         </div>
+        <figure class="step-visual step-visual-wide">
+          <img src="../assets/module_2/3.2.png" alt="Ubuntu Server terminal showing sudo sshd -t returning with no output, indicating the SSH configuration is valid." loading="lazy">
+          <figcaption><strong>Validation check:</strong> A successful <code>sudo sshd -t</code> run usually returns no output, which means the SSH configuration syntax is valid.</figcaption>
+        </figure>
   </li>
   <li>If the command returns no errors, the configuration is valid.</li>
   <li>If it reports a problem, fix the file first. Do not restart SSH until the validation command succeeds.</li>
@@ -153,8 +182,21 @@
           <div class="command-head"><strong>Restart SSH after validation</strong><button class="copy-btn" data-copy="sudo systemctl restart ssh.service">Copy</button></div>
           <pre><code>sudo systemctl restart ssh.service</code></pre>
         </div>
+        <figure class="step-visual step-visual-wide">
+          <img src="../assets/module_2/3.3.png" alt="Ubuntu Server terminal showing sudo systemctl restart ssh.service completing without errors." loading="lazy">
+          <figcaption><strong>Service restarted:</strong> If the restart succeeds cleanly, <code>sudo systemctl restart ssh.service</code> often returns to the prompt without additional output.</figcaption>
+        </figure>
   </li>
-  <li>Run the status command again to confirm the service came back up cleanly.</li>
+  <li>Run the status command again to confirm the service came back up cleanly.
+        <div class="command-block">
+          <div class="command-head"><strong>Confirm SSH restarted cleanly</strong><button class="copy-btn" data-copy="sudo systemctl status ssh --no-pager">Copy</button></div>
+          <pre><code>sudo systemctl status ssh --no-pager</code></pre>
+        </div>
+        <figure class="step-visual step-visual-wide">
+          <img src="../assets/module_2/3.4.png" alt="Ubuntu Server terminal showing sudo systemctl status ssh --no-pager with ssh.service active and running after the restart." loading="lazy">
+          <figcaption><strong>Post-restart status:</strong> After the restart, check that <code>ssh.service</code> reports <strong>active (running)</strong> before moving on.</figcaption>
+        </figure>
+  </li>
   <li>Keep your VM console available while testing changes so you are not relying only on SSH access during hardening.</li>
 </ol>
 <div class="callout warning"><strong>Do not disable password authentication in this RLO</strong> unless you have already configured SSH keys and tested them. The main goal here is to avoid locking yourself out.</div></div>
@@ -167,6 +209,10 @@
           <div class="command-head"><strong>List application firewall profiles</strong><button class="copy-btn" data-copy="sudo ufw app list">Copy</button></div>
           <pre><code>sudo ufw app list</code></pre>
         </div>
+        <figure class="step-visual step-visual-wide">
+          <img src="../assets/module_2/4.1.png" alt="Ubuntu Server terminal showing sudo ufw app list with the OpenSSH profile available." loading="lazy">
+          <figcaption><strong>Available profiles:</strong> Use <code>sudo ufw app list</code> to confirm that the <code>OpenSSH</code> firewall profile is available before enabling UFW.</figcaption>
+        </figure>
   </li>
   <li>Look for the <code>OpenSSH</code> profile in the list.</li>
 </ol>
@@ -177,6 +223,10 @@
           <div class="command-head"><strong>Allow SSH by application profile</strong><button class="copy-btn" data-copy="sudo ufw allow OpenSSH">Copy</button></div>
           <pre><code>sudo ufw allow OpenSSH</code></pre>
         </div>
+        <figure class="step-visual step-visual-wide">
+          <img src="../assets/module_2/4.2.png" alt="Ubuntu Server terminal showing sudo ufw allow OpenSSH updating IPv4 and IPv6 firewall rules." loading="lazy">
+          <figcaption><strong>SSH rule added:</strong> The firewall should confirm that the <code>OpenSSH</code> rule was added for both standard and IPv6 traffic.</figcaption>
+        </figure>
   </li>
   <li>This creates a rule for SSH so you do not block your own management access when the firewall turns on.</li>
 </ol>
@@ -187,12 +237,20 @@
           <div class="command-head"><strong>Enable the firewall</strong><button class="copy-btn" data-copy="sudo ufw enable">Copy</button></div>
           <pre><code>sudo ufw enable</code></pre>
         </div>
+        <figure class="step-visual step-visual-wide">
+          <img src="../assets/module_2/4.3.png" alt="Ubuntu Server terminal showing sudo ufw enable reporting that the firewall is active and enabled on system startup." loading="lazy">
+          <figcaption><strong>Firewall enabled:</strong> Once enabled, UFW should report that the firewall is active and will start automatically with the system.</figcaption>
+        </figure>
   </li>
   <li>Run <code>sudo ufw status verbose</code> immediately afterward.
         <div class="command-block">
           <div class="command-head"><strong>Review the firewall status</strong><button class="copy-btn" data-copy="sudo ufw status verbose">Copy</button></div>
           <pre><code>sudo ufw status verbose</code></pre>
         </div>
+        <figure class="step-visual step-visual-wide">
+          <img src="../assets/module_2/4.4.png" alt="Ubuntu Server terminal showing sudo ufw status verbose with the firewall active and OpenSSH allowed." loading="lazy">
+          <figcaption><strong>Firewall status:</strong> Review the verbose status output to confirm that UFW is <strong>active</strong> and that the <code>OpenSSH</code> rule is allowed.</figcaption>
+        </figure>
   </li>
   <li>Confirm the firewall is <strong>active</strong> and that the OpenSSH rule appears in the allowed list.</li>
 </ol>
