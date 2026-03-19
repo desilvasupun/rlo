@@ -266,13 +266,24 @@ HTML</code></pre>
 </ol>
 <h3>2. Confirm the firewall result</h3>
 <ol>
-  <li>Review <code>sudo ufw status verbose</code> to make sure the Apache rule appears.</li>
+  <li>Review <code>sudo ufw status verbose</code> to make sure the Apache rule appears.
+        <div class="command-block">
+          <div class="command-head"><strong>Review the firewall status</strong><button class="copy-btn" data-copy="sudo ufw status verbose">Copy</button></div>
+          <pre><code>sudo ufw status verbose</code></pre>
+        </div>
+  </li>
   <li>Keep the existing OpenSSH rule in place.</li>
 </ol>
 <h3>3. Test from a browser</h3>
 <ol>
   <li>Open a browser on the host machine.</li>
-  <li>Go to <code>http://VM-IP/</code> using the IP address collected earlier.</li>
+  <li>If you do not remember the VM IP address, return to the VM console and run <code>hostname -I</code>. In a DHCP-based setup, the address can change after a reboot or after some time has passed.
+        <div class="command-block">
+          <div class="command-head"><strong>Display the current VM IP address</strong><button class="copy-btn" data-copy="hostname -I">Copy</button></div>
+          <pre><code>hostname -I</code></pre>
+        </div>
+  </li>
+  <li>Go to <code>http://VM-IP/</code> using the current IPv4 address reported by the VM.</li>
   <li>Confirm the placeholder page loads from your custom virtual host.</li>
 </ol>
 </div>
