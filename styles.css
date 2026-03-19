@@ -399,12 +399,20 @@ article.module-page header {
   overflow: hidden;
   background: linear-gradient(180deg, #ffffff, #f8fafc);
   box-shadow: 0 14px 30px rgba(15, 23, 42, 0.08);
+  max-width: 100%;
 }
 .step-visual img {
-  width: 100%;
+  width: auto;
+  max-width: 100%;
   height: auto;
   display: block;
+  margin: 0 auto;
   background: #ffffff;
+  cursor: zoom-in;
+}
+.step-visual img:focus-visible {
+  outline: 3px solid #60a5fa;
+  outline-offset: -3px;
 }
 .step-visual figcaption {
   padding: .9rem 1rem 1rem;
@@ -417,10 +425,66 @@ article.module-page header {
   color: var(--ink);
 }
 .step-visual-wide {
-  max-width: 860px;
+  max-width: none;
 }
 .step-visual-compact {
-  max-width: 760px;
+  max-width: 920px;
+}
+.image-lightbox {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  background: rgba(15, 23, 42, 0.82);
+  backdrop-filter: blur(6px);
+  z-index: 9999;
+}
+.image-lightbox.is-open {
+  display: flex;
+}
+.image-lightbox-dialog {
+  position: relative;
+  width: min(96vw, 1500px);
+  max-height: calc(100vh - 3rem);
+  display: grid;
+  gap: .9rem;
+}
+.image-lightbox-close {
+  position: absolute;
+  top: .5rem;
+  right: .5rem;
+  border: 1px solid rgba(255,255,255,.24);
+  background: rgba(15, 23, 42, 0.72);
+  color: #fff;
+  border-radius: 999px;
+  padding: .5rem .8rem;
+  font-size: .88rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+.image-lightbox-image {
+  width: auto;
+  max-width: 100%;
+  max-height: calc(100vh - 8rem);
+  margin: 0 auto;
+  display: block;
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.28);
+}
+.image-lightbox-caption {
+  margin: 0 auto;
+  max-width: min(96vw, 1100px);
+  padding: .9rem 1rem 1rem;
+  border-radius: 16px;
+  background: rgba(255,255,255,.96);
+  color: var(--ink);
+  line-height: 1.6;
+}
+body.lightbox-open {
+  overflow: hidden;
 }
 .command-block {
   margin: .8rem 0 1.1rem;
@@ -570,7 +634,7 @@ table.trouble th { background: #f8fafc; }
   .success-list li { padding-left: 3rem; }
 }
 @media print {
-  .sidebar, .copy-btn, .button, .footer-nav { display: none !important; }
+  .sidebar, .copy-btn, .button, .footer-nav, .image-lightbox { display: none !important; }
   .site-shell { grid-template-columns: 1fr; }
   .main { padding: 0; }
   .hero, .panel, .card-grid .card, .module-card, .source-card, .checklist-box { box-shadow: none; }
