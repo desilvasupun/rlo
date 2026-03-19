@@ -262,6 +262,10 @@ HTML</code></pre>
           <div class="command-head"><strong>Allow Apache through UFW</strong><button class="copy-btn" data-copy="sudo ufw allow &#x27;Apache Full&#x27;">Copy</button></div>
           <pre><code>sudo ufw allow &#x27;Apache Full&#x27;</code></pre>
         </div>
+        <figure class="step-visual step-visual-wide">
+          <img src="../assets/module_3/4.1.png" alt="Ubuntu Server terminal showing sudo ufw allow 'Apache Full' adding the firewall rule." loading="lazy">
+          <figcaption><strong>Apache rule added:</strong> When the command succeeds, UFW confirms that the Apache profile was added for both IPv4 and IPv6 traffic.</figcaption>
+        </figure>
   </li>
 </ol>
 <h3>2. Confirm the firewall result</h3>
@@ -271,6 +275,10 @@ HTML</code></pre>
           <div class="command-head"><strong>Review the firewall status</strong><button class="copy-btn" data-copy="sudo ufw status verbose">Copy</button></div>
           <pre><code>sudo ufw status verbose</code></pre>
         </div>
+        <figure class="step-visual step-visual-wide">
+          <img src="../assets/module_3/4.2.png" alt="Ubuntu Server terminal showing sudo ufw status verbose with OpenSSH and Apache Full rules allowed." loading="lazy">
+          <figcaption><strong>Firewall status:</strong> Confirm that <code>Apache Full</code> appears alongside the existing <code>OpenSSH</code> rules before moving on to browser testing.</figcaption>
+        </figure>
   </li>
   <li>Keep the existing OpenSSH rule in place.</li>
 </ol>
@@ -279,7 +287,12 @@ HTML</code></pre>
   <li>Open a browser on the host machine.</li>
   <li>Go to <code>http://127.0.0.1:8080/</code>. This sends host port <code>8080</code> to guest port <code>80</code> through the NAT port forwarding rule created earlier.</li>
   <li>If the page does not load, go back to the VM settings and confirm the NAT forwarding rule still maps <code>Host Port 8080</code> to <code>Guest Port 80</code>.</li>
-  <li>Confirm the placeholder page loads from your custom virtual host.</li>
+  <li>Confirm the placeholder page loads from your custom virtual host.
+        <figure class="step-visual step-visual-wide">
+          <img src="../assets/module_3/4.4.png" alt="Host browser showing the custom Apache placeholder page at http://127.0.0.1:8080/." loading="lazy">
+          <figcaption><strong>Browser test:</strong> A successful result shows the custom placeholder page through the NAT port forward at <code>127.0.0.1:8080</code>.</figcaption>
+        </figure>
+  </li>
 </ol>
 </div>
   </section>
