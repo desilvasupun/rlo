@@ -166,6 +166,10 @@ HTML</code></pre>
           <div class="command-head"><strong>Copy the default virtual host as a new site config</strong><button class="copy-btn" data-copy="sudo cp /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/lampp-demo.conf">Copy</button></div>
           <pre><code>sudo cp /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/lampp-demo.conf</code></pre>
         </div>
+        <figure class="step-visual step-visual-wide">
+          <img src="../assets/module_3/3.1.png" alt="Ubuntu Server terminal showing sudo cp copying 000-default.conf to lampp-demo.conf." loading="lazy">
+          <figcaption><strong>Site file copied:</strong> The copy command creates <code>lampp-demo.conf</code> from the default virtual host template and usually returns to the prompt with no extra output.</figcaption>
+        </figure>
   </li>
   <li>Edit the new file instead of changing <code>000-default.conf</code> directly.
         <div class="command-block">
@@ -201,6 +205,10 @@ HTML</code></pre>
     &lt;/Directory&gt;
 &lt;/VirtualHost&gt;</code></pre>
         </div>
+        <figure class="step-visual step-visual-wide">
+          <img src="../assets/module_3/3.2.png" alt="Contents of lampp-demo.conf in the terminal showing ServerName localhost, DocumentRoot /var/www/lampp-demo/public, log paths, and the matching Directory block." loading="lazy">
+          <figcaption><strong>Virtual host content:</strong> Update <code>lampp-demo.conf</code> so it points to <code>/var/www/lampp-demo/public</code> and includes the matching <code>&lt;Directory&gt;</code> block.</figcaption>
+        </figure>
   </li>
 </ol>
 <h3>2. Enable the correct site</h3>
@@ -216,6 +224,10 @@ HTML</code></pre>
           <div class="command-head"><strong>Disable the default site</strong><button class="copy-btn" data-copy="sudo a2dissite 000-default">Copy</button></div>
           <pre><code>sudo a2dissite 000-default</code></pre>
         </div>
+        <figure class="step-visual step-visual-wide">
+          <img src="../assets/module_3/3.3.png" alt="Ubuntu Server terminal showing sudo a2ensite lampp-demo followed by sudo a2dissite 000-default." loading="lazy">
+          <figcaption><strong>Site switching:</strong> Enable <code>lampp-demo</code> and disable <code>000-default</code> so Apache serves your custom site as the default on port 80.</figcaption>
+        </figure>
   </li>
   <li>This prevents confusion when you later browse to the VM and expect your own page instead of the Apache default page.</li>
 </ol>
@@ -233,6 +245,10 @@ HTML</code></pre>
           <div class="command-head"><strong>Restart Apache</strong><button class="copy-btn" data-copy="sudo systemctl restart apache2.service">Copy</button></div>
           <pre><code>sudo systemctl restart apache2.service</code></pre>
         </div>
+        <figure class="step-visual step-visual-wide">
+          <img src="../assets/module_3/3.4.png" alt="Ubuntu Server terminal showing sudo apache2ctl configtest returning Syntax OK and sudo systemctl restart apache2.service completing." loading="lazy">
+          <figcaption><strong>Validation and restart:</strong> Continue only after <code>sudo apache2ctl configtest</code> returns <code>Syntax OK</code>. The hostname warning shown here is acceptable at this stage, and the restart command often returns to the prompt with no extra output.</figcaption>
+        </figure>
   </li>
 </ol>
 </div>
