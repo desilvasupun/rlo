@@ -105,10 +105,17 @@
     </figure>
   </li>
   <li>Open the VM settings before first boot and confirm the network adapter is <strong>enabled</strong>.</li>
-  <li>Use <strong>NAT</strong> networking. NAT is the simplest choice for package downloads and outbound internet access.
+  <li>Use <strong>NAT</strong> networking. NAT is the simplest choice for package downloads and outbound internet access from the guest.
     <figure class="step-visual step-visual-compact">
       <img src="../assets/module_1/1.7.png" alt="VirtualBox network settings showing Adapter 1 enabled and attached to NAT." loading="lazy">
       <figcaption><strong>Network mode:</strong> Keep <strong>Adapter 1</strong> enabled and attached to <strong>NAT</strong> so the VM can reach package repositories during installation.</figcaption>
+    </figure>
+  </li>
+  <li>If you are using VirtualBox, open the NAT adapter's <strong>Port Forwarding</strong> settings before first boot.</li>
+  <li>Add at least one HTTP forwarding rule so the host browser can reach Apache later: <code>Host Port 8080</code> to <code>Guest Port 80</code>. If you want host-side SSH access later, also add <code>Host Port 2222</code> to <code>Guest Port 22</code>.
+    <figure class="step-visual step-visual-compact">
+      <img src="../assets/module_1/1.9.png" alt="VirtualBox Port Forwarding Rules dialog showing HTTP mapped from host port 8080 to guest port 80 and SSH mapped from host port 2222 to guest port 22." loading="lazy">
+      <figcaption><strong>Port forwarding rules:</strong> Add an <strong>HTTP</strong> rule for <code>8080</code> to <code>80</code> so the host browser can reach Apache, and an optional <strong>SSH</strong> rule for <code>2222</code> to <code>22</code> if you want host-side SSH access later.</figcaption>
     </figure>
   </li>
   <li>Check that the Ubuntu ISO is attached to the virtual optical drive, then save the settings and do one final review.
@@ -118,6 +125,7 @@
     </figure>
   </li>
 </ol>
+<div class="callout note"><strong>Important:</strong> With VirtualBox NAT, host-side browser tests in this RLO will use <code>http://127.0.0.1:8080/</code>.</div>
 <div class="callout note"><strong>Tip:</strong> Take a screenshot of the VM summary or settings page now. It is useful evidence for the build and helps if you need to recreate the machine later.</div></div>
 <div class="step-card"><h2>Complete the Ubuntu installer</h2>
 <p>Boot the VM from the ISO and work through the server installer carefully. The exact screen wording can vary slightly by Ubuntu release, but the overall flow stays consistent.</p>
@@ -281,7 +289,6 @@
           <figcaption><strong>Interface details:</strong> Use <code>ip a</code> to confirm which network interface, such as <code>enp0s3</code>, received the VM's address.</figcaption>
         </figure>
   </li>
-  <li>Write the IP address down in your notes or capture it in a screenshot because you will need it later for browser testing and optional SSH access.</li>
 </ol>
 <h3>3. Confirm outbound connectivity</h3>
 <ol>
@@ -308,7 +315,7 @@
 </tbody></table></section>
 <section class="panel" style="margin-top:1rem;"><h2 style="margin-top:0;">Evidence to capture</h2>
 <ul class="evidence-list">
-  <li>A screenshot of the VM summary or settings page showing the VM name, CPU count, RAM, disk size, and NAT networking.</li>
+  <li>A screenshot of the VM summary and NAT settings page showing the VM name, CPU count, RAM, disk size, NAT networking, and the port forwarding rules.</li>
   <li>A screenshot showing the Ubuntu Server installation completed and the VM booting from the virtual disk instead of the installer ISO.</li>
   <li>A screenshot of the Ubuntu login prompt and a successful login using the non-root administrative account you created.</li>
   <li>A screenshot of a terminal showing the IP address from <code>hostname -I</code>.</li>
