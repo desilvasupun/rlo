@@ -55,7 +55,7 @@
     </div>
     <aside class="checklist-box">
       <h3>Verification checklist</h3>
-      <ul class="checklist" data-checklist-key="03-apache"><li><input type="checkbox" data-track-checklist aria-label="Apache is active according to systemd."><span>Apache is active according to systemd.</span></li><li><input type="checkbox" data-track-checklist aria-label="Config test returns Syntax OK."><span>Config test returns <code>Syntax OK</code>.</span></li><li><input type="checkbox" data-track-checklist aria-label="The placeholder page loads in a browser at http://VM-IP/."><span>The placeholder page loads in a browser at <code>http://VM-IP/</code>.</span></li></ul>
+      <ul class="checklist" data-checklist-key="03-apache"><li><input type="checkbox" data-track-checklist aria-label="Apache is active according to systemd."><span>Apache is active according to systemd.</span></li><li><input type="checkbox" data-track-checklist aria-label="Config test returns Syntax OK."><span>Config test returns <code>Syntax OK</code>.</span></li><li><input type="checkbox" data-track-checklist aria-label="The placeholder page loads in a browser at http://127.0.0.1:8080/."><span>The placeholder page loads in a browser at <code>http://127.0.0.1:8080/</code>.</span></li></ul>
     </aside>
   </section>
   <section class="panel" style="margin-top:1rem;">
@@ -277,13 +277,8 @@ HTML</code></pre>
 <h3>3. Test from a browser</h3>
 <ol>
   <li>Open a browser on the host machine.</li>
-  <li>If you do not remember the VM IP address, return to the VM console and run <code>hostname -I</code>. In a DHCP-based setup, the address can change after a reboot or after some time has passed.
-        <div class="command-block">
-          <div class="command-head"><strong>Display the current VM IP address</strong><button class="copy-btn" data-copy="hostname -I">Copy</button></div>
-          <pre><code>hostname -I</code></pre>
-        </div>
-  </li>
-  <li>Go to <code>http://VM-IP/</code> using the current IPv4 address reported by the VM.</li>
+  <li>Go to <code>http://127.0.0.1:8080/</code>. This sends host port <code>8080</code> to guest port <code>80</code> through the NAT port forwarding rule created earlier.</li>
+  <li>If the page does not load, go back to the VM settings and confirm the NAT forwarding rule still maps <code>Host Port 8080</code> to <code>Guest Port 80</code>.</li>
   <li>Confirm the placeholder page loads from your custom virtual host.</li>
 </ol>
 </div>
@@ -293,6 +288,7 @@ HTML</code></pre>
 <tr><td>Apache fails to restart after enabling the site</td><td>Run <code>sudo apache2ctl configtest</code> and fix syntax or path errors first.</td></tr>
 <tr><td>403 Forbidden</td><td>Check the <code>DocumentRoot</code> path, ownership, and the <code>Require all granted</code> directive in the virtual host.</td></tr>
 <tr><td>Default page still appears</td><td>Confirm <code>000-default</code> was disabled and the Apache service was restarted.</td></tr>
+<tr><td><code>127.0.0.1:8080</code> times out</td><td>Check that Apache is running, UFW allows Apache, and the VirtualBox NAT port forwarding rule still maps host port <code>8080</code> to guest port <code>80</code>.</td></tr>
 </tbody></table></section>
 <section class="panel" style="margin-top:1rem;"><h2 style="margin-top:0;">Evidence to capture</h2>
 <ul class="evidence-list">
@@ -300,7 +296,7 @@ HTML</code></pre>
   <li>A screenshot of the custom document root or placeholder <code>index.html</code> inside <code>/var/www/lampp-demo/public</code>.</li>
   <li>A screenshot of <code>/etc/apache2/sites-available/lampp-demo.conf</code> showing the custom <code>DocumentRoot</code>.</li>
   <li>A screenshot of <code>sudo apache2ctl configtest</code> returning <code>Syntax OK</code>.</li>
-  <li>A screenshot of the browser loading the placeholder page from <code>http://VM-IP/</code>.</li>
+  <li>A screenshot of the browser loading the placeholder page from <code>http://127.0.0.1:8080/</code>.</li>
 </ul>
 </section>
 
