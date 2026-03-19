@@ -108,6 +108,10 @@
           <div class="command-head"><strong>Create the site directory</strong><button class="copy-btn" data-copy="sudo mkdir -p /var/www/lampp-demo/public">Copy</button></div>
           <pre><code>sudo mkdir -p /var/www/lampp-demo/public</code></pre>
         </div>
+        <figure class="step-visual step-visual-wide">
+          <img src="../assets/module_3/2.1.png" alt="Ubuntu Server terminal showing sudo mkdir -p /var/www/lampp-demo/public completing successfully." loading="lazy">
+          <figcaption><strong>Document root created:</strong> If the directory command succeeds, it usually returns to the prompt without additional output.</figcaption>
+        </figure>
   </li>
   <li>The <code>public</code> subdirectory will hold the files Apache should actually serve to browsers.</li>
 </ol>
@@ -124,6 +128,10 @@
           <div class="command-head"><strong>Apply safe directory permissions</strong><button class="copy-btn" data-copy="sudo chmod -R 755 /var/www/lampp-demo">Copy</button></div>
           <pre><code>sudo chmod -R 755 /var/www/lampp-demo</code></pre>
         </div>
+        <figure class="step-visual step-visual-wide">
+          <img src="../assets/module_3/2.2.png" alt="Ubuntu Server terminal showing sudo chown -R $USER:www-data /var/www/lampp-demo followed by sudo chmod -R 755 /var/www/lampp-demo." loading="lazy">
+          <figcaption><strong>Ownership and permissions:</strong> These commands set the site directory ownership to your user and <code>www-data</code>, then apply the <code>755</code> permissions needed for Apache to read the files.</figcaption>
+        </figure>
   </li>
   <li>Avoid world-writable permissions. They are not needed for this build.</li>
 </ol>
@@ -140,6 +148,10 @@ HTML">Copy</button></div>
 &lt;html lang=&quot;en&quot;&gt;&lt;head&gt;&lt;meta charset=&quot;utf-8&quot;&gt;&lt;title&gt;Apache Ready&lt;/title&gt;&lt;/head&gt;&lt;body&gt;&lt;h1&gt;Apache is serving this site.&lt;/h1&gt;&lt;p&gt;The custom virtual host is active.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
 HTML</code></pre>
         </div>
+        <figure class="step-visual step-visual-wide">
+          <img src="../assets/module_3/2.3.png" alt="Ubuntu Server terminal showing the heredoc command used to write /var/www/lampp-demo/public/index.html." loading="lazy">
+          <figcaption><strong>Placeholder page written:</strong> Finish the heredoc by entering the closing <code>HTML</code> marker on its own line, then the command will return to the prompt.</figcaption>
+        </figure>
   </li>
   <li>Include a short heading and a sentence showing that the custom site directory is being served.</li>
   <li>This gives you a simple browser test before PHP is introduced in the next modules.</li>
