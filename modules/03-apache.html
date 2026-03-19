@@ -33,7 +33,7 @@
   <header>
     <div class="eyebrow">Hands-on module</div>
     <h1>Module 3: Install Apache and Configure a Virtual Host</h1>
-    <p class="summary summary-wide">Install Apache2, create one dedicated site directory, configure a virtual host, and publish a placeholder page.</p>
+    <p class="summary summary-wide">Install Apache2, create a dedicated site directory, configure a virtual host, and publish a placeholder page.</p>
     <div class="meta-row">
       <span class="meta-chip">Estimated time: 15–20 minutes</span>
     </div>
@@ -69,13 +69,26 @@
           <div class="command-head"><strong>Install Apache2</strong><button class="copy-btn" data-copy="sudo apt install apache2 -y">Copy</button></div>
           <pre><code>sudo apt install apache2 -y</code></pre>
         </div>
+        <figure class="step-visual step-visual-wide">
+          <img src="../assets/module_3/1.1.png" alt="Ubuntu Server terminal showing apache2 packages being configured during sudo apt install apache2 -y." loading="lazy">
+          <figcaption><strong>Apache install:</strong> During installation, Ubuntu configures the Apache packages, enables the default modules, and registers the <code>apache2.service</code> unit.</figcaption>
+        </figure>
   </li>
   <li>Wait for the installation to finish completely.</li>
   <li>Watch for package errors before moving to configuration.</li>
 </ol>
 <h3>2. Verify the service</h3>
 <ol>
-  <li>Check that Apache started by reviewing its status with <code>systemctl</code>.</li>
+  <li>Check that Apache started by reviewing its status with <code>systemctl</code>.
+        <div class="command-block">
+          <div class="command-head"><strong>Check the Apache service</strong><button class="copy-btn" data-copy="sudo systemctl status apache2 --no-pager">Copy</button></div>
+          <pre><code>sudo systemctl status apache2 --no-pager</code></pre>
+        </div>
+        <figure class="step-visual step-visual-wide">
+          <img src="../assets/module_3/1.2.png" alt="Ubuntu Server terminal showing sudo systemctl status apache2 --no-pager with apache2.service active and running." loading="lazy">
+          <figcaption><strong>Apache status:</strong> Confirm that <code>apache2.service</code> shows <strong>active (running)</strong>. A hostname warning can appear here before you define a site-specific <code>ServerName</code>, and that is acceptable at this stage.</figcaption>
+        </figure>
+  </li>
   <li>Confirm the service is marked <strong>active (running)</strong>.</li>
   <li>If it is not running, resolve that problem before creating a site configuration.</li>
 </ol>
