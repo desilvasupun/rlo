@@ -428,7 +428,7 @@ article.module-page header {
   max-width: none;
 }
 .step-visual-compact {
-  max-width: 920px;
+  max-width: none;
 }
 .image-lightbox {
   position: fixed;
