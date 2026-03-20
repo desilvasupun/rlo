@@ -139,7 +139,7 @@
 <p>Now create the sample data that the PHP application will read later. Keep the design simple: one database, one table, one seed row, and one application user with limited privileges.</p>
 <h3>1. Create the demo database objects</h3>
 <ol>
-  <li>Open the MariaDB shell as an administrator, or use the batch setup command below to create the demo objects in one pass.
+  <li>Use the batch setup command below to create the demo objects in one pass.
         <div class="command-block">
           <div class="command-head"><strong>Create the database, table, seed row, and least-privilege user</strong><button class="copy-btn" data-copy="sudo mariadb &lt;&lt;&#x27;SQL&#x27;
 CREATE DATABASE lampp_demo;
@@ -168,6 +168,10 @@ GRANT SELECT ON lampp_demo.* TO &#x27;lampp_user&#x27;@&#x27;localhost&#x27;;
 FLUSH PRIVILEGES;
 SQL</code></pre>
         </div>
+        <figure class="step-visual step-visual-wide">
+          <img src="../assets/module_4/3.1.png" alt="Ubuntu Server terminal showing the batch SQL command that creates the lampp_demo database, app_info table, seed row, lampp_user account, and SELECT grant." loading="lazy">
+          <figcaption><strong>Database setup script:</strong> This batch command creates the <code>lampp_demo</code> database, adds the <code>app_info</code> table and seed row, creates <code>lampp_user</code>, grants <code>SELECT</code> access, and reloads privileges in one pass.</figcaption>
+        </figure>
   </li>
   <li>Create a database named <code>lampp_demo</code>.</li>
   <li>Switch into that database with <code>USE lampp_demo;</code>.</li>
@@ -183,12 +187,15 @@ SQL</code></pre>
 </ol>
 <h3>3. Test the least-privilege account</h3>
 <ol>
-  <li>Exit the administrative session if needed.</li>
   <li>Connect using <code>lampp_user</code> and query <code>app_info</code>.
         <div class="command-block">
           <div class="command-head"><strong>Test the new application account</strong><button class="copy-btn" data-copy="mariadb -u lampp_user -p lampp_demo -e &quot;SELECT * FROM app_info;&quot;">Copy</button></div>
           <pre><code>mariadb -u lampp_user -p lampp_demo -e &quot;SELECT * FROM app_info;&quot;</code></pre>
         </div>
+        <figure class="step-visual step-visual-wide">
+          <img src="../assets/module_4/3.2.png" alt="Ubuntu Server terminal showing the mariadb command for lampp_user prompting for a password and then returning the seeded row from app_info." loading="lazy">
+          <figcaption><strong>Least-privilege test:</strong> After you run the command, MariaDB prompts for the password you assigned to <code>lampp_user</code>. A successful result returns the seeded row from <code>app_info</code>.</figcaption>
+        </figure>
   </li>
   <li>Confirm the row you inserted is returned successfully. That proves both the database content and the application account are ready for Module 6.</li>
 </ol>
