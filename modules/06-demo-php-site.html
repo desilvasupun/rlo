@@ -221,6 +221,10 @@ try {
 &lt;/html&gt;
 PHP</code></pre>
         </div>
+        <figure class="step-visual step-visual-wide">
+          <img src="../assets/module_6/2.1.png" alt="Ubuntu Server terminal showing the heredoc command used to create /var/www/lampp-demo/public/index.php with the config include, PDO connection, query, success message, and error handling." loading="lazy">
+          <figcaption><strong>Application page template:</strong> This heredoc writes the main <code>index.php</code> file with the private config include, PDO connection, seeded-row query, success message, and basic error handling in one pass.</figcaption>
+        </figure>
   </li>
   <li>Load the credentials file using a relative path that points from <code>public</code> to <code>../config/db.php</code>.</li>
   <li>Create a PDO connection using the values from the config array.</li>
@@ -244,6 +248,10 @@ PHP</code></pre>
           <div class="command-head"><strong>Remove the old placeholder page so index.php becomes the default</strong><button class="copy-btn" data-copy="rm -f /var/www/lampp-demo/public/index.html">Copy</button></div>
           <pre><code>rm -f /var/www/lampp-demo/public/index.html</code></pre>
         </div>
+        <figure class="step-visual step-visual-wide">
+          <img src="../assets/module_6/2.2.png" alt="Ubuntu Server terminal showing rm -f /var/www/lampp-demo/public/index.html returning to the shell prompt after deleting the old placeholder page." loading="lazy">
+          <figcaption><strong>Placeholder page removed:</strong> Delete the old <code>index.html</code> file so Apache serves <code>index.php</code> as the default homepage. The command normally returns to the prompt with no extra output.</figcaption>
+        </figure>
   </li>
   <li>Keep only the files needed for the live demo page inside the public document root.</li>
 </ol>
@@ -257,6 +265,10 @@ PHP</code></pre>
           <div class="command-head"><strong>Set project ownership</strong><button class="copy-btn" data-copy="sudo chown -R $USER:www-data /var/www/lampp-demo">Copy</button></div>
           <pre><code>sudo chown -R $USER:www-data /var/www/lampp-demo</code></pre>
         </div>
+        <figure class="step-visual step-visual-wide">
+          <img src="../assets/module_6/3.1.png" alt="Ubuntu Server terminal showing sudo chown -R $USER:www-data /var/www/lampp-demo returning to the shell prompt." loading="lazy">
+          <figcaption><strong>Ownership applied:</strong> This ownership change keeps your administrative user as the owner while assigning the web server group so Apache can read the project files.</figcaption>
+        </figure>
   </li>
   <li>Use the web server group so Apache can read the application and configuration files.</li>
 </ol>
@@ -273,6 +285,10 @@ PHP</code></pre>
           <div class="command-head"><strong>Protect the database config file</strong><button class="copy-btn" data-copy="sudo chmod 640 /var/www/lampp-demo/config/db.php">Copy</button></div>
           <pre><code>sudo chmod 640 /var/www/lampp-demo/config/db.php</code></pre>
         </div>
+        <figure class="step-visual step-visual-wide">
+          <img src="../assets/module_6/3.2.png" alt="Ubuntu Server terminal showing sudo chmod -R 750 /var/www/lampp-demo and sudo chmod 640 /var/www/lampp-demo/config/db.php returning to the shell prompt." loading="lazy">
+          <figcaption><strong>Permissions tightened:</strong> Apply <code>750</code> to the project directories and files, then use <code>640</code> on <code>db.php</code> so the credentials file is more tightly protected.</figcaption>
+        </figure>
   </li>
   <li>Avoid <code>777</code> or any other world-writable setting.</li>
 </ol>
@@ -284,8 +300,13 @@ PHP</code></pre>
           <pre><code>sudo systemctl restart apache2.service</code></pre>
         </div>
   </li>
-  <li>Open <code>http://127.0.0.1:8080/</code> in a browser through the NAT port-forward created earlier.</li>
-  <li>Confirm the page shows the deployment message, the database success message, and the seeded row values from <code>app_info</code>.</li>
+  <li>Open <code>http://127.0.0.1:8080/</code> in a browser.</li>
+  <li>Confirm the page shows the deployment message, the database success message, and the seeded row values from <code>app_info</code>.
+        <figure class="step-visual step-visual-wide">
+          <img src="../assets/module_6/3.3.png" alt="Host browser showing the deployed LAMPP Demo Site homepage with Database connection succeeded and the seeded row values visible." loading="lazy">
+          <figcaption><strong>Deployed homepage:</strong> A successful result shows the final application page, the <code>Database connection succeeded</code> message, and the seeded values returned from <code>app_info</code>.</figcaption>
+        </figure>
+  </li>
 </ol>
 </div>
   </section>
