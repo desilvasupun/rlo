@@ -110,7 +110,16 @@
           <pre><code>sudo systemctl restart apache2.service</code></pre>
         </div>
   </li>
-  <li>Check the service status if the restart fails.</li>
+  <li>Check the service status after the restart to confirm Apache is active.
+        <div class="command-block">
+          <div class="command-head"><strong>Check the Apache service status</strong><button class="copy-btn" data-copy="sudo systemctl status apache2 --no-pager">Copy</button></div>
+          <pre><code>sudo systemctl status apache2 --no-pager</code></pre>
+        </div>
+        <figure class="step-visual step-visual-wide">
+          <img src="../assets/module_5/2.1.png" alt="Ubuntu Server terminal showing sudo systemctl restart apache2.service followed by sudo systemctl status apache2 --no-pager with Apache active and running." loading="lazy">
+          <figcaption><strong>Apache restart check:</strong> After the restart, confirm that <code>apache2.service</code> is <code>active (running)</code>. The common hostname warning in the log output is acceptable here as long as the service remains active.</figcaption>
+        </figure>
+  </li>
   <li>Do not continue until Apache is active again.</li>
 </ol>
 <h3>2. Create a temporary PHP test file</h3>
@@ -126,14 +135,23 @@ PHP">Copy</button></div>
 phpinfo();
 PHP</code></pre>
         </div>
+        <figure class="step-visual step-visual-wide">
+          <img src="../assets/module_5/2.2.png" alt="Ubuntu Server terminal showing the heredoc command used to create /var/www/lampp-demo/public/phpinfo.php." loading="lazy">
+          <figcaption><strong>PHP test file:</strong> The heredoc command writes the temporary <code>phpinfo.php</code> file and then returns to the shell prompt with no extra output when it succeeds.</figcaption>
+        </figure>
   </li>
   <li>Put only <code>&lt;?php phpinfo();</code> in the file so the test stays simple.</li>
   <li>Save the file and make sure it exists in the same document root used by your virtual host.</li>
 </ol>
 <h3>3. Test in the browser</h3>
 <ol>
-  <li>From the host machine, open <code>http://127.0.0.1:8080/phpinfo.php</code> in a browser through the NAT port-forward created earlier.</li>
-  <li>Confirm that a PHP information page loads. You should see PHP version details and configuration sections.</li>
+  <li>From the host machine, open <code>http://127.0.0.1:8080/phpinfo.php</code> in a browser.</li>
+  <li>Confirm that a PHP information page loads. You should see PHP version details and configuration sections.
+        <figure class="step-visual step-visual-wide">
+          <img src="../assets/module_5/2.3.png" alt="Host browser showing the PHP information page loaded from http://127.0.0.1:8080/phpinfo.php." loading="lazy">
+          <figcaption><strong>Browser PHP test:</strong> A successful result shows the PHP information page in the browser, confirming that Apache is executing PHP instead of serving the file as plain text.</figcaption>
+        </figure>
+  </li>
   <li>If the browser downloads the file instead of displaying PHP output, stop and fix the Apache PHP integration before continuing.</li>
 </ol>
 <h3>4. Remove the test page</h3>
@@ -143,6 +161,10 @@ PHP</code></pre>
           <div class="command-head"><strong>Remove the PHP info page after validation</strong><button class="copy-btn" data-copy="rm /var/www/lampp-demo/public/phpinfo.php">Copy</button></div>
           <pre><code>rm /var/www/lampp-demo/public/phpinfo.php</code></pre>
         </div>
+        <figure class="step-visual step-visual-wide">
+          <img src="../assets/module_5/2.4.png" alt="Ubuntu Server terminal showing the rm command deleting /var/www/lampp-demo/public/phpinfo.php and returning to the shell prompt." loading="lazy">
+          <figcaption><strong>Test file removed:</strong> Remove <code>phpinfo.php</code> as soon as the PHP test succeeds. The command normally returns to the prompt without extra output when the file is deleted.</figcaption>
+        </figure>
   </li>
   <li>This file exposes detailed server configuration information and should not remain on a deployed system.</li>
   <li>After removing it, reload the main site URL to make sure Apache still serves the site normally.</li>
