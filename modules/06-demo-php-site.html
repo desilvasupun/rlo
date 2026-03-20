@@ -55,7 +55,7 @@
     </div>
     <aside class="checklist-box">
       <h3>Verification checklist</h3>
-      <ul class="checklist" data-checklist-key="06-demo-php-site"><li><input type="checkbox" data-track-checklist aria-label="The homepage loads at http://VM-IP/."><span>The homepage loads at <code>http://VM-IP/</code>.</span></li><li><input type="checkbox" data-track-checklist aria-label="The page displays Database connection succeeded."><span>The page displays <code>Database connection succeeded</code>.</span></li><li><input type="checkbox" data-track-checklist aria-label="The seeded row from app_info is visible in the browser."><span>The seeded row from <code>app_info</code> is visible in the browser.</span></li></ul>
+      <ul class="checklist" data-checklist-key="06-demo-php-site"><li><input type="checkbox" data-track-checklist aria-label="The homepage loads at http://127.0.0.1:8080/."><span>The homepage loads at <code>http://127.0.0.1:8080/</code>.</span></li><li><input type="checkbox" data-track-checklist aria-label="The page displays Database connection succeeded."><span>The page displays <code>Database connection succeeded</code>.</span></li><li><input type="checkbox" data-track-checklist aria-label="The seeded row from app_info is visible in the browser."><span>The seeded row from <code>app_info</code> is visible in the browser.</span></li></ul>
     </aside>
   </section>
   <section class="panel" style="margin-top:1rem;">
@@ -69,6 +69,10 @@
           <div class="command-head"><strong>Create the private config directory</strong><button class="copy-btn" data-copy="mkdir -p /var/www/lampp-demo/config">Copy</button></div>
           <pre><code>mkdir -p /var/www/lampp-demo/config</code></pre>
         </div>
+        <figure class="step-visual step-visual-wide">
+          <img src="../assets/module_6/1.1.png" alt="Ubuntu Server terminal showing the mkdir command creating /var/www/lampp-demo/config and returning to the shell prompt." loading="lazy">
+          <figcaption><strong>Config directory created:</strong> The <code>mkdir -p</code> command creates the private <code>config</code> directory and normally returns to the shell prompt with no extra output when it succeeds.</figcaption>
+        </figure>
   </li>
   <li>Keep this directory alongside <code>public</code>, not inside it.</li>
   <li>This structure helps separate private configuration from browser-accessible files.</li>
@@ -94,6 +98,10 @@ return [
 ];
 PHP</code></pre>
         </div>
+        <figure class="step-visual step-visual-wide">
+          <img src="../assets/module_6/1.2.png" alt="Ubuntu Server terminal showing the heredoc command used to create /var/www/lampp-demo/config/db.php with the DSN, username, and password values." loading="lazy">
+          <figcaption><strong>Database config file:</strong> This heredoc writes the private <code>db.php</code> file with the DSN, username, and password values the PHP application will load later.</figcaption>
+        </figure>
   </li>
   <li>Store the DSN, username, and password in the returned PHP array.</li>
   <li>Use the exact password you assigned to <code>lampp_user</code> in Module 4.</li>
@@ -276,7 +284,7 @@ PHP</code></pre>
           <pre><code>sudo systemctl restart apache2.service</code></pre>
         </div>
   </li>
-  <li>Open <code>http://VM-IP/</code> in a browser.</li>
+  <li>Open <code>http://127.0.0.1:8080/</code> in a browser through the NAT port-forward created earlier.</li>
   <li>Confirm the page shows the deployment message, the database success message, and the seeded row values from <code>app_info</code>.</li>
 </ol>
 </div>
