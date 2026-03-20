@@ -112,17 +112,28 @@
 </ol>
 <h3>2. Work through the common security prompts</h3>
 <ol>
-  <li>If asked for the current root password and you have not set one, follow the prompt guidance for a fresh installation.</li>
-  <li>Choose the options that remove anonymous users.</li>
-  <li>Choose the options that disallow remote root login.</li>
-  <li>Choose the options that remove the test database if it is present.</li>
-  <li>Choose the option to reload privilege tables when the helper asks.</li>
+  <li>When the helper asks for the current MariaDB root password on this fresh install, press <strong>Enter</strong> because you have not set one yet.</li>
+  <li>When it asks whether to switch to <code>unix_socket</code> authentication, type <strong>n</strong> to match the flow shown in the screenshot.</li>
+  <li>When it asks whether to change the root password, type <strong>Y</strong>, then enter and confirm the new MariaDB root password.
+        <figure class="step-visual step-visual-wide">
+          <img src="../assets/module_4/2.1.png" alt="Ubuntu Server terminal showing the mariadb-secure-installation prompts for the current root password, unix_socket authentication, and setting a new root password." loading="lazy">
+          <figcaption><strong>Root password setup:</strong> On a fresh install, press <strong>Enter</strong> for the current root password, answer <strong>n</strong> to the <code>unix_socket</code> prompt shown here, and then answer <strong>Y</strong> to create and confirm a new MariaDB root password.</figcaption>
+        </figure>
+  </li>
+  <li>When it asks whether to remove anonymous users, type <strong>Y</strong>. This removes accounts that could otherwise log in without a named user.</li>
+  <li>When it asks whether to disallow remote root login, type <strong>Y</strong>. This keeps the MariaDB root account limited to local administration instead of network access.</li>
+  <li>When it asks whether to remove the test database and access to it, type <strong>Y</strong>. The test database is only for experimentation and should not remain on a server you are hardening.</li>
+  <li>When it asks whether to reload the privilege tables now, type <strong>Y</strong>. This makes the security changes take effect immediately instead of waiting for a later reload or restart.</li>
 </ol>
+<figure class="step-visual step-visual-wide">
+  <img src="../assets/module_4/2.2.png" alt="Ubuntu Server terminal showing mariadb-secure-installation prompts answered with Y to remove anonymous users, disallow remote root login, remove the test database, and reload privilege tables." loading="lazy">
+  <figcaption><strong>Security prompts:</strong> Continue by answering <strong>Y</strong> to remove anonymous users, disallow remote root login, remove the test database, and reload the privilege tables.</figcaption>
+</figure>
 <h3>3. Understand the Ubuntu authentication model</h3>
 <ol>
-  <li>On Ubuntu, the database root account often uses local socket authentication instead of a password.</li>
-  <li>That means <code>sudo mariadb</code> is often the normal way to administer the database from the server console.</li>
-  <li>This behavior is normal and does not mean the installation failed.</li>
+  <li>On Ubuntu, it is normal for the helper to say the root account is already protected before you answer the later password prompts.</li>
+  <li>For the next section in this RLO, continue to use <code>sudo mariadb</code> for local administration from the server console.</li>
+  <li>The helper removes insecure defaults; it does not change the overall SQL workflow used in the next step.</li>
 </ol></div>
 <div class="step-card"><h2>Create the demo database and application user</h2>
 <p>Now create the sample data that the PHP application will read later. Keep the design simple: one database, one table, one seed row, and one application user with limited privileges.</p>
