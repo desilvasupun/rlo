@@ -55,7 +55,7 @@
     </div>
     <aside class="checklist-box">
       <h3>Verification checklist</h3>
-      <ul class="checklist" data-checklist-key="05-php"><li><input type="checkbox" data-track-checklist aria-label="The php -v command reports a PHP version."><span>The <code>php -v</code> command reports a PHP version.</span></li><li><input type="checkbox" data-track-checklist aria-label="Visiting http://VM-IP/phpinfo.php loads a PHP info page before you remove it."><span>Visiting <code>http://VM-IP/phpinfo.php</code> loads a PHP info page before you remove it.</span></li><li><input type="checkbox" data-track-checklist aria-label="Apache remains active after restart."><span>Apache remains active after restart.</span></li></ul>
+      <ul class="checklist" data-checklist-key="05-php"><li><input type="checkbox" data-track-checklist aria-label="The php -v command reports a PHP version."><span>The <code>php -v</code> command reports a PHP version.</span></li><li><input type="checkbox" data-track-checklist aria-label="Visiting http://127.0.0.1:8080/phpinfo.php loads a PHP info page before you remove it."><span>Visiting <code>http://127.0.0.1:8080/phpinfo.php</code> loads a PHP info page before you remove it.</span></li><li><input type="checkbox" data-track-checklist aria-label="Apache remains active after restart."><span>Apache remains active after restart.</span></li></ul>
     </aside>
   </section>
   <section class="panel" style="margin-top:1rem;">
@@ -69,6 +69,10 @@
           <div class="command-head"><strong>Install PHP and common packages for this RLO</strong><button class="copy-btn" data-copy="sudo apt install php libapache2-mod-php php-cli php-mysql -y">Copy</button></div>
           <pre><code>sudo apt install php libapache2-mod-php php-cli php-mysql -y</code></pre>
         </div>
+        <figure class="step-visual step-visual-wide">
+          <img src="../assets/module_5/1.1.png" alt="Ubuntu Server terminal showing the PHP packages being installed, PHP modules being configured, and the command returning to the shell prompt." loading="lazy">
+          <figcaption><strong>PHP package install:</strong> Let the package installation finish completely. A successful run returns to the shell prompt after the PHP runtime, Apache module, CLI tools, and MariaDB driver are configured.</figcaption>
+        </figure>
   </li>
   <li>Wait for the installation to complete fully before testing anything in the browser.</li>
   <li>If package installation fails, resolve that problem before moving on to Apache restart or PHP file creation.</li>
@@ -87,9 +91,13 @@
           <div class="command-head"><strong>Check the PHP version in the shell</strong><button class="copy-btn" data-copy="php -v">Copy</button></div>
           <pre><code>php -v</code></pre>
         </div>
+        <figure class="step-visual step-visual-wide">
+          <img src="../assets/module_5/1.2.png" alt="Ubuntu Server terminal showing the php -v command returning the installed PHP version information." loading="lazy">
+          <figcaption><strong>CLI version check:</strong> The <code>php -v</code> command should report the installed PHP version and confirm that the CLI binary is available from the shell.</figcaption>
+        </figure>
   </li>
   <li>Confirm that PHP reports a version number instead of a command-not-found error.</li>
-  <li>Capture the version output for your notes if required by your course.</li>
+  <li>Capture the PHP version output as evidence that the CLI installation completed successfully.</li>
 </ol>
 </div>
 <div class="step-card"><h2>Restart Apache and test PHP</h2>
@@ -124,7 +132,7 @@ PHP</code></pre>
 </ol>
 <h3>3. Test in the browser</h3>
 <ol>
-  <li>From the host machine, open <code>http://VM-IP/phpinfo.php</code> in a browser.</li>
+  <li>From the host machine, open <code>http://127.0.0.1:8080/phpinfo.php</code> in a browser through the NAT port-forward created earlier.</li>
   <li>Confirm that a PHP information page loads. You should see PHP version details and configuration sections.</li>
   <li>If the browser downloads the file instead of displaying PHP output, stop and fix the Apache PHP integration before continuing.</li>
 </ol>
@@ -151,7 +159,7 @@ PHP</code></pre>
 <ul class="evidence-list">
   <li>A screenshot or terminal capture showing the PHP package installation completed successfully.</li>
   <li>A screenshot of <code>php -v</code> showing the installed PHP version.</li>
-  <li>A screenshot of the browser loading <code>http://VM-IP/phpinfo.php</code> before the test file is removed.</li>
+  <li>A screenshot of the browser loading <code>http://127.0.0.1:8080/phpinfo.php</code> before the test file is removed.</li>
   <li>A screenshot or terminal capture showing Apache is active after the restart.</li>
   <li>A short note or terminal capture confirming that <code>phpinfo.php</code> was deleted after validation.</li>
 </ul>
