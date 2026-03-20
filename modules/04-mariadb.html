@@ -69,6 +69,10 @@
           <div class="command-head"><strong>Install MariaDB packages</strong><button class="copy-btn" data-copy="sudo apt install mariadb-server mariadb-client -y">Copy</button></div>
           <pre><code>sudo apt install mariadb-server mariadb-client -y</code></pre>
         </div>
+        <figure class="step-visual step-visual-wide">
+          <img src="../assets/module_4/1.1.png" alt="Ubuntu Server terminal showing the MariaDB server and client packages being installed and the command returning to the shell prompt." loading="lazy">
+          <figcaption><strong>Package install:</strong> Let the package installation finish completely. A successful run returns to the shell prompt after the MariaDB packages and their dependencies are configured.</figcaption>
+        </figure>
   </li>
   <li>Wait for the package install to complete without errors.</li>
   <li>Make sure the command finishes before moving to any SQL work.</li>
@@ -81,7 +85,16 @@
           <pre><code>sudo systemctl enable --now mariadb</code></pre>
         </div>
   </li>
-  <li>Check the service status to confirm MariaDB is active.</li>
+  <li>Check the service status to confirm MariaDB is active.
+        <div class="command-block">
+          <div class="command-head"><strong>Check the MariaDB service status</strong><button class="copy-btn" data-copy="sudo systemctl status mariadb --no-pager">Copy</button></div>
+          <pre><code>sudo systemctl status mariadb --no-pager</code></pre>
+        </div>
+        <figure class="step-visual step-visual-wide">
+          <img src="../assets/module_4/1.2.png" alt="Ubuntu Server terminal showing sudo systemctl enable --now mariadb followed by sudo systemctl status mariadb --no-pager with the service active and running." loading="lazy">
+          <figcaption><strong>MariaDB service:</strong> After enabling the service, confirm that <code>mariadb.service</code> is <code>active (running)</code> before continuing to the security and database setup steps.</figcaption>
+        </figure>
+  </li>
   <li>If the service fails to start, troubleshoot that first rather than attempting database creation.</li>
 </ol>
 </div>
