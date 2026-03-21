@@ -99,7 +99,20 @@
           <pre><code>sudo chown -R $USER:$USER /opt/lampp-demo-python</code></pre>
         </div>
   </li>
-  <li>Verify that you can enter the directory and list its contents.</li>
+  <li>Verify that you can enter the directory and list its contents.
+        <div class="command-block">
+          <div class="command-head"><strong>Enter the project directory</strong><button class="copy-btn" data-copy="cd /opt/lampp-demo-python">Copy</button></div>
+          <pre><code>cd /opt/lampp-demo-python</code></pre>
+        </div>
+        <div class="command-block">
+          <div class="command-head"><strong>List the project directory contents</strong><button class="copy-btn" data-copy="ls">Copy</button></div>
+          <pre><code>ls</code></pre>
+        </div>
+        <figure class="step-visual step-visual-wide">
+          <img src="../assets/module_7/2.1.png" alt="Ubuntu Server terminal showing the project directory being created, ownership changed, the directory entered, and ls returning an empty listing." loading="lazy">
+          <figcaption><strong>Project directory ready:</strong> After creating the folder and updating ownership, you should be able to enter <code>/opt/lampp-demo-python</code> and list its contents. At this point the directory can still be empty.</figcaption>
+        </figure>
+  </li>
 </ol>
 <h3>2. Create the virtual environment</h3>
 <ol>
@@ -110,7 +123,16 @@
         </div>
   </li>
   <li>Wait for the environment creation to finish. This creates an isolated Python interpreter and supporting scripts.</li>
-  <li>Confirm the <code>.venv</code> directory now exists.</li>
+  <li>Confirm the <code>.venv</code> directory now exists.
+        <div class="command-block">
+          <div class="command-head"><strong>Show hidden files in the project directory</strong><button class="copy-btn" data-copy="ls -a">Copy</button></div>
+          <pre><code>ls -a</code></pre>
+        </div>
+        <figure class="step-visual step-visual-wide">
+          <img src="../assets/module_7/2.2.png" alt="Ubuntu Server terminal showing python3 -m venv .venv followed by ls -a listing the hidden .venv directory." loading="lazy">
+          <figcaption><strong>Virtual environment created:</strong> After <code>python3 -m venv .venv</code> finishes, use <code>ls -a</code> to confirm that the hidden <code>.venv</code> directory now exists inside the project folder.</figcaption>
+        </figure>
+  </li>
 </ol>
 <h3>3. Activate it before running Python commands</h3>
 <ol>
@@ -119,6 +141,10 @@
           <div class="command-head"><strong>Activate the virtual environment</strong><button class="copy-btn" data-copy="cd /opt/lampp-demo-python &amp;&amp; source .venv/bin/activate">Copy</button></div>
           <pre><code>cd /opt/lampp-demo-python &amp;&amp; source .venv/bin/activate</code></pre>
         </div>
+        <figure class="step-visual step-visual-wide">
+          <img src="../assets/module_7/2.3.png" alt="Ubuntu Server terminal showing source .venv/bin/activate changing the shell prompt to include (.venv)." loading="lazy">
+          <figcaption><strong>Environment activated:</strong> A successful activation changes the shell prompt to include <code>(.venv)</code>, showing that subsequent Python commands will use the isolated environment.</figcaption>
+        </figure>
   </li>
   <li>Notice that the shell prompt changes to show the active environment.</li>
   <li>Keep that environment active while creating and running the health-check script.</li>
