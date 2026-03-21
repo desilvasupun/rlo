@@ -183,6 +183,10 @@ with urlopen(url, timeout=5) as response:
     print(body[:120])
 PY</code></pre>
         </div>
+        <figure class="step-visual step-visual-wide">
+          <img src="../assets/module_7/3.1.png" alt="Ubuntu Server terminal showing the heredoc command used to create /opt/lampp-demo-python/check_site.py while the virtual environment is active." loading="lazy">
+          <figcaption><strong>Health-check script created:</strong> This heredoc writes <code>check_site.py</code> inside the project folder while the virtual environment is active, then returns to the shell prompt with no extra output when it succeeds.</figcaption>
+        </figure>
   </li>
   <li>Use Python code that sends a request to <code>http://127.0.0.1/</code>.</li>
   <li>Include a timestamp in the output so the result looks like a real automation check.</li>
@@ -195,6 +199,10 @@ PY</code></pre>
           <div class="command-head"><strong>Run the health-check script</strong><button class="copy-btn" data-copy="cd /opt/lampp-demo-python &amp;&amp; source .venv/bin/activate &amp;&amp; python check_site.py">Copy</button></div>
           <pre><code>cd /opt/lampp-demo-python &amp;&amp; source .venv/bin/activate &amp;&amp; python check_site.py</code></pre>
         </div>
+        <figure class="step-visual step-visual-wide">
+          <img src="../assets/module_7/3.2.png" alt="Ubuntu Server terminal showing python check_site.py returning an HTTP 200 response and an HTML preview while the virtual environment is active." loading="lazy">
+          <figcaption><strong>Health-check result:</strong> A successful run prints an <code>HTTP 200</code> response and a short HTML preview from the deployed site. Focus on the response and preview lines shown here when validating the result.</figcaption>
+        </figure>
   </li>
   <li>Confirm the script prints an <code>HTTP 200</code> response.</li>
   <li>Confirm the response preview contains HTML from the deployed site rather than an error page.</li>
@@ -206,6 +214,10 @@ PY</code></pre>
           <div class="command-head"><strong>Deactivate the virtual environment when finished</strong><button class="copy-btn" data-copy="deactivate">Copy</button></div>
           <pre><code>deactivate</code></pre>
         </div>
+        <figure class="step-visual step-visual-wide">
+          <img src="../assets/module_7/3.3.png" alt="Ubuntu Server terminal showing deactivate removing the (.venv) prefix from the shell prompt." loading="lazy">
+          <figcaption><strong>Environment closed:</strong> After <code>deactivate</code>, the <code>(.venv)</code> prefix disappears from the shell prompt, confirming that you are back in the system Python environment.</figcaption>
+        </figure>
   </li>
   <li>This returns the shell to the system Python environment.</li>
   <li>Keep the script and environment in place so you can rerun the health check during final validation.</li>
@@ -220,8 +232,8 @@ PY</code></pre>
 </tbody></table></section>
 <section class="panel" style="margin-top:1rem;"><h2 style="margin-top:0;">Evidence to capture</h2>
 <ul class="evidence-list">
-  <li>A screenshot or terminal capture showing the Python tooling packages installed successfully.</li>
-  <li>A screenshot or directory listing showing that the <code>.venv</code> virtual environment was created inside <code>/opt/lampp-demo-python</code>.</li>
+  <li>A screenshot showing the Python tooling packages installed successfully.</li>
+  <li>A screenshot of the directory listing showing that the <code>.venv</code> virtual environment was created inside <code>/opt/lampp-demo-python</code>.</li>
   <li>A screenshot of the shell after activation showing the virtual environment is active.</li>
   <li>A screenshot of the terminal output from <code>python check_site.py</code> showing an <code>HTTP 200</code> response.</li>
   <li>A screenshot of the response preview showing HTML returned from the deployed site.</li>
