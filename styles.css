@@ -233,10 +233,22 @@ a:hover { text-decoration: underline; }
   font-weight: 700;
   border: 1px solid transparent;
   cursor: pointer;
+  transition:
+    transform .16s ease,
+    box-shadow .16s ease,
+    background-color .16s ease,
+    border-color .16s ease,
+    color .16s ease;
 }
 .button.primary { background: var(--accent); color: #fff; }
 .button.secondary { background: #fff; color: var(--ink); border-color: var(--line); }
-.button:hover { text-decoration: none; filter: brightness(.98); }
+.button:hover {
+  text-decoration: none;
+  transform: translateY(-1px);
+  box-shadow: 0 10px 22px rgba(15, 23, 42, 0.12);
+}
+.button.primary:hover { background: #1e40af; }
+.button.secondary:hover { background: #f8fafc; border-color: #cbd5e1; }
 .panel { padding: 1.3rem 1.35rem; }
 .panel p:last-child { margin-bottom: 0; }
 .outcomes-panel {
