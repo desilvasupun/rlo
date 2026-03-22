@@ -657,6 +657,10 @@ table.trouble th { background: #f8fafc; }
   overflow-wrap: anywhere;
   word-break: break-word;
 }
+.reference-url {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
 .site-footer {
   margin-top: 2rem;
   color: var(--muted);
