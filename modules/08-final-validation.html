@@ -74,8 +74,18 @@
 </ol>
 <h3>2. Confirm remote access and firewall state</h3>
 <ol>
-  <li>Check that the <code>ssh</code> service is running.</li>
-  <li>Confirm your SSH hardening file still disables direct root login.</li>
+  <li>Check that the <code>ssh</code> service is running.
+        <div class="command-block">
+          <div class="command-head"><strong>Check the SSH service status</strong><button class="copy-btn" data-copy="sudo systemctl status ssh --no-pager">Copy</button></div>
+          <pre><code>sudo systemctl status ssh --no-pager</code></pre>
+        </div>
+  </li>
+  <li>Confirm your SSH hardening file still disables direct root login.
+        <div class="command-block">
+          <div class="command-head"><strong>Review the SSH hardening file</strong><button class="copy-btn" data-copy="sudo cat /etc/ssh/sshd_config.d/60-hardening.conf">Copy</button></div>
+          <pre><code>sudo cat /etc/ssh/sshd_config.d/60-hardening.conf</code></pre>
+        </div>
+  </li>
   <li>Run <code>sudo ufw status verbose</code> and verify the firewall is active.
         <div class="command-block">
           <div class="command-head"><strong>Check firewall status</strong><button class="copy-btn" data-copy="sudo ufw status verbose">Copy</button></div>
