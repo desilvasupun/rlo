@@ -163,16 +163,6 @@
 <tr><td>The stack worked earlier but not after a reboot</td><td>Check that services were enabled to start automatically and that the VM networking mode still provides an IP address.</td></tr>
 <tr><td>You need to repeat the build later</td><td>Reuse the module order and command blocks, but update package versions and the Ubuntu LTS release if needed.</td></tr>
 </tbody></table></section>
-<section class="panel" style="margin-top:1rem;"><h2 style="margin-top:0;">Evidence to capture</h2>
-<ul class="evidence-list">
-  <li>A screenshot showing the VM booted normally, the user logged in, and the server still has an IP address.</li>
-  <li>A screenshot showing the firewall is active and the SSH, Apache, and MariaDB services are running.</li>
-  <li>A screenshot of the browser showing the final application page with <code>Database connection succeeded</code> and the seeded record.</li>
-  <li>A screenshot of the MariaDB application-user query returning the row from <code>app_info</code>.</li>
-  <li>A screenshot of the Python health-check output showing an <code>HTTP 200</code> response and HTML preview.</li>
-  <li>A screenshot of the final evidence folder or file list showing the full evidence package from Modules 1 to 7 organized and renamed for submission.</li>
-</ul>
-</section>
 
       <div class="footer-nav">
         <a class="button secondary" href="07-python-automation.html">← Module 7: Install Python and Run a Small Automation Script</a>
