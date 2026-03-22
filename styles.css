@@ -630,6 +630,33 @@ table.trouble th { background: #f8fafc; }
 }
 .source-card h3 { margin: 0 0 .35rem; font-size: 1rem; }
 .source-card p { margin: .25rem 0; color: var(--muted); line-height: 1.55; }
+.ieee-references {
+  list-style: none;
+  counter-reset: ieee-ref;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 1rem;
+}
+.ieee-references li {
+  counter-increment: ieee-ref;
+  position: relative;
+  padding-left: 3.2rem;
+  line-height: 1.7;
+}
+.ieee-references li::before {
+  content: "[" counter(ieee-ref) "]";
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-weight: 700;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+.ieee-references a {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
 .site-footer {
   margin-top: 2rem;
   color: var(--muted);

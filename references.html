@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>References — Production-Ready LAMPP Stack on Ubuntu Server</title>
+  <title>References - Production-Ready LAMPP Stack on Ubuntu Server</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -16,15 +16,15 @@
       <div class="nav-section">
         <div class="nav-label">Navigation</div>
         <ul class="nav-list"><li><a class="" href="index.html">Overview</a></li>
-<li><a class="" href="modules/00-introduction-planning.html">Module 0 — Introduction and Planning</a></li>
-<li><a class="" href="modules/01-vm-ubuntu-install.html">Module 1 — VM Creation and Ubuntu Server Installation</a></li>
-<li><a class="" href="modules/02-hardening.html">Module 2 — Baseline Configuration and Hardening</a></li>
-<li><a class="" href="modules/03-apache.html">Module 3 — Install Apache and Configure a Virtual Host</a></li>
-<li><a class="" href="modules/04-mariadb.html">Module 4 — Install and Secure MariaDB</a></li>
-<li><a class="" href="modules/05-php.html">Module 5 — Install PHP and Connect It to Apache</a></li>
-<li><a class="" href="modules/06-demo-php-site.html">Module 6 — Deploy the Demo PHP Site</a></li>
-<li><a class="" href="modules/07-python-automation.html">Module 7 — Install Python and Run a Small Automation Script</a></li>
-<li><a class="" href="modules/08-final-validation.html">Module 8 — Final Validation and Evidence Package</a></li>
+<li><a class="" href="modules/00-introduction-planning.html">Module 0 - Introduction and Planning</a></li>
+<li><a class="" href="modules/01-vm-ubuntu-install.html">Module 1 - VM Creation and Ubuntu Server Installation</a></li>
+<li><a class="" href="modules/02-hardening.html">Module 2 - Baseline Configuration and Hardening</a></li>
+<li><a class="" href="modules/03-apache.html">Module 3 - Install Apache and Configure a Virtual Host</a></li>
+<li><a class="" href="modules/04-mariadb.html">Module 4 - Install and Secure MariaDB</a></li>
+<li><a class="" href="modules/05-php.html">Module 5 - Install PHP and Connect It to Apache</a></li>
+<li><a class="" href="modules/06-demo-php-site.html">Module 6 - Deploy the Demo PHP Site</a></li>
+<li><a class="" href="modules/07-python-automation.html">Module 7 - Install Python and Run a Small Automation Script</a></li>
+<li><a class="" href="modules/08-final-validation.html">Module 8 - Final Validation and Evidence Package</a></li>
 <li><a class="active" href="references.html">References</a></li></ul>
       </div>
       <div class="nav-section panel">
@@ -37,20 +37,20 @@
     </aside>
     <main class="main">
       <section class="panel">
-<div class="eyebrow">References</div>
-<h1 style="margin-top:0;">Implementation notes and sources</h1>
-</section>
-<h2 class="section-title">Source set used to build this RLO</h2><section class="source-list">
-<article class="source-card"><h3>Ubuntu Server documentation — Install and manage packages</h3><p>APT is the recommended package-management method on Ubuntu Server.</p><p><em>Ubuntu Server docs, last updated Jan. 22, 2026.</em></p></article>
-<article class="source-card"><h3>Ubuntu Server documentation — OpenSSH server</h3><p>Install with apt; use sshd_config.d snippets; validate with sshd -t before restarting.</p><p><em>Ubuntu Server docs, last updated Jan. 24, 2026.</em></p></article>
-<article class="source-card"><h3>Ubuntu Server documentation — Firewall</h3><p>UFW is Ubuntu’s default firewall frontend; enable it and inspect status/profile rules.</p><p><em>Ubuntu Server docs, last updated Dec. 11, 2025.</em></p></article>
-<article class="source-card"><h3>Ubuntu Server documentation — Install Apache2</h3><p>Apache installs with apt and uses /etc/apache2 with sites-available/sites-enabled.</p><p><em>Ubuntu Server docs, last updated Jan. 19, 2026.</em></p></article>
-<article class="source-card"><h3>Ubuntu Server documentation — Configure Apache2 settings</h3><p>Virtual hosts can be created by copying 000-default.conf and enabling with a2ensite.</p><p><em>Ubuntu Server docs, last updated Jan. 20, 2026.</em></p></article>
-<article class="source-card"><h3>Ubuntu Server documentation — Install and configure PHP</h3><p>Install PHP, libapache2-mod-php, and php-mysql; restart Apache after enabling PHP.</p><p><em>Ubuntu Server docs, last updated Dec. 11, 2025.</em></p></article>
-<article class="source-card"><h3>MariaDB official quick start</h3><p>Install mariadb-server and mariadb-client; run mariadb-secure-installation.</p><p><em>MariaDB docs, last updated Jan. 28, 2026.</em></p></article>
-<article class="source-card"><h3>Python documentation — venv</h3><p>Python virtual environments are created with python -m venv and isolate packages from the base interpreter.</p><p><em>Python 3 documentation, accessed Mar. 11, 2026.</em></p></article>
-<article class="source-card"><h3>Ubuntu Server installation tutorial</h3><p>Ubuntu provides a guided server installer workflow with networking, storage, profile setup, and optional software selection.</p><p><em>Ubuntu tutorial page, accessed Mar. 11, 2026.</em></p></article>
-</section>
+        <div class="eyebrow">References</div>
+        <h1 style="margin-top:0; margin-bottom:0;">References</h1>
+      </section>
+      <section class="panel" style="margin-top:1rem;">
+        <p>[1] &ldquo;Firewall,&rdquo; Ubuntu Server. Accessed: Mar. 21, 2026. [Online]. Available: https://ubuntu.com/server/docs/how-to/security/firewalls/</p>
+        <p>[2] &ldquo;How to configure Apache2 settings,&rdquo; Ubuntu Server. Accessed: Mar. 21, 2026. [Online]. Available: https://ubuntu.com/server/docs/how-to/web-services/configure-apache2-settings/</p>
+        <p>[3] &ldquo;How to install and configure PHP,&rdquo; Ubuntu Server. Accessed: Mar. 21, 2026. [Online]. Available: https://ubuntu.com/server/docs/how-to/web-services/install-php/</p>
+        <p>[4] &ldquo;How to install Apache2,&rdquo; Ubuntu Server. Accessed: Mar. 21, 2026. [Online]. Available: https://ubuntu.com/server/docs/how-to/web-services/install-apache2/</p>
+        <p>[5] &ldquo;Install and manage packages,&rdquo; Ubuntu Server. Accessed: Mar. 21, 2026. [Online]. Available: https://ubuntu.com/server/docs/how-to/software/package-management/</p>
+        <p>[6] &ldquo;Install Ubuntu Server,&rdquo; Ubuntu. Accessed: Mar. 21, 2026. [Online]. Available: https://ubuntu.com/tutorials/install-ubuntu-server</p>
+        <p>[7] &ldquo;mariadb-secure-installation | Server | MariaDB Documentation.&rdquo; Accessed: Mar. 21, 2026. [Online]. Available: https://mariadb.com/docs/server/clients-and-utilities/deployment-tools/mariadb-secure-installation</p>
+        <p>[8] &ldquo;OpenSSH server,&rdquo; Ubuntu Server. Accessed: Mar. 21, 2026. [Online]. Available: https://ubuntu.com/server/docs/how-to/security/openssh-server/</p>
+        <p>[9] &ldquo;venv &mdash; Creation of virtual environments,&rdquo; Python documentation. Accessed: Mar. 21, 2026. [Online]. Available: https://docs.python.org/3/library/venv.html</p>
+      </section>
     </main>
   </div>
   <script src="script.js"></script>
