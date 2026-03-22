@@ -70,6 +70,10 @@
           <div class="command-head"><strong>Display the current IP address</strong><button class="copy-btn" data-copy="hostname -I">Copy</button></div>
           <pre><code>hostname -I</code></pre>
         </div>
+        <figure class="step-visual step-visual-wide">
+          <img src="../assets/module_8/1.1.png" alt="Ubuntu Server terminal showing a successful login followed by the hostname -I command returning the current IP address." loading="lazy">
+          <figcaption><strong>Baseline login and IP:</strong> After logging in, use <code>hostname -I</code> to confirm that the VM still has a valid address before you continue with the remaining validation checks.</figcaption>
+        </figure>
   </li>
 </ol>
 <h3>2. Confirm remote access and firewall state</h3>
@@ -92,7 +96,12 @@
           <pre><code>sudo ufw status verbose</code></pre>
         </div>
   </li>
-  <li>Make sure both the OpenSSH and Apache rules are still present.</li>
+  <li>Make sure both the OpenSSH and Apache rules are still present.
+        <figure class="step-visual step-visual-wide">
+          <img src="../assets/module_8/1.2.png" alt="Ubuntu Server terminal showing sudo systemctl status ssh --no-pager, the SSH hardening file with PermitRootLogin no, and sudo ufw status verbose with OpenSSH and Apache rules present." loading="lazy">
+          <figcaption><strong>Remote access and firewall check:</strong> Confirm that <code>ssh.service</code> is active, the hardening file still contains <code>PermitRootLogin no</code>, and UFW still allows both <code>OpenSSH</code> and <code>Apache Full</code>.</figcaption>
+        </figure>
+  </li>
 </ol>
 <h3>3. Confirm the web and database services</h3>
 <ol>
@@ -103,11 +112,15 @@
           <pre><code>systemctl --no-pager --type=service --state=running | egrep &quot;ssh|apache2|mariadb&quot;</code></pre>
         </div>
   </li>
-  <li>Query the database as <code>lampp_user</code> and confirm the seeded row is returned.
+  <li>Query the database as <code>lampp_user</code> and confirm the seeded row is returned. After you run the command, MariaDB prompts for the password assigned to <code>lampp_user</code>.
         <div class="command-block">
           <div class="command-head"><strong>Test database access as the app user</strong><button class="copy-btn" data-copy="mariadb -u lampp_user -p lampp_demo -e &quot;SELECT * FROM app_info;&quot;">Copy</button></div>
           <pre><code>mariadb -u lampp_user -p lampp_demo -e &quot;SELECT * FROM app_info;&quot;</code></pre>
         </div>
+        <figure class="step-visual step-visual-wide">
+          <img src="../assets/module_8/1.3.png" alt="Ubuntu Server terminal showing the running ssh, apache2, and mariadb services, followed by the lampp_user query prompting for a password and returning the seeded row from app_info." loading="lazy">
+          <figcaption><strong>Services and database query:</strong> This check confirms that the key services are running and that the least-privilege MariaDB account can still return the seeded row from <code>app_info</code>.</figcaption>
+        </figure>
   </li>
 </ol>
 <h3>4. Confirm the application layer</h3>
@@ -115,7 +128,12 @@
   <li>Open <code>http://127.0.0.1:8080/</code> in a browser.</li>
   <li>Confirm the site loads without a PHP error or blank page.</li>
   <li>Confirm the page displays <code>Database connection succeeded</code>.</li>
-  <li>Confirm the seeded application record is visible on the page.</li>
+  <li>Confirm the seeded application record is visible on the page.
+        <figure class="step-visual step-visual-wide">
+          <img src="../assets/module_8/1.4.png" alt="Host browser showing the final LAMPP Demo Site page with Database connection succeeded and the seeded application record visible." loading="lazy">
+          <figcaption><strong>Application page confirmed:</strong> A successful result shows the deployed site, the <code>Database connection succeeded</code> message, and the seeded record returned from the database.</figcaption>
+        </figure>
+  </li>
 </ol>
 <h3>5. Confirm the automation layer</h3>
 <ol>
@@ -125,6 +143,10 @@
           <div class="command-head"><strong>Run the Python health-check again</strong><button class="copy-btn" data-copy="cd /opt/lampp-demo-python &amp;&amp; source .venv/bin/activate &amp;&amp; python check_site.py">Copy</button></div>
           <pre><code>cd /opt/lampp-demo-python &amp;&amp; source .venv/bin/activate &amp;&amp; python check_site.py</code></pre>
         </div>
+        <figure class="step-visual step-visual-wide">
+          <img src="../assets/module_8/1.5.png" alt="Ubuntu Server terminal showing the Python health-check script returning an HTTP 200 response and an HTML preview while the virtual environment is active." loading="lazy">
+          <figcaption><strong>Automation check:</strong> The health-check script should still return an <code>HTTP 200</code> response and an HTML preview from the deployed site while the virtual environment is active.</figcaption>
+        </figure>
   </li>
   <li>Confirm it prints an <code>HTTP 200</code> response and a short HTML preview.</li>
 </ol>
