@@ -7,7 +7,9 @@
   <link rel="stylesheet" href="../styles.css">
 </head>
 <body>
+  <!-- Shared application shell: persistent sidebar plus scrolling content area. -->
   <div class="site-shell">
+    <!-- Shared navigation sidebar used across the full RLO. -->
     <aside class="sidebar">
       <div class="brand">
         <h1>Production-Ready LAMPP Stack on Ubuntu Server</h1>
@@ -28,8 +30,11 @@
 <li><a class="" href="../references.html">References</a></li></ul>
       </div>
     </aside>
+    <!-- Main content column for this page. -->
     <main class="main">
+      <!-- Module page wrapper: summary, checklist, instructions, and support material. -->
       <article class="module-page">
+  <!-- Module header with title, scope, timing, and progress tracker. -->
   <header>
     <div class="eyebrow">Hands-on module</div>
     <h1>Module 0: Introduction and Planning</h1>
@@ -47,6 +52,7 @@
       </div>
     </div>
   </header>
+  <!-- Completion targets and the learner checklist sit side by side on larger screens. -->
   <section class="two-col">
     <div class="panel">
       <h2 style="margin-top:0;">What you will complete</h2>
@@ -57,6 +63,7 @@
       <ul class="checklist" data-checklist-key="00-introduction-planning"><li><input type="checkbox" data-track-checklist aria-label="You can explain the target architecture in one or two sentences."><span>You can explain the target architecture in one or two sentences.</span></li><li><input type="checkbox" data-track-checklist aria-label="You have downloaded the Ubuntu Server ISO and installed a hypervisor."><span>You have downloaded the Ubuntu Server ISO and installed a hypervisor.</span></li><li><input type="checkbox" data-track-checklist aria-label="You created an evidence folder on your host machine."><span>You created an evidence folder on your host machine.</span></li></ul>
     </aside>
   </section>
+  <!-- Guided build steps for the hands-on work in this module. -->
   <section class="panel" style="margin-top:1rem;">
     <h2 style="margin-top:0;">Steps</h2>
 <div class="step-card"><h2>Understand the target architecture</h2>In this RLO, you will build an Ubuntu Server VM that hosts:
@@ -226,6 +233,7 @@ The goal is a <em>production-oriented baseline</em>: updated packages, non-root 
   <li>Python script output</li>
 </ul></div>
   </section>
+<!-- Evidence prompts show which screenshots or notes should be retained for assessment. -->
 <section class="panel" style="margin-top:1rem;"><h2 style="margin-top:0;">Evidence to capture</h2>
 <ul class="evidence-list">
   <li>A note stating the target architecture and what each component will do in the VM.</li>
@@ -236,6 +244,7 @@ The goal is a <em>production-oriented baseline</em>: updated packages, non-root 
 </ul>
 </section>
 
+<!-- Optional official references for learners who want more detail after finishing the module. -->
 <section class="panel" style="margin-top:1rem;"><h2 style="margin-top:0;">Further reading</h2>
 <ul>
   <li><a class="reference-url" href="https://ubuntu.com/server/docs" target="_blank" rel="noopener noreferrer">Browse the Ubuntu Server documentation</a></li>
@@ -244,6 +253,7 @@ The goal is a <em>production-oriented baseline</em>: updated packages, non-root 
 </ul>
 </section>
 
+      <!-- Footer navigation connects the learner to the previous and next pages in sequence. -->
       <div class="footer-nav">
         <a class="button secondary" href="../index.html">← Overview</a>
         <a class="button primary" href="01-vm-ubuntu-install.html">Module 1: VM Creation and Ubuntu Server Installation →</a>
@@ -255,3 +265,6 @@ The goal is a <em>production-oriented baseline</em>: updated packages, non-root 
   <script src="../script.js"></script>
 </body>
 </html>
+
+
+

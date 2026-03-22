@@ -7,7 +7,9 @@
   <link rel="stylesheet" href="../styles.css">
 </head>
 <body>
+  <!-- Shared application shell: persistent sidebar plus scrolling content area. -->
   <div class="site-shell">
+    <!-- Shared navigation sidebar used across the full RLO. -->
     <aside class="sidebar">
       <div class="brand">
         <h1>Production-Ready LAMPP Stack on Ubuntu Server</h1>
@@ -28,8 +30,11 @@
 <li><a class="" href="../references.html">References</a></li></ul>
       </div>
     </aside>
+    <!-- Main content column for this page. -->
     <main class="main">
+      <!-- Module page wrapper: summary, checklist, instructions, and support material. -->
       <article class="module-page">
+  <!-- Module header with title, scope, timing, and progress tracker. -->
   <header>
     <div class="eyebrow">Hands-on module</div>
     <h1>Module 4: Install and Secure MariaDB</h1>
@@ -47,6 +52,7 @@
       </div>
     </div>
   </header>
+  <!-- Completion targets and the learner checklist sit side by side on larger screens. -->
   <section class="two-col">
     <div class="panel">
       <h2 style="margin-top:0;">What you will complete</h2>
@@ -57,6 +63,7 @@
       <ul class="checklist" data-checklist-key="04-mariadb"><li><input type="checkbox" data-track-checklist aria-label="MariaDB is active according to systemd."><span>MariaDB is active according to systemd.</span></li><li><input type="checkbox" data-track-checklist aria-label="The lampp_demo database exists."><span>The <code>lampp_demo</code> database exists.</span></li><li><input type="checkbox" data-track-checklist aria-label="The lampp_user account can read from app_info."><span>The <code>lampp_user</code> account can read from <code>app_info</code>.</span></li></ul>
     </aside>
   </section>
+  <!-- Guided build steps for the hands-on work in this module. -->
   <section class="panel" style="margin-top:1rem;">
     <h2 style="margin-top:0;">Steps</h2>
 <div class="step-card"><h2>Install MariaDB packages</h2>
@@ -200,12 +207,14 @@ SQL</code></pre>
 </ol>
 </div>
   </section>
+<!-- Common issues learners can check before repeating the whole module. -->
 <section class="panel" style="margin-top:1rem;"><h2 style="margin-top:0;">Troubleshooting</h2>
 <table class="trouble"><thead><tr><th>Issue</th><th>What to check</th></tr></thead><tbody>
 <tr><td>Cannot log in as root with a password</td><td>On Ubuntu, try <code>sudo mariadb</code>. Socket authentication is common for the administrative account.</td></tr>
 <tr><td>SQL syntax error</td><td>Run one statement at a time inside the MariaDB shell to isolate the failing line.</td></tr>
 <tr><td>Application user cannot connect</td><td>Verify the username, password, host (<code>localhost</code>), and that <code>FLUSH PRIVILEGES;</code> completed.</td></tr>
 </tbody></table></section>
+<!-- Evidence prompts show which screenshots or notes should be retained for assessment. -->
 <section class="panel" style="margin-top:1rem;"><h2 style="margin-top:0;">Evidence to capture</h2>
 <ul class="evidence-list">
   <li>A screenshot or terminal capture showing the MariaDB service is active after installation.</li>
@@ -215,6 +224,7 @@ SQL</code></pre>
 </ul>
 </section>
 
+<!-- Optional official references for learners who want more detail after finishing the module. -->
 <section class="panel" style="margin-top:1rem;"><h2 style="margin-top:0;">Further reading</h2>
 <ul>
   <li><a class="reference-url" href="https://mariadb.com/docs/server/clients-and-utilities/deployment-tools/mariadb-secure-installation" target="_blank" rel="noopener noreferrer">Secure a MariaDB server installation</a></li>
@@ -224,6 +234,7 @@ SQL</code></pre>
 </ul>
 </section>
 
+      <!-- Footer navigation connects the learner to the previous and next pages in sequence. -->
       <div class="footer-nav">
         <a class="button secondary" href="03-apache.html">← Module 3: Install Apache and Configure a Virtual Host</a>
         <a class="button primary" href="05-php.html">Module 5: Install PHP and Connect It to Apache →</a>
@@ -235,3 +246,6 @@ SQL</code></pre>
   <script src="../script.js"></script>
 </body>
 </html>
+
+
+

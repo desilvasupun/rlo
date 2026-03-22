@@ -7,7 +7,9 @@
   <link rel="stylesheet" href="../styles.css">
 </head>
 <body>
+  <!-- Shared application shell: persistent sidebar plus scrolling content area. -->
   <div class="site-shell">
+    <!-- Shared navigation sidebar used across the full RLO. -->
     <aside class="sidebar">
       <div class="brand">
         <h1>Production-Ready LAMPP Stack on Ubuntu Server</h1>
@@ -28,8 +30,11 @@
 <li><a class="" href="../references.html">References</a></li></ul>
       </div>
     </aside>
+    <!-- Main content column for this page. -->
     <main class="main">
+      <!-- Module page wrapper: summary, checklist, instructions, and support material. -->
       <article class="module-page">
+  <!-- Module header with title, scope, timing, and progress tracker. -->
   <header>
     <div class="eyebrow">Hands-on module</div>
     <h1>Module 6: Deploy the Demo PHP Site</h1>
@@ -47,6 +52,7 @@
       </div>
     </div>
   </header>
+  <!-- Completion targets and the learner checklist sit side by side on larger screens. -->
   <section class="two-col">
     <div class="panel">
       <h2 style="margin-top:0;">What you will complete</h2>
@@ -57,6 +63,7 @@
       <ul class="checklist" data-checklist-key="06-demo-php-site"><li><input type="checkbox" data-track-checklist aria-label="The homepage loads at http://127.0.0.1:8080/."><span>The homepage loads at <code>http://127.0.0.1:8080/</code>.</span></li><li><input type="checkbox" data-track-checklist aria-label="The page displays Database connection succeeded."><span>The page displays <code>Database connection succeeded</code>.</span></li><li><input type="checkbox" data-track-checklist aria-label="The seeded row from app_info is visible in the browser."><span>The seeded row from <code>app_info</code> is visible in the browser.</span></li></ul>
     </aside>
   </section>
+  <!-- Guided build steps for the hands-on work in this module. -->
   <section class="panel" style="margin-top:1rem;">
     <h2 style="margin-top:0;">Steps</h2>
 <div class="step-card"><h2>Create a private configuration file</h2>
@@ -309,12 +316,14 @@ PHP</code></pre>
 </ol>
 </div>
   </section>
+<!-- Common issues learners can check before repeating the whole module. -->
 <section class="panel" style="margin-top:1rem;"><h2 style="margin-top:0;">Troubleshooting</h2>
 <table class="trouble"><thead><tr><th>Issue</th><th>What to check</th></tr></thead><tbody>
 <tr><td>500 Internal Server Error</td><td>Check the Apache error log and confirm the database password in <code>db.php</code> matches the MariaDB user password.</td></tr>
 <tr><td>Credentials file is not found</td><td>Confirm the relative path <code>__DIR__ . '/../config/db.php'</code> is correct and the file exists.</td></tr>
 <tr><td>Access denied for MariaDB user</td><td>Reset the password or recreate the <code>lampp_user</code> account, then try again.</td></tr>
 </tbody></table></section>
+<!-- Evidence prompts show which screenshots or notes should be retained for assessment. -->
 <section class="panel" style="margin-top:1rem;"><h2 style="margin-top:0;">Evidence to capture</h2>
 <ul class="evidence-list">
   <li>A screenshot showing the private <code>config</code> directory and the public <code>public</code> directory structure, without exposing the database password.</li>
@@ -325,6 +334,7 @@ PHP</code></pre>
 </ul>
 </section>
 
+<!-- Optional official references for learners who want more detail after finishing the module. -->
 <section class="panel" style="margin-top:1rem;"><h2 style="margin-top:0;">Further reading</h2>
 <ul>
   <li><a class="reference-url" href="https://www.php.net/manual/en/ref.pdo-mysql.php" target="_blank" rel="noopener noreferrer">Connect PHP to MariaDB with PDO</a></li>
@@ -334,6 +344,7 @@ PHP</code></pre>
 </ul>
 </section>
 
+      <!-- Footer navigation connects the learner to the previous and next pages in sequence. -->
       <div class="footer-nav">
         <a class="button secondary" href="05-php.html">← Module 5: Install PHP and Connect It to Apache</a>
         <a class="button primary" href="07-python-automation.html">Module 7 - Install Python and Run an Automation Script →</a>
@@ -345,3 +356,6 @@ PHP</code></pre>
   <script src="../script.js"></script>
 </body>
 </html>
+
+
+

@@ -7,7 +7,9 @@
   <link rel="stylesheet" href="../styles.css">
 </head>
 <body>
+  <!-- Shared application shell: persistent sidebar plus scrolling content area. -->
   <div class="site-shell">
+    <!-- Shared navigation sidebar used across the full RLO. -->
     <aside class="sidebar">
       <div class="brand">
         <h1>Production-Ready LAMPP Stack on Ubuntu Server</h1>
@@ -28,8 +30,11 @@
 <li><a class="" href="../references.html">References</a></li></ul>
       </div>
     </aside>
+    <!-- Main content column for this page. -->
     <main class="main">
+      <!-- Module page wrapper: summary, checklist, instructions, and support material. -->
       <article class="module-page">
+  <!-- Module header with title, scope, timing, and progress tracker. -->
   <header>
     <div class="eyebrow">Hands-on module</div>
     <h1>Module 3: Install Apache and Configure a Virtual Host</h1>
@@ -47,6 +52,7 @@
       </div>
     </div>
   </header>
+  <!-- Completion targets and the learner checklist sit side by side on larger screens. -->
   <section class="two-col">
     <div class="panel">
       <h2 style="margin-top:0;">What you will complete</h2>
@@ -57,6 +63,7 @@
       <ul class="checklist" data-checklist-key="03-apache"><li><input type="checkbox" data-track-checklist aria-label="Apache is active according to systemd."><span>Apache is active according to systemd.</span></li><li><input type="checkbox" data-track-checklist aria-label="Config test returns Syntax OK."><span>Config test returns <code>Syntax OK</code>.</span></li><li><input type="checkbox" data-track-checklist aria-label="The placeholder page loads in a browser at http://127.0.0.1:8080/."><span>The placeholder page loads in a browser at <code>http://127.0.0.1:8080/</code>.</span></li></ul>
     </aside>
   </section>
+  <!-- Guided build steps for the hands-on work in this module. -->
   <section class="panel" style="margin-top:1rem;">
     <h2 style="margin-top:0;">Steps</h2>
 <div class="step-card"><h2>Install Apache2</h2>
@@ -295,6 +302,7 @@ HTML</code></pre>
 </ol>
 </div>
   </section>
+<!-- Common issues learners can check before repeating the whole module. -->
 <section class="panel" style="margin-top:1rem;"><h2 style="margin-top:0;">Troubleshooting</h2>
 <table class="trouble"><thead><tr><th>Issue</th><th>What to check</th></tr></thead><tbody>
 <tr><td>Apache fails to restart after enabling the site</td><td>Run <code>sudo apache2ctl configtest</code> and fix syntax or path errors first.</td></tr>
@@ -302,6 +310,7 @@ HTML</code></pre>
 <tr><td>Default page still appears</td><td>Confirm <code>000-default</code> was disabled and the Apache service was restarted.</td></tr>
 <tr><td><code>127.0.0.1:8080</code> times out</td><td>Check that Apache is running, UFW allows Apache, and the VirtualBox NAT port forwarding rule still maps host port <code>8080</code> to guest port <code>80</code>.</td></tr>
 </tbody></table></section>
+<!-- Evidence prompts show which screenshots or notes should be retained for assessment. -->
 <section class="panel" style="margin-top:1rem;"><h2 style="margin-top:0;">Evidence to capture</h2>
 <ul class="evidence-list">
   <li>A screenshot or terminal capture showing Apache installed and running.</li>
@@ -312,6 +321,7 @@ HTML</code></pre>
 </ul>
 </section>
 
+<!-- Optional official references for learners who want more detail after finishing the module. -->
 <section class="panel" style="margin-top:1rem;"><h2 style="margin-top:0;">Further reading</h2>
 <ul>
   <li><a class="reference-url" href="https://ubuntu.com/server/docs/how-to/web-services/install-apache2/" target="_blank" rel="noopener noreferrer">Install Apache on Ubuntu Server</a></li>
@@ -320,6 +330,7 @@ HTML</code></pre>
 </ul>
 </section>
 
+      <!-- Footer navigation connects the learner to the previous and next pages in sequence. -->
       <div class="footer-nav">
         <a class="button secondary" href="02-hardening.html">← Module 2: Baseline Configuration and Hardening</a>
         <a class="button primary" href="04-mariadb.html">Module 4: Install and Secure MariaDB →</a>
@@ -331,3 +342,6 @@ HTML</code></pre>
   <script src="../script.js"></script>
 </body>
 </html>
+
+
+

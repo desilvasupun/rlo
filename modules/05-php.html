@@ -7,7 +7,9 @@
   <link rel="stylesheet" href="../styles.css">
 </head>
 <body>
+  <!-- Shared application shell: persistent sidebar plus scrolling content area. -->
   <div class="site-shell">
+    <!-- Shared navigation sidebar used across the full RLO. -->
     <aside class="sidebar">
       <div class="brand">
         <h1>Production-Ready LAMPP Stack on Ubuntu Server</h1>
@@ -28,8 +30,11 @@
 <li><a class="" href="../references.html">References</a></li></ul>
       </div>
     </aside>
+    <!-- Main content column for this page. -->
     <main class="main">
+      <!-- Module page wrapper: summary, checklist, instructions, and support material. -->
       <article class="module-page">
+  <!-- Module header with title, scope, timing, and progress tracker. -->
   <header>
     <div class="eyebrow">Hands-on module</div>
     <h1>Module 5: Install PHP and Connect It to Apache</h1>
@@ -47,6 +52,7 @@
       </div>
     </div>
   </header>
+  <!-- Completion targets and the learner checklist sit side by side on larger screens. -->
   <section class="two-col">
     <div class="panel">
       <h2 style="margin-top:0;">What you will complete</h2>
@@ -57,6 +63,7 @@
       <ul class="checklist" data-checklist-key="05-php"><li><input type="checkbox" data-track-checklist aria-label="The php -v command reports a PHP version."><span>The <code>php -v</code> command reports a PHP version.</span></li><li><input type="checkbox" data-track-checklist aria-label="Visiting http://127.0.0.1:8080/phpinfo.php loads a PHP info page before you remove it."><span>Visiting <code>http://127.0.0.1:8080/phpinfo.php</code> loads a PHP info page before you remove it.</span></li><li><input type="checkbox" data-track-checklist aria-label="Apache remains active after restart."><span>Apache remains active after restart.</span></li></ul>
     </aside>
   </section>
+  <!-- Guided build steps for the hands-on work in this module. -->
   <section class="panel" style="margin-top:1rem;">
     <h2 style="margin-top:0;">Steps</h2>
 <div class="step-card"><h2>Install PHP packages</h2>
@@ -170,12 +177,14 @@ PHP</code></pre>
 </ol>
 </div>
   </section>
+<!-- Common issues learners can check before repeating the whole module. -->
 <section class="panel" style="margin-top:1rem;"><h2 style="margin-top:0;">Troubleshooting</h2>
 <table class="trouble"><thead><tr><th>Issue</th><th>What to check</th></tr></thead><tbody>
 <tr><td>Browser downloads the PHP file instead of executing it</td><td>Confirm <code>libapache2-mod-php</code> is installed and restart Apache.</td></tr>
 <tr><td>Blank page in browser</td><td>Check <code>/var/log/apache2/lampp-demo-error.log</code> and the main Apache error log.</td></tr>
 <tr><td>PHP command not found</td><td>The package install may have failed. Rerun the package command and confirm network access.</td></tr>
 </tbody></table></section>
+<!-- Evidence prompts show which screenshots or notes should be retained for assessment. -->
 <section class="panel" style="margin-top:1rem;"><h2 style="margin-top:0;">Evidence to capture</h2>
 <ul class="evidence-list">
   <li>A screenshot showing the PHP package installation completed successfully.</li>
@@ -186,6 +195,7 @@ PHP</code></pre>
 </ul>
 </section>
 
+<!-- Optional official references for learners who want more detail after finishing the module. -->
 <section class="panel" style="margin-top:1rem;"><h2 style="margin-top:0;">Further reading</h2>
 <ul>
   <li><a class="reference-url" href="https://ubuntu.com/server/docs/how-to/web-services/install-php/" target="_blank" rel="noopener noreferrer">How to install and configure PHP</a></li>
@@ -194,6 +204,7 @@ PHP</code></pre>
 </ul>
 </section>
 
+      <!-- Footer navigation connects the learner to the previous and next pages in sequence. -->
       <div class="footer-nav">
         <a class="button secondary" href="04-mariadb.html">← Module 4: Install and Secure MariaDB</a>
         <a class="button primary" href="06-demo-php-site.html">Module 6: Deploy the Demo PHP Site →</a>
@@ -205,3 +216,6 @@ PHP</code></pre>
   <script src="../script.js"></script>
 </body>
 </html>
+
+
+

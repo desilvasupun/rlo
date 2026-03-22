@@ -1,3 +1,4 @@
+/* Global design tokens used throughout the RLO. */
 :root {
   --bg: #f8fafc;
   --panel: #ffffff;
@@ -15,6 +16,8 @@
   --code-bg: #0f172a;
   --code-ink: #e2e8f0;
 }
+
+/* Base element resets and page background. */
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 body {
@@ -28,6 +31,8 @@ body {
 }
 a { color: var(--accent); text-decoration: none; }
 a:hover { text-decoration: underline; }
+
+/* Two-column site shell with a persistent sidebar and flexible content pane. */
 .site-shell {
   display: grid;
   grid-template-columns: 280px 1fr;
@@ -80,12 +85,16 @@ a:hover { text-decoration: underline; }
 .main {
   padding: 2rem 2.2rem 4rem;
 }
+
+/* Shared card styles reused by panels, module cards, and checklist boxes. */
 .hero, .panel, .card-grid .card, .module-card, .source-card, .checklist-box {
   background: var(--panel);
   border: 1px solid var(--line);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
 }
+
+/* Overview hero block: title, summary text, and architecture diagram. */
 .hero {
   padding: 2rem;
   display: grid;
@@ -123,6 +132,8 @@ a:hover { text-decoration: underline; }
   height: auto;
   display: block;
 }
+
+/* Generic card grid used for reusable grouped content patterns. */
 .card-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -146,6 +157,8 @@ a:hover { text-decoration: underline; }
   margin: 2rem 0 1rem;
   font-size: 1.55rem;
 }
+
+/* Homepage module map cards. */
 .module-list {
   display: grid;
   gap: 1rem;
@@ -224,6 +237,8 @@ a:hover { text-decoration: underline; }
 .hero .module-actions {
   margin-top: 1rem;
 }
+
+/* Shared button styles for navigation and call-to-action links. */
 .button {
   display: inline-flex;
   align-items: center;
@@ -249,6 +264,8 @@ a:hover { text-decoration: underline; }
 }
 .button.primary:hover { background: #1e40af; }
 .button.secondary:hover { background: #f8fafc; border-color: #cbd5e1; }
+
+/* Shared content panels and overview-specific lists. */
 .panel { padding: 1.3rem 1.35rem; }
 .panel p:last-child { margin-bottom: 0; }
 .outcomes-panel {
@@ -322,6 +339,8 @@ a:hover { text-decoration: underline; }
 .callout.note { background: #eff6ff; border-color: #bfdbfe; }
 .callout.warning { background: var(--warn-soft); border-color: #fdba74; }
 .callout.success { background: var(--good-soft); border-color: #86efac; }
+
+/* Module page header and progress tracker. */
 article.module-page header {
   margin-bottom: 1.2rem;
 }
@@ -384,6 +403,8 @@ article.module-page header {
   font-size: .86rem;
   font-weight: 700;
 }
+
+/* Two-column module layout: instructional context plus sticky checklist. */
 .two-col {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(280px, .45fr);
@@ -404,6 +425,8 @@ article.module-page header {
   line-height: 1.7;
 }
 .step-card ul, .step-card ol { padding-left: 1.15rem; }
+
+/* Screenshot and figure styles used throughout the step-by-step modules. */
 .step-visual {
   margin: 1rem 0 1.15rem;
   border: 1px solid var(--line);
@@ -442,6 +465,8 @@ article.module-page header {
 .step-visual-compact {
   max-width: none;
 }
+
+/* Full-screen lightbox for enlarging screenshots without leaving the page. */
 .image-lightbox {
   position: fixed;
   inset: 0;
@@ -518,6 +543,8 @@ article.module-page header {
 body.lightbox-open {
   overflow: hidden;
 }
+
+/* Command blocks pair shell snippets with copy buttons and readable code styling. */
 .command-block {
   margin: .8rem 0 1.1rem;
   border: 1px solid #1e293b;
@@ -559,6 +586,8 @@ body.lightbox-open {
   margin-top: .6rem;
   margin-bottom: .35rem;
 }
+
+/* Checklist, key-value summaries, and troubleshooting table styles. */
 .checklist-box {
   padding: 1rem 1rem 1.15rem;
   position: sticky;
@@ -615,6 +644,8 @@ table.trouble th, table.trouble td {
   text-align: left;
 }
 table.trouble th { background: #f8fafc; }
+
+/* Reference-page helpers and global progress bar styling. */
 .footer-nav {
   display: flex;
   justify-content: space-between;
@@ -686,6 +717,8 @@ table.trouble th { background: #f8fafc; }
   transition: width .2s ease;
 }
 .small { font-size: .88rem; color: var(--muted); }
+
+/* Narrow-screen layout adjustments keep the site readable on tablets and phones. */
 @media (max-width: 1020px) {
   .site-shell { grid-template-columns: 1fr; }
   .sidebar { position: relative; height: auto; border-right: 0; border-bottom: 1px solid var(--line); }
@@ -696,6 +729,8 @@ table.trouble th { background: #f8fafc; }
   .module-progress-head { align-items: flex-start; }
   .success-list li { padding-left: 3rem; }
 }
+
+/* Print mode removes interactive controls and heavy effects for cleaner output. */
 @media print {
   .sidebar, .copy-btn, .button, .footer-nav, .image-lightbox { display: none !important; }
   .site-shell { grid-template-columns: 1fr; }

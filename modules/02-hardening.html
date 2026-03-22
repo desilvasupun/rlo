@@ -7,7 +7,9 @@
   <link rel="stylesheet" href="../styles.css">
 </head>
 <body>
+  <!-- Shared application shell: persistent sidebar plus scrolling content area. -->
   <div class="site-shell">
+    <!-- Shared navigation sidebar used across the full RLO. -->
     <aside class="sidebar">
       <div class="brand">
         <h1>Production-Ready LAMPP Stack on Ubuntu Server</h1>
@@ -28,8 +30,11 @@
 <li><a class="" href="../references.html">References</a></li></ul>
       </div>
     </aside>
+    <!-- Main content column for this page. -->
     <main class="main">
+      <!-- Module page wrapper: summary, checklist, instructions, and support material. -->
       <article class="module-page">
+  <!-- Module header with title, scope, timing, and progress tracker. -->
   <header>
     <div class="eyebrow">Hands-on module</div>
     <h1>Module 2: Baseline Configuration and Hardening</h1>
@@ -47,6 +52,7 @@
       </div>
     </div>
   </header>
+  <!-- Completion targets and the learner checklist sit side by side on larger screens. -->
   <section class="two-col">
     <div class="panel">
       <h2 style="margin-top:0;">What you will complete</h2>
@@ -57,6 +63,7 @@
       <ul class="checklist" data-checklist-key="02-hardening"><li><input type="checkbox" data-track-checklist aria-label="Package upgrade completed successfully."><span>Package upgrade completed successfully.</span></li><li><input type="checkbox" data-track-checklist aria-label="The SSH service is active."><span>The SSH service is active.</span></li><li><input type="checkbox" data-track-checklist aria-label="UFW is enabled and OpenSSH is allowed."><span>UFW is enabled and OpenSSH is allowed.</span></li></ul>
     </aside>
   </section>
+  <!-- Guided build steps for the hands-on work in this module. -->
   <section class="panel" style="margin-top:1rem;">
     <h2 style="margin-top:0;">Steps</h2>
 <div class="step-card"><h2>Update the system</h2>
@@ -255,12 +262,14 @@
 </ol>
 </div>
   </section>
+<!-- Common issues learners can check before repeating the whole module. -->
 <section class="panel" style="margin-top:1rem;"><h2 style="margin-top:0;">Troubleshooting</h2>
 <table class="trouble"><thead><tr><th>Issue</th><th>What to check</th></tr></thead><tbody>
 <tr><td>APT is locked by another process</td><td>Wait for unattended package activity to finish, then rerun the update commands.</td></tr>
 <tr><td>sshd validation fails</td><td>Undo the last config change, check for typos in the drop-in file, then run <code>sudo sshd -t</code> again.</td></tr>
 <tr><td>SSH stops working after restart</td><td>Use the VM console directly, remove the bad config file, validate again, and restart the service.</td></tr>
 </tbody></table></section>
+<!-- Evidence prompts show which screenshots or notes should be retained for assessment. -->
 <section class="panel" style="margin-top:1rem;"><h2 style="margin-top:0;">Evidence to capture</h2>
 <ul class="evidence-list">
   <li>A screenshot or terminal capture showing <code>sudo apt update</code> and <code>sudo apt upgrade -y</code> completed without errors.</li>
@@ -271,6 +280,7 @@
 </ul>
 </section>
 
+<!-- Optional official references for learners who want more detail after finishing the module. -->
 <section class="panel" style="margin-top:1rem;"><h2 style="margin-top:0;">Further reading</h2>
 <ul>
   <li><a class="reference-url" href="https://ubuntu.com/server/docs/how-to/software/package-management/" target="_blank" rel="noopener noreferrer">Manage software packages on Ubuntu Server</a></li>
@@ -279,6 +289,7 @@
 </ul>
 </section>
 
+      <!-- Footer navigation connects the learner to the previous and next pages in sequence. -->
       <div class="footer-nav">
         <a class="button secondary" href="01-vm-ubuntu-install.html">← Module 1: VM Creation and Ubuntu Server Installation</a>
         <a class="button primary" href="03-apache.html">Module 3: Install Apache and Configure a Virtual Host →</a>
@@ -290,3 +301,6 @@
   <script src="../script.js"></script>
 </body>
 </html>
+
+
+
