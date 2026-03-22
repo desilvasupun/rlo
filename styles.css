@@ -458,42 +458,62 @@ article.module-page header {
 }
 .image-lightbox-dialog {
   position: relative;
-  width: min(96vw, 1500px);
+  width: min(94vw, 1450px);
   max-height: calc(100vh - 3rem);
   display: grid;
-  gap: .9rem;
+  justify-items: stretch;
 }
 .image-lightbox-close {
   position: absolute;
-  top: .5rem;
-  right: .5rem;
-  border: 1px solid rgba(255,255,255,.24);
-  background: rgba(15, 23, 42, 0.72);
-  color: #fff;
+  top: 1rem;
+  right: 1rem;
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  background: rgba(255, 255, 255, 0.96);
+  color: var(--ink);
   border-radius: 999px;
-  padding: .5rem .8rem;
+  padding: .48rem .82rem;
   font-size: .88rem;
   font-weight: 700;
   cursor: pointer;
+  z-index: 2;
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.14);
+}
+.image-lightbox-close:hover {
+  background: #f8fafc;
+  border-color: #cbd5e1;
+}
+.image-lightbox-close:focus-visible {
+  outline: 3px solid #60a5fa;
+  outline-offset: 2px;
+}
+.image-lightbox-frame {
+  margin: 0;
+  width: 100%;
+  max-height: calc(100vh - 3rem);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  overflow: hidden;
+  background: linear-gradient(180deg, #ffffff, #f8fafc);
+  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.28);
 }
 .image-lightbox-image {
   width: auto;
   max-width: 100%;
-  max-height: calc(100vh - 8rem);
+  max-height: calc(100vh - 11rem);
   margin: 0 auto;
   display: block;
-  border-radius: 18px;
   background: #fff;
-  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.28);
 }
 .image-lightbox-caption {
-  margin: 0 auto;
-  max-width: min(96vw, 1100px);
+  margin: 0;
   padding: .9rem 1rem 1rem;
-  border-radius: 16px;
-  background: rgba(255,255,255,.96);
-  color: var(--ink);
+  color: var(--muted);
   line-height: 1.6;
+  border-top: 1px solid var(--line);
+  background: transparent;
+}
+.image-lightbox-caption strong {
+  color: var(--ink);
 }
 body.lightbox-open {
   overflow: hidden;

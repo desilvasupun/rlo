@@ -67,8 +67,10 @@ if (stepImages.length) {
   lightbox.innerHTML = `
     <div class="image-lightbox-dialog" role="dialog" aria-modal="true" aria-label="Expanded screenshot">
       <button class="image-lightbox-close" type="button" aria-label="Close expanded image">Close</button>
-      <img class="image-lightbox-image" alt="">
-      <p class="image-lightbox-caption"></p>
+      <figure class="image-lightbox-frame">
+        <img class="image-lightbox-image" alt="">
+        <figcaption class="image-lightbox-caption"></figcaption>
+      </figure>
     </div>
   `;
 
@@ -93,11 +95,13 @@ if (stepImages.length) {
 
   const openLightbox = (img) => {
     const figure = img.closest('.step-visual');
-    const caption = figure?.querySelector('figcaption')?.innerText.trim() || img.alt.trim();
+    const captionNode = figure?.querySelector('figcaption');
+    const captionText = captionNode?.innerText.trim() || img.alt.trim();
+    const captionHtml = captionNode?.innerHTML || img.alt.trim();
     lastFocusedImage = img;
     lightboxImage.src = img.currentSrc || img.src;
-    lightboxImage.alt = img.alt || caption;
-    lightboxCaption.textContent = caption;
+    lightboxImage.alt = img.alt || captionText;
+    lightboxCaption.innerHTML = captionHtml;
     lightbox.classList.add('is-open');
     lightbox.setAttribute('aria-hidden', 'false');
     document.body.classList.add('lightbox-open');
