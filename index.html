@@ -61,7 +61,7 @@
 <section class="panel"><div class="kv-list">
 <div class="kv"><strong>Prerequisite knowledge</strong><span>Basic networking, terminal navigation, and a general understanding of web applications.</span></div>
 <div class="kv"><strong>Required tools</strong><span>A host machine capable of running a VM, a hypervisor such as VirtualBox/VMware, the latest Ubuntu Server LTS ISO, and internet access.</span></div>
-<div class="kv"><strong>What this RLO covers</strong><span>Single-server deployment inside a VM, SSH, UFW, Apache, MariaDB, PHP, and a small Python automation script.</span></div>
+<div class="kv"><strong>What this RLO covers</strong><span>Single-server deployment inside a VM, SSH, UFW, Apache, MariaDB, PHP, and Python automation scripts.</span></div>
 <div class="kv"><strong>What this RLO does not cover</strong><span>Load balancing, clustering, WAFs, SELinux/AppArmor tuning, CI/CD pipelines, and TLS certificate deployment.</span></div>
 </div></section>
 <h2 class="section-title">Module map</h2><section class="module-list">
@@ -111,7 +111,7 @@
       </div>
       <div class="module-detail module-detail-muted">
         <span class="module-label">Success check</span>
-        <p>Package upgrade completed successfully.</p>
+        <p>Package upgrades are installed, SSH is active, direct root SSH login is disabled, and UFW is enabled with OpenSSH allowed.</p>
       </div>
       <div class="module-actions"><a class="button secondary" href="modules/02-hardening.html">Open module</a></div>
     </article>
