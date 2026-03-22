@@ -77,7 +77,7 @@
       </div>
       <div class="module-detail module-detail-muted">
         <span class="module-label">Success check</span>
-        <p>You can explain the target architecture in one or two sentences.</p>
+        <p>You understand the target architecture, have the required files and tools ready, and have created an evidence folder.</p>
       </div>
       <div class="module-actions"><a class="button secondary" href="modules/00-introduction-planning.html">Open module</a></div>
     </article>
@@ -94,7 +94,7 @@
       </div>
       <div class="module-detail module-detail-muted">
         <span class="module-label">Success check</span>
-        <p>The VM boots into Ubuntu Server without the installer ISO.</p>
+        <p>The VM boots without the installer ISO, you can log in with the non-root account, and the VM has an IP address with internet access.</p>
       </div>
       <div class="module-actions"><a class="button secondary" href="modules/01-vm-ubuntu-install.html">Open module</a></div>
     </article>
@@ -128,7 +128,7 @@
       </div>
       <div class="module-detail module-detail-muted">
         <span class="module-label">Success check</span>
-        <p>Apache is active according to systemd.</p>
+        <p>Apache is active, the configuration test returns <code>Syntax OK</code>, and the placeholder page loads at <code>http://127.0.0.1:8080/</code>.</p>
       </div>
       <div class="module-actions"><a class="button secondary" href="modules/03-apache.html">Open module</a></div>
     </article>
@@ -145,7 +145,7 @@
       </div>
       <div class="module-detail module-detail-muted">
         <span class="module-label">Success check</span>
-        <p>MariaDB is active according to systemd.</p>
+        <p>MariaDB is active, the <code>lampp_demo</code> database exists, and the <code>lampp_user</code> account can read from <code>app_info</code>.</p>
       </div>
       <div class="module-actions"><a class="button secondary" href="modules/04-mariadb.html">Open module</a></div>
     </article>
@@ -162,7 +162,7 @@
       </div>
       <div class="module-detail module-detail-muted">
         <span class="module-label">Success check</span>
-        <p>The <code>php -v</code> command reports a PHP version.</p>
+        <p><code>php -v</code> reports a PHP version, <code>phpinfo.php</code> loads in the browser, and Apache remains active after the restart.</p>
       </div>
       <div class="module-actions"><a class="button secondary" href="modules/05-php.html">Open module</a></div>
     </article>
@@ -179,7 +179,7 @@
       </div>
       <div class="module-detail module-detail-muted">
         <span class="module-label">Success check</span>
-        <p>The homepage loads at <code>http://127.0.0.1:8080/</code>.</p>
+        <p>The homepage loads at <code>http://127.0.0.1:8080/</code>, the page reports <code>Database connection succeeded</code>, and the seeded row from <code>app_info</code> is visible.</p>
       </div>
       <div class="module-actions"><a class="button secondary" href="modules/06-demo-php-site.html">Open module</a></div>
     </article>
@@ -196,7 +196,7 @@
       </div>
       <div class="module-detail module-detail-muted">
         <span class="module-label">Success check</span>
-        <p>The virtual environment is created successfully.</p>
+        <p>The virtual environment is created, the script returns an HTTP 200 response, and the response preview shows HTML from the deployed site.</p>
       </div>
       <div class="module-actions"><a class="button secondary" href="modules/07-python-automation.html">Open module</a></div>
     </article>
@@ -213,7 +213,7 @@
       </div>
       <div class="module-detail module-detail-muted">
         <span class="module-label">Success check</span>
-        <p>All required services are running.</p>
+        <p>All required services are running, the site validates end to end, and the evidence package is organized for submission.</p>
       </div>
       <div class="module-actions"><a class="button secondary" href="modules/08-final-validation.html">Open module</a></div>
     </article>
@@ -223,11 +223,11 @@
 <section class="panel success-panel">
   <p class="success-intro">Use this final check to confirm the environment works end to end and your evidence package is complete.</p>
   <ul class="success-list">
-    <li>The site is reachable from a browser using the VM IP address.</li>
+    <li>The site is reachable from a browser at <code>http://127.0.0.1:8080/</code>.</li>
     <li>The demo PHP site confirms a successful MariaDB connection.</li>
     <li>UFW is enabled and only the required access is open.</li>
-    <li>Python automation can request the local site and return an HTTP 200 response.</li>
-    <li>You have a screenshot or command-output artifact for each major layer of the build.</li>
+    <li>Python automation can request the local site and return an HTTP 200 response with an HTML preview.</li>
+    <li>Your evidence package includes the screenshots captured across Modules 1 to 7 and is organized for submission.</li>
   </ul>
 </section>
     </main>
