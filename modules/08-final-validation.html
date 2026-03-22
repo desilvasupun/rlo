@@ -180,12 +180,6 @@
   <li>Submit the organized evidence package as a zip file.</li>
 </ol></div>
   </section>
-<section class="panel" style="margin-top:1rem;"><h2 style="margin-top:0;">Troubleshooting</h2>
-<table class="trouble"><thead><tr><th>Issue</th><th>What to check</th></tr></thead><tbody>
-<tr><td>Only Apache works but PHP or DB fails</td><td>Retest each layer separately: shell package status, Apache logs, MariaDB login, then application code.</td></tr>
-<tr><td>The stack worked earlier but not after a reboot</td><td>Check that services were enabled to start automatically and that the VM networking mode still provides an IP address.</td></tr>
-<tr><td>You need to repeat the build later</td><td>Reuse the module order and command blocks, but update package versions and the Ubuntu LTS release if needed.</td></tr>
-</tbody></table></section>
 
       <div class="footer-nav">
         <a class="button secondary" href="07-python-automation.html">← Module 7: Install Python and Run a Small Automation Script</a>
