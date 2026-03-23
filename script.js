@@ -1,3 +1,18 @@
+/**
+ * Name: Supun De Silva
+ * Athabasca ID: 3508216
+ * Title: script.js
+ * Date: March 22, 2026
+ * Description: Shared client-side behavior for checklist tracking, copy buttons, and screenshot lightbox support.
+ * Author: Supun De Silva
+ * Version: 1.0
+ * Copyright: 2026 Supun De Silva
+ *
+ * DOCUMENTATION
+ *
+ * Description and Purpose
+ * This script adds the interactive behavior used throughout the RLO. It handles command-copy buttons, persists checklist progress in localStorage, updates the progress bars, and powers the screenshot lightbox used to enlarge inline figures.
+ */
 // Namespace checklist state in localStorage so each module can persist independently.
 const STORAGE_PREFIX = 'lampp-rlo-checklist:';
 

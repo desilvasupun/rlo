@@ -1,3 +1,18 @@
+/**
+ * Name: Supun De Silva
+ * Athabasca ID: 3508216
+ * Title: styles.css
+ * Date: March 22, 2026
+ * Description: Shared stylesheet for the Production-Ready LAMPP Stack on Ubuntu Server reusable learning object.
+ * Author: Supun De Silva
+ * Version: 1.0
+ * Copyright: 2026 Supun De Silva
+ *
+ * DOCUMENTATION
+ *
+ * Description and Purpose
+ * This stylesheet defines the shared visual design for the full RLO, including the global color system, layout shell, navigation, module cards, step figures, command blocks, progress indicators, lightbox styling, and responsive behavior.
+ */
 /* Global design tokens used throughout the RLO. */
 :root {
   --bg: #f8fafc;
