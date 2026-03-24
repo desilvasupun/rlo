@@ -89,7 +89,7 @@
   <section class="panel" style="margin-top:1rem;">
     <h2 style="margin-top:0;">Steps</h2>
 <div class="step-card"><h2>Create the virtual machine</h2>
-<p>Build the VM carefully before you ever boot the installer. A clean VM definition prevents avoidable problems later, such as disk shortages, boot loops, or missing network access.</p>
+<p>Build the VM carefully before you boot the installer. A clean VM definition prevents avoidable problems later, such as disk shortages, boot loops, or missing network access.</p>
 <h3>1. Start the VM wizard</h3>
 <ol>
   <li>Open your hypervisor and choose the option to create a <strong>new virtual machine</strong>.
@@ -123,6 +123,7 @@
       <figcaption><strong>Virtual disk:</strong> Create a new <strong>25 GB</strong> virtual disk. Leaving full pre-allocation off keeps the disk dynamically allocated.</figcaption>
     </figure>
   </li>
+  <li>Afterwards, click <strong>Finish</strong> to complete VM creation.</li>
 </ol>
 <h3>3. Confirm the network and boot settings</h3>
 <ol>
@@ -139,14 +140,14 @@
       <figcaption><strong>Network mode:</strong> Keep <strong>Adapter 1</strong> enabled and attached to <strong>NAT</strong> so the VM can reach package repositories during installation.</figcaption>
     </figure>
   </li>
-  <li>If you are using VirtualBox, open the NAT adapter's <strong>Port Forwarding</strong> settings before first boot.</li>
-  <li>Add at least one HTTP forwarding rule so the host browser can reach Apache later: <code>Host Port 8080</code> to <code>Guest Port 80</code>. If you want host-side SSH access later, also add <code>Host Port 2222</code> to <code>Guest Port 22</code>.
+  <li>Open the NAT adapter's <strong>Port Forwarding</strong> settings.</li>
+  <li>Add at least the following HTTP forwarding rule so the host browser can reach Apache later: <code>Host Port 8080</code> to <code>Guest Port 80</code>. For host-side SSH access, also add <code>Host Port 2222</code> to <code>Guest Port 22</code>.
     <figure class="step-visual step-visual-compact">
       <img src="../assets/module_1/1.9.png" alt="VirtualBox Port Forwarding Rules dialog showing HTTP mapped from host port 8080 to guest port 80 and SSH mapped from host port 2222 to guest port 22." loading="lazy">
       <figcaption><strong>Port forwarding rules:</strong> Add an <strong>HTTP</strong> rule for <code>8080</code> to <code>80</code> so the host browser can reach Apache, and an optional <strong>SSH</strong> rule for <code>2222</code> to <code>22</code> if you want host-side SSH access later.</figcaption>
     </figure>
   </li>
-  <li>Check that the Ubuntu ISO is attached to the virtual optical drive, then save the settings and do one final review.
+  <li>Check that the Ubuntu ISO is attached to the virtual optical drive, then save the settings, and do one final review.
     <figure class="step-visual step-visual-compact">
       <img src="../assets/module_1/1.8.png" alt="VirtualBox storage settings showing the Ubuntu Server ISO attached to the IDE controller and the virtual disk attached to the SATA controller." loading="lazy">
       <figcaption><strong>Storage check:</strong> Confirm that the Ubuntu Server ISO is still mounted in the optical drive and that the new virtual disk is attached before booting.</figcaption>
@@ -159,13 +160,13 @@
 <p>Boot the VM from the ISO and work through the server installer carefully. The exact screen wording can vary slightly by Ubuntu release, but the overall flow stays consistent.</p>
 <h3>1. Work through the initial installer screens</h3>
 <ol>
-  <li>Start the VM and wait for the GRUB boot menu to appear. Choose <strong>Try or Install Ubuntu Server</strong> if the menu asks what you want to do.
+  <li>Start the VM and wait for the GRUB boot menu to appear. Choose <strong>Try or Install Ubuntu Server</strong>.
     <figure class="step-visual step-visual-wide">
       <img src="../assets/module_1/2.1.png" alt="Ubuntu Server GRUB boot menu in VirtualBox with Try or Install Ubuntu Server selected." loading="lazy">
       <figcaption><strong>Boot menu:</strong> Start the installer from the GRUB screen by choosing <strong>Try or Install Ubuntu Server</strong>.</figcaption>
     </figure>
   </li>
-  <li>After the boot selection, Ubuntu may show a short sequence of startup messages while the installer loads. Wait for the installer interface instead of interrupting the boot process.
+  <li>After the boot selection, Ubuntu will show a short sequence of startup messages while the installer loads. Wait for the installer interface. Do not interrupt the boot process.
     <figure class="step-visual step-visual-wide">
       <img src="../assets/module_1/2.2.png" alt="Ubuntu boot messages in VirtualBox while the installer is loading." loading="lazy">
       <figcaption><strong>Installer loading:</strong> A brief stream of startup messages is normal before the installer screens appear.</figcaption>
@@ -177,7 +178,7 @@
       <figcaption><strong>Language selection:</strong> Pick the language you want to use for the installer and the initial server setup.</figcaption>
     </figure>
   </li>
-  <li>Select the correct keyboard layout and test it if the installer provides a keyboard check screen.
+  <li>Select the correct keyboard layout.
     <figure class="step-visual step-visual-compact">
       <img src="../assets/module_1/2.4.png" alt="Ubuntu Server installer keyboard layout screen showing English US selected." loading="lazy">
       <figcaption><strong>Keyboard layout:</strong> Confirm the keyboard layout before continuing so your login credentials behave as expected later.</figcaption>
@@ -192,19 +193,19 @@
       <figcaption><strong>Server installation:</strong> Use the standard <strong>Ubuntu Server</strong> option for this RLO rather than the minimized install.</figcaption>
     </figure>
   </li>
-  <li>When the installer configures networking, accept the automatically assigned DHCP settings if the VM already shows a valid network connection.
+  <li>When the installer configures networking, accept the automatically assigned DHCP settings.
     <figure class="step-visual step-visual-wide">
       <img src="../assets/module_1/2.6.png" alt="Ubuntu Server installer network configuration screen showing interface enp0s3 with a DHCP IPv4 address assigned." loading="lazy">
       <figcaption><strong>Network configuration:</strong> If the VM already has a valid DHCP address, you can accept the detected network settings and continue.</figcaption>
     </figure>
   </li>
-  <li>If the installer asks about a proxy and you do not use one in your environment, leave it blank.
+  <li>Leave the proxy address blank.
     <figure class="step-visual step-visual-compact">
       <img src="../assets/module_1/2.7.png" alt="Ubuntu Server installer proxy configuration screen with the proxy field left blank." loading="lazy">
       <figcaption><strong>Proxy screen:</strong> Leave the proxy field empty unless your environment specifically requires an HTTP proxy.</figcaption>
     </figure>
   </li>
-  <li>If the installer asks about the package mirror, keep the default mirror unless your environment provides a local mirror.
+  <li>Keep the default package mirror.
     <figure class="step-visual step-visual-wide">
       <img src="../assets/module_1/2.8.png" alt="Ubuntu Server installer package mirror screen showing the default Ubuntu archive mirror passing its connectivity test." loading="lazy">
       <figcaption><strong>Mirror check:</strong> Keep the default Ubuntu archive mirror if it passes the connectivity test.</figcaption>
@@ -231,7 +232,7 @@
       <figcaption><strong>Profile setup:</strong> Create the non-root account you will use for login and <code>sudo</code> throughout the remaining modules.</figcaption>
     </figure>
   </li>
-  <li>If Ubuntu Pro is offered, choose <strong>Skip for now</strong> unless your environment specifically requires it.
+  <li>If Ubuntu Pro is offered, choose <strong>Skip for now</strong>.
     <figure class="step-visual step-visual-compact">
       <img src="../assets/module_1/2.12.png" alt="Ubuntu Pro offer screen in the Ubuntu Server installer with Skip for now selected." loading="lazy">
       <figcaption><strong>Ubuntu Pro option:</strong> You can skip Ubuntu Pro for this RLO and enable it later only if you need it.</figcaption>
@@ -240,16 +241,16 @@
 </ol>
 <h3>4. Finish the install cleanly</h3>
 <ol>
-  <li>Select <strong>OpenSSH server</strong> during installation if the installer offers that checkbox. It saves time in the next module.
+  <li>Select <strong>Install OpenSSH server</strong>. It saves time in the next module.
     <figure class="step-visual step-visual-compact">
       <img src="../assets/module_1/2.13.png" alt="Ubuntu Server installer screen showing Install OpenSSH server enabled." loading="lazy">
       <figcaption><strong>OpenSSH selection:</strong> Enable the OpenSSH server package now so remote access is available immediately after installation.</figcaption>
     </figure>
   </li>
-  <li>Skip optional server snaps unless you specifically want them. They are not required for this RLO.
+  <li>Skip optional server snaps. They are not required for this RLO.
     <figure class="step-visual step-visual-wide">
       <img src="../assets/module_1/2.14.png" alt="Ubuntu Server installer featured server snaps screen listing optional packages such as microk8s and nextcloud." loading="lazy">
-      <figcaption><strong>Featured snaps:</strong> Leave the optional snaps unselected unless you have a specific reason to add them during installation.</figcaption>
+      <figcaption><strong>Featured snaps:</strong> Leave the optional server snaps unselected.</figcaption>
     </figure>
   </li>
   <li>Wait for package installation to finish fully. Do not reset or power off the VM during this stage.
@@ -264,7 +265,7 @@
       <figcaption><strong>Reboot prompt:</strong> Use the reboot screen to finish the installer cleanly once setup has completed.</figcaption>
     </figure>
   </li>
-  <li>If the installer asks you to remove the installation medium, detach the ISO from settings if needed and press <strong>Enter</strong>.
+  <li>If the installer asks you to remove the installation medium, detach the ISO from settings and press <strong>Enter</strong>.
     <figure class="step-visual step-visual-compact">
       <img src="../assets/module_1/2.17.png" alt="Ubuntu Server installer prompt asking for the installation medium to be removed before continuing." loading="lazy">
       <figcaption><strong>Install media prompt:</strong> Remove the installer ISO when prompted so the VM boots from the virtual disk on the next restart.</figcaption>
@@ -349,7 +350,7 @@
   <li>A screenshot showing the Ubuntu Server installation completed and the VM booting from the virtual disk instead of the installer ISO.</li>
   <li>A screenshot of the Ubuntu login prompt and a successful login using the non-root administrative account you created.</li>
   <li>A screenshot of a terminal showing the IP address from <code>hostname -I</code>.</li>
-  <li>A screenshot or note showing successful outbound connectivity from <code>ping -c 4 ubuntu.com</code>.</li>
+  <li>A screenshot showing successful outbound connectivity from <code>ping -c 4 ubuntu.com</code>.</li>
 </ul>
 </section>
 
