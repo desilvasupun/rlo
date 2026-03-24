@@ -92,7 +92,7 @@
 <p>Start by bringing the operating system up to date. This gives you the latest package metadata and reduces the chance that you build the rest of the stack on top of outdated or vulnerable packages.</p>
 <h3>1. Refresh the package index</h3>
 <ol>
-  <li>Log in with your normal administrative account.</li>
+  <li>Log in with your administrative account.</li>
   <li>Run <code>sudo apt update</code> so Ubuntu downloads the latest package lists from its configured repositories.
         <div class="command-block">
           <div class="command-head"><strong>Refresh package lists</strong><button class="copy-btn" data-copy="sudo apt update">Copy</button></div>
@@ -123,7 +123,7 @@
 <h3>3. Confirm the system is ready</h3>
 <ol>
   <li>Review the final output for errors.</li>
-  <li>If the update process suggests a reboot, note that recommendation and reboot before continuing.</li>
+  <li>If the update process suggests a reboot, reboot before continuing.</li>
   <li>Keep the terminal open so you can continue with SSH setup immediately after the update.</li>
 </ol></div>
 <div class="step-card"><h2>Install and verify OpenSSH</h2>
@@ -156,7 +156,7 @@
 </ol>
 <h3>3. Verify the service state</h3>
 <ol>
-  <li>Confirm that the <code>ssh</code> service shows as <strong>active (running)</strong>. If it instead shows <strong>inactive (dead)</strong>, bring it up explicitly with <code>sudo systemctl enable --now ssh.service</code>.
+  <li>Confirm that the <code>ssh</code> service shows as <strong>active (running)</strong>. If it instead shows <strong>inactive (dead)</strong>, start it with <code>sudo systemctl enable --now ssh.service</code>.
         <div class="command-block">
           <div class="command-head"><strong>Enable and start SSH</strong><button class="copy-btn" data-copy="sudo systemctl enable --now ssh.service">Copy</button></div>
           <pre><code>sudo systemctl enable --now ssh.service</code></pre>
@@ -170,7 +170,7 @@
   <li>Do not move on until you know SSH is installed and healthy.</li>
 </ol></div>
 <div class="step-card"><h2>Apply one safe SSH hardening step</h2>
-<p>Use a small, low-risk hardening change that improves the baseline without making the server harder to recover. In this module, the goal is only to block direct root SSH login.</p>
+<p>Use a small, low-risk hardening change that improves the baseline. In this section, the goal is only to block direct root SSH login.</p>
 <h3>1. Create a drop-in configuration file</h3>
 <ol>
   <li>Use the directory <code>/etc/ssh/sshd_config.d/</code> instead of editing the main SSH config directly.</li>
@@ -203,7 +203,7 @@
   <li>If the command returns no errors, the configuration is valid.</li>
   <li>If it reports a problem, fix the file first. Do not restart SSH until the validation command succeeds.</li>
 </ol>
-<h3>3. Restart the service carefully</h3>
+<h3>3. Restart the service</h3>
 <ol>
   <li>Restart SSH with <code>sudo systemctl restart ssh.service</code>.
         <div class="command-block">
@@ -227,9 +227,9 @@
   </li>
   <li>Keep your VM console available while testing changes so you are not relying only on SSH access during hardening.</li>
 </ol>
-<div class="callout warning"><strong>Do not disable password authentication in this RLO</strong> unless you have already configured SSH keys and tested them. The main goal here is to avoid locking yourself out.</div></div>
+<div class="callout warning"><strong>Do not disable password authentication in this RLO</strong> unless you have already configured SSH keys and tested them, to avoid locking yourself out.</div></div>
 <div class="step-card"><h2>Enable the firewall for SSH only</h2>
-<p>Enable Ubuntu's uncomplicated firewall after you know SSH is installed. At this stage, allow only management access. Web traffic will be opened later when Apache is ready.</p>
+<p>Enable Ubuntu's firewall after you know SSH is installed. At this stage, allow only management access. Web traffic will be opened later when Apache is ready.</p>
 <h3>1. Review the available firewall profiles</h3>
 <ol>
   <li>Run <code>sudo ufw app list</code> to see the application profiles installed on the system.
@@ -260,7 +260,7 @@
 </ol>
 <h3>3. Turn on UFW and verify the rules</h3>
 <ol>
-  <li>Run <code>sudo ufw enable</code> and confirm the prompt.
+  <li>Run <code>sudo ufw enable</code>.
         <div class="command-block">
           <div class="command-head"><strong>Enable the firewall</strong><button class="copy-btn" data-copy="sudo ufw enable">Copy</button></div>
           <pre><code>sudo ufw enable</code></pre>
