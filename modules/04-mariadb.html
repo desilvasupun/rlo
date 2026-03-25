@@ -141,7 +141,7 @@
 <h3>2. Work through the common security prompts</h3>
 <ol>
   <li>When the helper asks for the current MariaDB root password on this fresh install, press <strong>Enter</strong> because you have not set one yet.</li>
-  <li>When it asks whether to switch to <code>unix_socket</code> authentication, type <strong>n</strong> to match the flow shown in the screenshot.</li>
+  <li>When it asks whether to switch to <code>unix_socket</code> authentication, type <strong>n</strong> to not switch.</li>
   <li>When it asks whether to change the root password, type <strong>Y</strong>, then enter and confirm the new MariaDB root password.
         <figure class="step-visual step-visual-wide">
           <img src="../assets/module_4/2.1.png" alt="Ubuntu Server terminal showing the mariadb-secure-installation prompts for the current root password, unix_socket authentication, and setting a new root password." loading="lazy">
@@ -159,9 +159,9 @@
 </figure>
 <h3>3. Understand the Ubuntu authentication model</h3>
 <ol>
-  <li>On Ubuntu, it is normal for the helper to say the root account is already protected before you answer the later password prompts.</li>
+  <li>On Ubuntu, it is normal for the helper to say the root account is already protected before you answer the later password prompts. This is because the local MariaDB root account is often protected through Ubuntu's default socket-based administration model rather than relying only on a  password.</li>
   <li>For the next section in this RLO, continue to use <code>sudo mariadb</code> for local administration from the server console.</li>
-  <li>The helper removes insecure defaults; it does not change the overall SQL workflow used in the next step.</li>
+  <li>The helper removes insecure defaults.</li>
 </ol></div>
 <div class="step-card"><h2>Create the demo database and application user</h2>
 <p>Now create the sample data that the PHP application will read later. Keep the design simple: one database, one table, one seed row, and one application user with limited privileges.</p>
