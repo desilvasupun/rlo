@@ -13,6 +13,7 @@
  * Description and Purpose
  * This stylesheet defines the shared visual design for the full RLO, including the global color system, layout shell, navigation, module cards, step figures, command blocks, progress indicators, lightbox styling, and responsive behavior.
  */
+/* Design tokens centralize the visual system so module pages inherit the same palette, spacing, and type choices. */
 :root {
   --bg: #f4f4ef;
   --bg-alt: #e8ede7;
@@ -57,6 +58,7 @@ html {
   scroll-behavior: smooth;
 }
 
+/* The body background uses layered gradients so the site feels built rather than flat. */
 body {
   position: relative;
   margin: 0;
@@ -76,6 +78,7 @@ body::after {
   pointer-events: none;
 }
 
+/* These fixed overlays add subtle texture behind the layout without interfering with interaction. */
 body::before {
   z-index: 0;
   background-image:
@@ -119,6 +122,7 @@ code:not(pre code) {
   color: var(--ink-soft);
 }
 
+/* The shell keeps navigation and content in two columns on desktop, then collapses later in media queries. */
 .site-shell {
   position: relative;
   z-index: 1;
@@ -141,6 +145,7 @@ code:not(pre code) {
   overflow-y: auto;
 }
 
+/* The brand card gives the sidebar a visual anchor before the learner reaches the navigation list. */
 .brand {
   position: relative;
   overflow: hidden;
@@ -276,6 +281,7 @@ code:not(pre code) {
   margin-inline: auto;
 }
 
+/* Most content surfaces share the same glass-like panel treatment so the site reads as one system. */
 .hero,
 .panel,
 .card-grid .card,
@@ -292,6 +298,7 @@ code:not(pre code) {
   backdrop-filter: blur(14px);
 }
 
+/* The pseudo-element adds a soft accent wash at the top of reusable cards and panels. */
 .hero::before,
 .panel::before,
 .card-grid .card::before,
@@ -314,6 +321,7 @@ code:not(pre code) {
   animation: rise-in 0.5s ease both;
 }
 
+/* The overview hero splits narrative framing from visual/context tiles. */
 .hero {
   display: grid;
   grid-template-columns: minmax(0, 1.1fr) minmax(310px, 0.9fr);
@@ -335,6 +343,7 @@ code:not(pre code) {
   justify-content: center;
 }
 
+/* The large heading is intentionally constrained so it wraps into a poster-like block on wide screens. */
 .hero h2 {
   margin: 0 0 0.8rem;
   max-width: 11ch;
@@ -401,6 +410,7 @@ code:not(pre code) {
   filter: drop-shadow(0 24px 34px rgba(16, 24, 29, 0.16));
 }
 
+/* Fact tiles let the sidebar-style metadata appear inside the hero without adding another list. */
 .hero-facts {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -472,6 +482,7 @@ code:not(pre code) {
   background: linear-gradient(90deg, rgba(15, 118, 110, 0.3), transparent);
 }
 
+/* The module grid uses auto-fit so cards reflow cleanly without separate breakpoint-specific markup. */
 .module-list {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -488,6 +499,7 @@ code:not(pre code) {
     border-color 0.18s ease;
 }
 
+/* Hover lift is subtle on purpose so the cards still feel course-like rather than app-dashboard flashy. */
 .module-card:hover {
   transform: translateY(-3px);
   border-color: rgba(15, 118, 110, 0.22);
@@ -588,6 +600,7 @@ code:not(pre code) {
     color 0.16s ease;
 }
 
+/* Buttons use the same pill silhouette across hero actions, module links, and footer navigation. */
 .button.primary {
   background: linear-gradient(135deg, var(--accent), #104d48);
   color: #ffffff;
@@ -615,6 +628,7 @@ code:not(pre code) {
   box-shadow: var(--shadow-sm);
 }
 
+/* Shared focus styles make keyboard navigation visible across links, buttons, copy controls, and zoomable images. */
 .button:focus-visible,
 .copy-btn:focus-visible,
 .nav-list a:focus-visible,
@@ -736,6 +750,7 @@ code:not(pre code) {
   box-shadow: var(--shadow-sm);
 }
 
+/* Callouts reuse one base block and only swap colors by intent: note, warning, or success. */
 .callout.note {
   background: #edf8f6;
   border-color: rgba(15, 118, 110, 0.28);
@@ -751,6 +766,7 @@ code:not(pre code) {
   border-color: rgba(22, 101, 52, 0.28);
 }
 
+/* Module pages use a separate header treatment from the overview so learners can tell they are in step mode. */
 article.module-page header {
   position: relative;
   overflow: hidden;
@@ -864,6 +880,7 @@ article.module-page header::before {
   font-weight: 700;
 }
 
+/* The two-column layout pairs procedural instructions with a sticky checklist on larger screens. */
 .two-col {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(300px, 0.48fr);
@@ -908,6 +925,7 @@ article.module-page header::before {
   max-width: 100%;
 }
 
+/* Figures are intentionally zoomable because many screenshots contain small terminal or UI text. */
 .step-visual img {
   width: auto;
   max-width: 100%;
@@ -952,6 +970,7 @@ article.module-page header::before {
   z-index: 9999;
 }
 
+/* The lightbox is hidden by default and only becomes a flex container when script.js adds .is-open. */
 .image-lightbox.is-open {
   display: flex;
 }
@@ -1032,6 +1051,7 @@ body.lightbox-open {
   box-shadow: 0 18px 36px rgba(9, 17, 22, 0.22);
 }
 
+/* Command blocks visually separate copyable terminal work from explanatory prose. */
 .command-head {
   display: flex;
   align-items: center;
@@ -1097,6 +1117,7 @@ body.lightbox-open {
     linear-gradient(180deg, var(--panel), var(--panel-soft));
 }
 
+/* The checklist stays visible beside long modules until the layout collapses for smaller screens. */
 .checklist {
   list-style: none;
   padding: 0;
@@ -1171,6 +1192,7 @@ table.trouble th {
   background: rgba(15, 118, 110, 0.08);
 }
 
+/* Footer navigation keeps the linear module sequence obvious at the end of each page. */
 .footer-nav {
   display: flex;
   justify-content: space-between;
@@ -1254,6 +1276,7 @@ table.trouble th {
   font-size: 0.92rem;
 }
 
+/* Progress UI is updated by script.js, so the fill width starts at zero in static HTML/CSS. */
 .progress {
   display: flex;
   align-items: center;
@@ -1282,6 +1305,7 @@ table.trouble th {
   color: var(--muted);
 }
 
+/* The rise-in animation is lightweight so panels do not feel static, but still respects reduced-motion below. */
 @keyframes rise-in {
   from {
     opacity: 0;
@@ -1294,6 +1318,7 @@ table.trouble th {
   }
 }
 
+/* Desktop-to-tablet breakpoint: keep the sidebar but reduce the fixed navigation footprint. */
 @media (max-width: 1180px) {
   .site-shell {
     grid-template-columns: minmax(280px, 304px) minmax(0, 1fr);
@@ -1304,6 +1329,7 @@ table.trouble th {
   }
 }
 
+/* Tablet breakpoint: collapse to one column and release sticky positioning that would crowd the viewport. */
 @media (max-width: 1020px) {
   .site-shell {
     grid-template-columns: 1fr;
@@ -1338,6 +1364,7 @@ table.trouble th {
   }
 }
 
+/* Phone breakpoint: simplify card spacing and stack footer actions to preserve tap targets. */
 @media (max-width: 760px) {
   .hero {
     padding: 1.4rem;
@@ -1385,6 +1412,7 @@ table.trouble th {
   }
 }
 
+/* Accessibility safeguard for users who prefer fewer motion effects. */
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -1398,6 +1426,7 @@ table.trouble th {
   }
 }
 
+/* Print mode strips interactive UI and decorative effects so exported pages stay readable on paper/PDF. */
 @media print {
   .sidebar,
   .copy-btn,

@@ -28,12 +28,14 @@
   <div class="site-shell">
     <!-- Shared navigation sidebar used across the full RLO. -->
     <aside class="sidebar">
+      <!-- Brand block stays consistent across pages so learners always know which RLO they are inside. -->
       <div class="brand">
         <h1>Production-Ready LAMPP Stack on Ubuntu Server</h1>
         <p>A reusable learning object for graduate IS students and early-career developers</p>
       </div>
       <div class="nav-section">
         <div class="nav-label">Navigation</div>
+        <!-- The same navigation order is reused in every module so the sequence stays predictable. -->
         <ul class="nav-list"><li><a class="active" href="index.html">Overview</a></li>
 <li><a class="" href="modules/00-introduction-planning.html">Module 0: Introduction and Planning</a></li>
 <li><a class="" href="modules/01-vm-ubuntu-install.html">Module 1: VM Creation and Ubuntu Server Installation</a></li>
@@ -51,10 +53,12 @@
     <main class="main">
 <!-- Landing-page summary, audience framing, and call to action. -->
 <section class="hero">
+  <!-- Left side: overview copy and first-step actions for learners who are ready to begin. -->
   <div class="hero-copy">
     <div class="eyebrow">Reusable Learning Object</div>
     <h2>Production-Ready LAMPP Stack on Ubuntu Server</h2>
     <p>This RLO walks learners through building a single Ubuntu Server virtual machine with Apache, MariaDB, PHP, and Python. It is designed as a guided, modular RLO with copy-friendly commands, verification checkpoints, troubleshooting notes, and evidence prompts.</p>
+    <!-- Quick-scan metadata helps learners judge scope before opening the first module. -->
     <div class="pill-row">
       <span class="pill">Estimated total time: 120 to 165 minutes</span>
       <span class="pill">Format: web pages</span>
@@ -65,10 +69,12 @@
       <a class="button secondary" href="references.html">View references</a>
     </div>
   </div>
+  <!-- Right side: visual summary plus a compact at-a-glance facts grid. -->
   <div class="hero-aside">
     <div class="hero-visual">
       <img src="assets/architecture.svg" alt="Diagram of browser, Apache, PHP, MariaDB, and Python inside an Ubuntu Server VM.">
     </div>
+    <!-- These fact tiles repeat the core framing in a denser format than the paragraph copy. -->
     <div class="hero-facts" aria-label="Course at a glance">
       <div class="hero-fact">
         <span class="hero-fact-label">Modules</span>
@@ -112,6 +118,7 @@
 <!-- Module cards summarize goals, timing, and success checks for the full sequence. -->
 <h2 class="section-title">Module map</h2><section class="module-list">
 
+    <!-- Each card uses the same pattern: estimated time, goal, success check, then entry link. -->
     <article class="module-card">
       <div class="module-card-top">
         <div class="module-time">10 to 15 minutes</div>
@@ -268,6 +275,7 @@
 <!-- End-to-end criteria learners can use to confirm the stack is complete. -->
 <h2 class="section-title">Success criteria</h2>
 <section class="panel success-panel">
+  <!-- This final list mirrors the cross-module outcomes learners should be able to prove at the end. -->
   <p class="success-intro">Use this final check to confirm the environment works end to end and your evidence package is complete.</p>
   <ul class="success-list">
     <li>The site is reachable from a browser at <code>http://127.0.0.1:8080/</code>.</li>
