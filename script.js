@@ -151,6 +151,8 @@ const SELF_TEST_BANK = {
   ]
 };
 
+const MODULE_KEYS = Object.keys(SELF_TEST_BANK);
+
 function escapeAttribute(text) {
   return String(text)
     .replace(/&/g, '&amp;')
@@ -241,6 +243,83 @@ function readStoredState(key, fallback) {
   }
 }
 
+function getModuleKeyFromHref(href) {
+  if (!href) {
+    return '';
+  }
+
+  try {
+    const url = new URL(href, window.location.href);
+    const parts = url.pathname.split('/').filter(Boolean);
+    return (parts[parts.length - 1] || '').replace(/\.html$/, '');
+  } catch {
+    const cleanHref = String(href).split(/[?#]/)[0];
+    const parts = cleanHref.split('/').filter(Boolean);
+    return (parts[parts.length - 1] || '').replace(/\.html$/, '');
+  }
+}
+
+function isModuleComplete(moduleKey) {
+  if (!MODULE_KEYS.includes(moduleKey)) {
+    return false;
+  }
+
+  const checklistState = readStoredState(STORAGE_PREFIX + moduleKey, []);
+  const selfTestState = readStoredState(SELF_TEST_PREFIX + moduleKey, { answers: [], evaluated: false, passed: false });
+  const checklistComplete = Array.isArray(checklistState)
+    && checklistState.length > 0
+    && checklistState.every(Boolean);
+
+  return checklistComplete && Boolean(selfTestState?.passed);
+}
+
+function syncStatusBadge(container, complete, beforeSelector = '') {
+  const badge = container.querySelector('.module-status-badge');
+
+  if (!complete) {
+    badge?.remove();
+    return;
+  }
+
+  const beforeNode = beforeSelector ? container.querySelector(beforeSelector) : null;
+
+  if (badge) {
+    badge.textContent = 'Completed';
+    if (beforeNode && badge !== beforeNode.previousElementSibling) {
+      beforeNode.before(badge);
+    }
+    return;
+  }
+
+  const nextBadge = document.createElement('span');
+  nextBadge.className = 'module-status-badge';
+  nextBadge.textContent = 'Completed';
+  if (beforeNode) {
+    beforeNode.before(nextBadge);
+    return;
+  }
+
+  container.appendChild(nextBadge);
+}
+
+function refreshModuleCompletionUI() {
+  document.querySelectorAll('.nav-list a[href]').forEach((link) => {
+    const moduleKey = getModuleKeyFromHref(link.getAttribute('href'));
+    const complete = isModuleComplete(moduleKey);
+    link.classList.toggle('is-complete', complete);
+    syncStatusBadge(link, complete);
+  });
+
+  document.querySelectorAll('.module-card').forEach((card) => {
+    const headingLink = card.querySelector('h3 a[href]');
+    const statusHost = card.querySelector('.module-card-top') || card;
+    const moduleKey = getModuleKeyFromHref(headingLink?.getAttribute('href'));
+    const complete = isModuleComplete(moduleKey);
+    card.classList.toggle('is-complete', complete);
+    syncStatusBadge(statusHost, complete, 'h3');
+  });
+}
+
 function refreshOverallProgress() {
   const checklistBoxes = [...document.querySelectorAll('input[data-track-checklist]')];
   const selfTests = [...document.querySelectorAll('[data-self-test-key]')];
@@ -253,12 +332,14 @@ function refreshOverallProgress() {
   if (!total) {
     fills.forEach((fill) => { fill.style.width = '0%'; });
     labels.forEach((label) => { label.textContent = '0 of 0 learning checks completed'; });
+    refreshModuleCompletionUI();
     return;
   }
 
   const width = `${(done / total) * 100}%`;
   fills.forEach((fill) => { fill.style.width = width; });
   labels.forEach((label) => { label.textContent = `${done} of ${total} learning checks completed`; });
+  refreshModuleCompletionUI();
 }
 
 function clearQuestionState(question) {
@@ -440,6 +521,12 @@ document.querySelectorAll('[data-checklist-key]').forEach((list) => {
 
 initializeSelfTests();
 refreshOverallProgress();
+
+window.addEventListener('storage', (event) => {
+  if (!event.key || event.key.startsWith(STORAGE_PREFIX) || event.key.startsWith(SELF_TEST_PREFIX)) {
+    refreshOverallProgress();
+  }
+});
 
 const stepImages = [...document.querySelectorAll('.step-visual img')];
 
