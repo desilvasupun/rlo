@@ -3,7 +3,7 @@
  * AthabascaID: 3508216
  * Title: README.txt
  * Date: 22 Mar. 2026
- * Description: Documentation for the Production-Ready LAMPP Stack on Ubuntu Server reusable learning object
+ * Description: Documentation for the Production-Oriented LAMPP Stack on Ubuntu Server reusable learning object
  * @author Supun De Silva
  * @version 1.0
  * @copyright 2026 Supun De Silva
