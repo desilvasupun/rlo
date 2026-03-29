@@ -16,7 +16,8 @@
  * web pages. It guides learners through planning, building, hardening, validating,
  * and documenting an Ubuntu Server virtual machine that runs Apache,
  * MariaDB, PHP, and Python. The RLO is organized into modules so that learners
- * can complete the build one layer at a time and verify progress at each stage.
+ * can complete the build one layer at a time, verify progress at each stage,
+ * and complete short self-tests in every module.
  *
  * Usage Instructions
  * Open index.html in a web browser to use the learning object.
@@ -33,11 +34,11 @@
  * Module 7 - Install Python and Run an Automation Script
  * Module 8 - Final Validation and Evidence Package
  *
- * Checklist progress is stored locally in the learner's browser on the current
- * device. The site itself is fully static and can be opened offline, although
- * the learning tasks described inside the modules require external software,
- * an Ubuntu Server ISO, and internet access for package installation and
- * official documentation.
+ * Checklist and self-test progress are stored locally in the learner's browser
+ * on the current device. The site itself is fully static and can be opened
+ * offline, although the learning tasks described inside the modules require
+ * external software, an Ubuntu Server ISO, and internet access for package
+ * installation and official documentation.
  *
  * Main Project Files
  * index.html
@@ -55,7 +56,8 @@
  *
  * script.js
  * Shared client-side script for the RLO. This file handles interactions such as
- * copy buttons, checklist progress, and the screenshot enlargement behavior.
+ * copy buttons, checklist progress, self-test rendering and scoring, and the
+ * screenshot enlargement behavior.
  *
  * modules/
  * Folder containing the instructional module pages that make up the core learning

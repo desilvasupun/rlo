@@ -2,7 +2,7 @@
  * Name: Supun De Silva
  * Athabasca ID: 3508216
  * Title: styles.css
- * Date: March 22, 2026
+ * Date: March 29, 2026
  * Description: Shared stylesheet for the Production-Oriented LAMPP Stack on Ubuntu Server reusable learning object.
  * Author: Supun De Silva
  * Version: 1.0
@@ -11,7 +11,7 @@
  * DOCUMENTATION
  *
  * Description and Purpose
- * This stylesheet defines the shared visual design for the full RLO, including the global color system, layout shell, navigation, module cards, step figures, command blocks, progress indicators, lightbox styling, and responsive behavior.
+ * This stylesheet defines the shared visual design for the full RLO, including the global color system, layout shell, navigation, module cards, step figures, command blocks, self-tests, progress indicators, lightbox styling, and responsive behavior.
  */
 /* Design tokens centralize the visual system so module pages inherit the same palette, spacing, and type choices. */
 :root {
@@ -633,7 +633,8 @@ code:not(pre code) {
 .copy-btn:focus-visible,
 .nav-list a:focus-visible,
 .image-lightbox-close:focus-visible,
-.step-visual img:focus-visible {
+.step-visual img:focus-visible,
+.self-test-option input:focus-visible {
   outline: 3px solid rgba(14, 165, 233, 0.42);
   outline-offset: 3px;
 }
@@ -1142,6 +1143,153 @@ body.lightbox-open {
   accent-color: var(--accent);
 }
 
+.self-test-panel {
+  background:
+    linear-gradient(180deg, rgba(180, 83, 9, 0.08), rgba(255, 255, 255, 0) 120px),
+    linear-gradient(180deg, var(--panel), var(--panel-soft));
+}
+
+.self-test-intro {
+  margin: 0 0 1rem;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.self-test-form {
+  display: grid;
+  gap: 1rem;
+}
+
+.self-test-question {
+  min-inline-size: 0;
+  margin: 0;
+  padding: 1rem;
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.self-test-question legend {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  width: 100%;
+  margin-bottom: 0.9rem;
+  padding: 0;
+  color: var(--ink);
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.self-test-number {
+  flex: none;
+  width: 1.7rem;
+  height: 1.7rem;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent-strong);
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
+.self-test-options {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.self-test-option {
+  display: flex;
+  gap: 0.72rem;
+  align-items: flex-start;
+  padding: 0.82rem 0.9rem;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: rgba(248, 250, 248, 0.82);
+  cursor: pointer;
+  transition:
+    transform 0.16s ease,
+    border-color 0.16s ease,
+    background-color 0.16s ease;
+}
+
+.self-test-option:hover {
+  transform: translateY(-1px);
+  border-color: rgba(15, 118, 110, 0.22);
+  background: #ffffff;
+}
+
+.self-test-option input {
+  margin-top: 0.18rem;
+  accent-color: var(--accent);
+}
+
+.self-test-option span {
+  color: var(--ink-soft);
+  line-height: 1.6;
+}
+
+.self-test-question.is-correct {
+  border-color: rgba(22, 101, 52, 0.22);
+}
+
+.self-test-question.is-incorrect {
+  border-color: rgba(154, 52, 18, 0.22);
+}
+
+.self-test-option.is-correct-choice {
+  border-color: rgba(22, 101, 52, 0.28);
+  background: var(--good-soft);
+}
+
+.self-test-option.is-incorrect-choice {
+  border-color: rgba(154, 52, 18, 0.28);
+  background: var(--warn-soft);
+}
+
+.self-test-feedback {
+  min-height: 1.5rem;
+  margin: 0.85rem 0 0;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+.self-test-question.is-correct .self-test-feedback {
+  color: var(--good);
+}
+
+.self-test-question.is-incorrect .self-test-feedback {
+  color: var(--warn);
+}
+
+.self-test-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.self-test-result {
+  margin: 0;
+  padding: 0.95rem 1rem;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.self-test-panel[data-self-test-passed="true"] .self-test-result {
+  border-color: rgba(22, 101, 52, 0.22);
+  background: var(--good-soft);
+  color: var(--good);
+}
+
+.self-test-panel[data-self-test-evaluated="true"][data-self-test-passed="false"] .self-test-result {
+  border-color: rgba(154, 52, 18, 0.22);
+  background: var(--warn-soft);
+  color: var(--warn);
+}
+
 .completion-list,
 .evidence-list {
   margin: 0;
@@ -1408,6 +1556,10 @@ table.trouble th {
   }
 
   .footer-nav .button {
+    width: 100%;
+  }
+
+  .self-test-actions .button {
     width: 100%;
   }
 }
