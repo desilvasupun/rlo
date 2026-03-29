@@ -1194,6 +1194,15 @@ body.lightbox-open {
   line-height: 1.55;
 }
 
+.checklist li > span {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.checklist li code {
+  overflow-wrap: anywhere;
+}
+
 .checklist li + li {
   border-top: 1px solid var(--line);
 }
